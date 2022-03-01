@@ -1,0 +1,170 @@
+{
+   "fields": [
+                {
+                    "name": "fecha",
+                    "type": "string"
+                },
+                {
+                    "name": "distribuidor",
+                    "type": "string"
+                },
+                {
+                    "name": "version",
+                    "type": "string"
+                }, 
+                {
+                    "name": "codigo",
+                    "type": "string"
+                },
+                {
+                    "name": "respondidoPor",
+                    "type": "string"
+                },
+                {
+                    "name": "cargo",
+                    "type": "string"
+                },
+                {
+                    "name": "algodon",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A" 
+                    ]
+                },
+                {
+                    "name": "gasa",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "barbijo",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "guanteExaminacion",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "jeringa",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {           
+                    "name": "vendaGasa",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "vendaElastica",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "cumplimiento",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "calidadEmpaque",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "calidadEntrega",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "atencionAmabilidad",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "precio",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "atencionQuejas",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "sugerencias",
+                    "type": "string"
+                },
+                {
+                    "name": "user_id",
+                    "type": "integer#unsigned"
+                },
+                {
+                    "name": "email",
+                    "type": "string"
+                }
+            ],
+}

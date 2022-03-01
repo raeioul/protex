@@ -1,0 +1,420 @@
+{
+   "fields": [
+                {
+                    "name": "fecha",
+                    "type": "string"
+                },
+                {
+                    "name": "distribuidor",
+                    "type": "string"
+                },
+                {
+                    "name": "version",
+                    "type": "string"
+                }, 
+                {
+                    "name": "codigo",
+                    "type": "string"
+                },
+                {
+                    "name": "respondidoPor",
+                    "type": "string"
+                },
+                {
+                    "name": "cargo",
+                    "type": "string"
+                },
+                {
+                    "name": "algodonSuavidad",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A" 
+                    ]
+                },
+                {
+                    "name": "algodonAbsorcion",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A" 
+                    ]
+                },
+                {
+                    "name": "algodonLaminado",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A" 
+                    ]
+                },
+                {
+                    "name": "algodonLibreImpurezas",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A" 
+                    ]
+                },                                                         
+                {
+                    "name": "gasaSuavidad",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "gasaAbsorcion",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "gasaLibreImpurezas",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "gasaLibreServicioCortadoDoblado",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },                                                  
+                {
+                    "name": "barbijoComodidadRostro",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "barbijoFacilRespiracion",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "barbijoHipoalergenico",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "barbijoBarraFijacionNariz",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },                                                       
+                {
+                    "name": "guanteElasticidad",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "guantePresenciaTalco",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "guanteSuperficieRugosa",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "guanteResistenciaUso",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "guanteExaminacionElasticidad",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "guanteExaminacionPresenciaTalco",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "guanteExaminacionResistenciaUso",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "jeringaEmpaquePrimario",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "jeringaFiltracionAguja",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "jeringaFiltracionEmbolo",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "jeringaCalidadAguja",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "jeringaImpresionEscala",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "equipoSueroEmpaque",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "equipoSueroCamaraGoteo",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },                                                    
+                {           
+                    "name": "vendaGasaCalidadTejido",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {           
+                    "name": "vendaGasaMemoria",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {           
+                    "name": "vendaGasaBordes",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },                                                     
+                {
+                    "name": "vendaElasticaElasticidad",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "vendaElasticaCapacidadDistensión",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "vendaElasticaMemoria",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "vendaElasticaCalidadTejido",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "cumplimiento",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "calidadProducto",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "precio",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "atencionGestionReclamos",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "atencionAmabilidad",
+                    "type": "select",
+                    "options": [
+                        "Malo (1)", 
+                        "Regular (2)", 
+                        "Bueno (3)", 
+                        "N/A"
+                    ]
+                },
+                {
+                    "name": "sugerencias",
+                    "type": "string"
+                },
+                {
+                    "name": "user_id",
+                    "type": "integer#unsigned"
+                },
+                {
+                    "name": "email",
+                    "type": "string"
+                }
+            ]
+}
