@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.encuestas')
 
 @section('content')
     <div class="container">
@@ -8,7 +8,7 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Encuesta de Satisfacción del cliente <strong>distribuidor</strong></h3>
+                        <h3>Encuesta de Satisfacción del cliente <strong>instituciones de salud</strong></h3>
                     </div>
                     <div class="card-body">
                         @if ($errors->any())

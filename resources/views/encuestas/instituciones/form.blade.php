@@ -1,46 +1,46 @@
 <div class="row">
     <div class="col-md-8"></div>
-    <div class="form-group {{ $errors->has('version') ? 'has-error' : ''}} col-md-2">
+    <div class="form-group {{ $errors->has('version') ? 'text-danger' : ''}} col-md-2">
         <label for="version" class="control-label">Versi&oacuten</label>
         <input class="form-control" name="version" type="text" id="version" 
             value="{{
                 isset($institucione->version) ? $institucione->version : $version?$version:old('version')}}" >
         {!! $errors->first('version', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('codigo') ? 'has-error' : ''}} col-md-2">
+    <div class="form-group {{ $errors->has('codigo') ? 'text-danger' : ''}} col-md-2">
         <label for="codigo" class="control-label">C&oacutedigo</label>
         <input class="form-control" name="codigo" type="text" id="codigo" value="{{ isset($institucione->codigo) ? $institucione->codigo : $codigo?$codigo:old('codigo')}}" >
         {!! $errors->first('codigo', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 <div class="row">
-    <div class="form-group {{ $errors->has('institucion') ? 'has-error' : ''}} col-md-8">
+    <div class="form-group {{ $errors->has('institucion') ? 'text-danger' : ''}} col-md-8">
         <label for="institucion" class="control-label">Instituci&oacuten</label>
         <input class="form-control" name="institucion" type="text" id="institucion" value="{{ isset($institucione->institucion) ? $institucione->institucion : old('institucion')}}" >
         {!! $errors->first('institucion', '<p class="help-block text-danger">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('fecha') ? 'has-error' : ''}} col-md-4">
+    <div class="form-group {{ $errors->has('fecha') ? 'text-danger' : ''}} col-md-4">
         <label for="fecha" class="control-label">{{ 'Fecha' }}</label>
         <input class="form-control" name="fecha" type="text" id="fecha" value="{{ isset($institucione->fecha) ? $institucione->fecha : Carbon\Carbon::today()->formatLocalized('%d/%B/%Y')}}" >
         {!! $errors->first('fecha', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 <div class="row">
-    <div class="form-group {{ $errors->has('respondidoPor') ? 'has-error' : ''}} col-md-8">
+    <div class="form-group {{ $errors->has('respondidoPor') ? 'text-danger' : ''}} col-md-8">
         <label for="respondidoPor" class="control-label">{{ 'Respondido por' }}</label>
         <input class="form-control" name="respondidoPor" type="text" id="respondidoPor" value="{{ isset($institucione->respondidoPor) ? $institucione->respondidoPor : old('respondidoPor')}}" >
-        {!! $errors->first('respondidoPor', '<p class="help-block">:message</p>') !!}
+        {!! $errors->first('respondidoPor', '<p class="help-block text-danger">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('cargo') ? 'has-error' : ''}} col-md-4">
+    <div class="form-group {{ $errors->has('cargo') ? 'text-danger' : ''}} col-md-4">
         <label for="cargo" class="control-label">{{ 'Cargo' }}</label>
         <input class="form-control" name="cargo" type="text" id="cargo" value="{{ isset($institucione->cargo) ? $institucione->cargo : old('cargo')}}" >
-        {!! $errors->first('cargo', '<p class="help-block">:message</p>') !!}
+        {!! $errors->first('cargo', '<p class="help-block text-danger">:message</p>') !!}
     </div>
 </div>
 
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Algod&oacuten</h3>
-    <div class="form-group {{ $errors->has('algodonSuavidad') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('algodonSuavidad') ? 'text-danger' : ''}} col-md-3">
         <label for="algodonSuavidad" class="control-label">Suavidad</label>
         <select name="algodonSuavidad" class="form-control" id="algodonSuavidad" >
             @foreach($options as $option)
@@ -53,7 +53,7 @@
         </select>
         {!! $errors->first('algodonSuavidad', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('algodonAbsorcion') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('algodonAbsorcion') ? 'text-danger' : ''}} col-md-3">
         <label for="algodonAbsorcion" class="control-label">Absorci&oacuten</label>
         <select name="algodonAbsorcion" class="form-control" id="algodonAbsorcion" >
             @foreach($options as $option)
@@ -66,7 +66,7 @@
     </select>
         {!! $errors->first('algodonAbsorcion', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('algodonLaminado') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('algodonLaminado') ? 'text-danger' : ''}} col-md-3">
         <label for="algodonLaminado" class="control-label">Laminado</label>
         <select name="algodonLaminado" class="form-control" id="algodonLaminado" >
             @foreach($options as $option)
@@ -79,7 +79,7 @@
         </select>
         {!! $errors->first('algodonLaminado', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('algodonLibreImpurezas') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('algodonLibreImpurezas') ? 'text-danger' : ''}} col-md-3">
         <label for="algodonLibreImpurezas" class="control-label">Libre impurezas</label>
         <select name="algodonLibreImpurezas" class="form-control" id="algodonLibreImpurezas" >
             @foreach($options as $option)
@@ -97,7 +97,7 @@
 </div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Gasa</h3>
-    <div class="form-group {{ $errors->has('gasaSuavidad') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('gasaSuavidad') ? 'text-danger' : ''}} col-md-3">
         <label for="gasaSuavidad" class="control-label">Suavidad</label>
         <select name="gasaSuavidad" class="form-control" id="gasaSuavidad" >
             @foreach($options as $option)
@@ -110,7 +110,7 @@
         </select>
         {!! $errors->first('gasaSuavidad', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('gasaAbsorcion') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('gasaAbsorcion') ? 'text-danger' : ''}} col-md-3">
         <label for="gasaAbsorcion" class="control-label">Absorci&oacuten</label>
         <select name="gasaAbsorcion" class="form-control" id="gasaAbsorcion" >
             @foreach($options as $option)
@@ -123,7 +123,7 @@
         </select>
         {!! $errors->first('gasaAbsorcion', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('gasaLibreImpurezas') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('gasaLibreImpurezas') ? 'text-danger' : ''}} col-md-3">
         <label for="gasaLibreImpurezas" class="control-label">Libre de impurezas</label>
         <select name="gasaLibreImpurezas" class="form-control" id="gasaLibreImpurezas" >
             @foreach($options as $option)
@@ -136,7 +136,7 @@
         </select>
         {!! $errors->first('gasaLibreImpurezas', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('gasaLibreServicioCortadoDoblado') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('gasaLibreServicioCortadoDoblado') ? 'text-danger' : ''}} col-md-3">
         <label for="gasaLibreServicioCortadoDoblado" class="control-label">Servicio cortado doblado</label>
         <select name="gasaLibreServicioCortadoDoblado" class="form-control" id="gasaLibreServicioCortadoDoblado" >
             @foreach($options as $option)
@@ -152,7 +152,7 @@
 </div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Barbijo</h3>   
-    <div class="form-group {{ $errors->has('barbijoComodidadRostro') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('barbijoComodidadRostro') ? 'text-danger' : ''}} col-md-3">
         <label for="barbijoComodidadRostro" class="control-label">Comodidad en el rostro</label>
         <select name="barbijoComodidadRostro" class="form-control" id="barbijoComodidadRostro" >
             @foreach($options as $option)
@@ -165,7 +165,7 @@
         </select>
         {!! $errors->first('barbijoComodidadRostro', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('barbijoFacilRespiracion') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('barbijoFacilRespiracion') ? 'text-danger' : ''}} col-md-3">
         <label for="barbijoFacilRespiracion" class="control-label">F&aacutecil respiraci&oacuten</label>
         <select name="barbijoFacilRespiracion" class="form-control" id="barbijoFacilRespiracion" >
             @foreach($options as $option)
@@ -178,7 +178,7 @@
         </select>
         {!! $errors->first('barbijoFacilRespiracion', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('barbijoHipoalergenico') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('barbijoHipoalergenico') ? 'text-danger' : ''}} col-md-3">
         <label for="barbijoHipoalergenico" class="control-label">Hipoalerg&eacutenico</label>
         <select name="barbijoHipoalergenico" class="form-control" id="barbijoHipoalergenico" >
             @foreach($options as $option)
@@ -191,7 +191,7 @@
         </select>
         {!! $errors->first('barbijoHipoalergenico', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('barbijoBarraFijacionNariz') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('barbijoBarraFijacionNariz') ? 'text-danger' : ''}} col-md-3">
         <label for="barbijoBarraFijacionNariz" class="control-label">Barra fijaci&oacuten en la nariz</label>
         <select name="barbijoBarraFijacionNariz" class="form-control" id="barbijoBarraFijacionNariz" >
             @foreach($options as $option)
@@ -207,7 +207,7 @@
 </div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Guantes Quir&uacutergicos</h3>   
-    <div class="form-group {{ $errors->has('guanteElasticidad') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('guanteElasticidad') ? 'text-danger' : ''}} col-md-3">
         <label for="guanteElasticidad" class="control-label">Elasticidad</label>
         <select name="guanteElasticidad" class="form-control" id="guanteElasticidad" >
             @foreach($options as $option)
@@ -220,7 +220,7 @@
         </select>
         {!! $errors->first('guanteElasticidad', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('guantePresenciaTalco') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('guantePresenciaTalco') ? 'text-danger' : ''}} col-md-3">
         <label for="guantePresenciaTalco" class="control-label">Presencia de talco</label>
         <select name="guantePresenciaTalco" class="form-control" id="guantePresenciaTalco" >
             @foreach($options as $option)
@@ -233,7 +233,7 @@
         </select>
         {!! $errors->first('guantePresenciaTalco', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('guanteSuperficieRugosa') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('guanteSuperficieRugosa') ? 'text-danger' : ''}} col-md-3">
         <label for="guanteSuperficieRugosa" class="control-label">Superficie Rugosa</label>
         <select name="guanteSuperficieRugosa" class="form-control" id="guanteSuperficieRugosa" >
             @foreach($options as $option)
@@ -246,7 +246,7 @@
         </select>
         {!! $errors->first('guanteSuperficieRugosa', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('guanteResistenciaUso') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('guanteResistenciaUso') ? 'text-danger' : ''}} col-md-3">
         <label for="guanteResistenciaUso" class="control-label">Resistencia uso</label>
         <select name="guanteResistenciaUso" class="form-control" id="guanteResistenciaUso" >
             @foreach($options as $option)
@@ -262,7 +262,7 @@
 </div>    
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Guantes de Examinaci&oacuten</h3>
-    <div class="form-group {{ $errors->has('guanteExaminacionElasticidad') ? 'has-error' : ''}} col-md-4">
+    <div class="form-group {{ $errors->has('guanteExaminacionElasticidad') ? 'text-danger' : ''}} col-md-4">
         <label for="guanteExaminacionElasticidad" class="control-label">Elasticidad</label>
         <select name="guanteExaminacionElasticidad" class="form-control" id="guanteExaminacionElasticidad" >
             @foreach($options as $option)
@@ -275,7 +275,7 @@
         </select>
         {!! $errors->first('guanteExaminacionElasticidad', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('guanteExaminacionPresenciaTalco') ? 'has-error' : ''}} col-md-4">
+    <div class="form-group {{ $errors->has('guanteExaminacionPresenciaTalco') ? 'text-danger' : ''}} col-md-4">
         <label for="guanteExaminacionPresenciaTalco" class="control-label">Presencia de talco</label>
         <select name="guanteExaminacionPresenciaTalco" class="form-control" id="guanteExaminacionPresenciaTalco" >
             @foreach($options as $option)
@@ -288,7 +288,7 @@
         </select>
         {!! $errors->first('guanteExaminacionPresenciaTalco', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('guanteExaminacionResistenciaUso') ? 'has-error' : ''}} col-md-4">
+    <div class="form-group {{ $errors->has('guanteExaminacionResistenciaUso') ? 'text-danger' : ''}} col-md-4">
         <label for="guanteExaminacionResistenciaUso" class="control-label">Resistencia de uso</label>
         <select name="guanteExaminacionResistenciaUso" class="form-control" id="guanteExaminacionResistenciaUso" >
             @foreach($options as $option)
@@ -304,7 +304,7 @@
 </div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Jeringas</h3>    
-    <div class="form-group {{ $errors->has('jeringaEmpaquePrimario') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('jeringaEmpaquePrimario') ? 'text-danger' : ''}} col">
         <label for="jeringaEmpaquePrimario" class="control-label">Empaque primario</label>
         <select name="jeringaEmpaquePrimario" class="form-control" id="jeringaEmpaquePrimario" >
             @foreach($options as $option)
@@ -317,7 +317,7 @@
         </select>
         {!! $errors->first('jeringaEmpaquePrimario', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('jeringaFiltracionAguja') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('jeringaFiltracionAguja') ? 'text-danger' : ''}} col">
         <label for="jeringaFiltracionAguja" class="control-label">Filtraci&oacuten aguja</label>
         <select name="jeringaFiltracionAguja" class="form-control" id="jeringaFiltracionAguja" >
             @foreach($options as $option)
@@ -330,7 +330,7 @@
         </select>
         {!! $errors->first('jeringaFiltracionAguja', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('jeringaFiltracionEmbolo') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('jeringaFiltracionEmbolo') ? 'text-danger' : ''}} col">
         <label for="jeringaFiltracionEmbolo" class="control-label">Filtraci&oacuten embolo</label>
         <select name="jeringaFiltracionEmbolo" class="form-control" id="jeringaFiltracionEmbolo" >
             @foreach($options as $option)
@@ -343,7 +343,7 @@
         </select>
         {!! $errors->first('jeringaFiltracionEmbolo', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('jeringaCalidadAguja') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('jeringaCalidadAguja') ? 'text-danger' : ''}} col">
         <label for="jeringaCalidadAguja" class="control-label">Calidad aguja</label>
         <select name="jeringaCalidadAguja" class="form-control" id="jeringaCalidadAguja" >
             @foreach($options as $option)
@@ -356,7 +356,7 @@
         </select>
         {!! $errors->first('jeringaCalidadAguja', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('jeringaImpresionEscala') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('jeringaImpresionEscala') ? 'text-danger' : ''}} col">
         <label for="jeringaImpresionEscala" class="control-label">Impresi&oacuten escala</label>
         <select name="jeringaImpresionEscala" class="form-control" id="jeringaImpresionEscala" >
             @foreach($options as $option)
@@ -372,7 +372,7 @@
 </div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Equipo suero</h3>    
-    <div class="form-group {{ $errors->has('equipoSueroEmpaque') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('equipoSueroEmpaque') ? 'text-danger' : ''}} col">
         <label for="equipoSueroEmpaque" class="control-label">Empaque</label>
         <select name="equipoSueroEmpaque" class="form-control" id="equipoSueroEmpaque" >
             @foreach($options as $option)
@@ -385,7 +385,7 @@
         </select>
         {!! $errors->first('equipoSueroEmpaque', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('equipoSueroCamaraGoteo') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('equipoSueroCamaraGoteo') ? 'text-danger' : ''}} col">
         <label for="equipoSueroCamaraGoteo" class="control-label">C&aacutemara goteo</label>
         <select name="equipoSueroCamaraGoteo" class="form-control" id="equipoSueroCamaraGoteo" >
             @foreach($options as $option)
@@ -401,7 +401,7 @@
 </div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Venda gasa</h3>    
-    <div class="form-group {{ $errors->has('vendaGasaCalidadTejido') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('vendaGasaCalidadTejido') ? 'text-danger' : ''}} col">
         <label for="vendaGasaCalidadTejido" class="control-label">Calidad tejido</label>
         <select name="vendaGasaCalidadTejido" class="form-control" id="vendaGasaCalidadTejido" >
             @foreach($options as $option)
@@ -414,7 +414,7 @@
         </select>
         {!! $errors->first('vendaGasaCalidadTejido', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('vendaGasaMemoria') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('vendaGasaMemoria') ? 'text-danger' : ''}} col">
         <label for="vendaGasaMemoria" class="control-label">Memoria</label>
         <select name="vendaGasaMemoria" class="form-control" id="vendaGasaMemoria" >
             @foreach($options as $option)
@@ -427,7 +427,7 @@
         </select>
         {!! $errors->first('vendaGasaMemoria', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('vendaGasaBordes') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('vendaGasaBordes') ? 'text-danger' : ''}} col">
         <label for="vendaGasaBordes" class="control-label">Bordes</label>
         <select name="vendaGasaBordes" class="form-control" id="vendaGasaBordes" >
             @foreach($options as $option)
@@ -443,7 +443,7 @@
 </div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Venda el&aacutestica</h3>    
-    <div class="form-group {{ $errors->has('vendaElasticaElasticidad') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('vendaElasticaElasticidad') ? 'text-danger' : ''}} col">
         <label for="vendaElasticaElasticidad" class="control-label">Elasticidad</label>
         <select name="vendaElasticaElasticidad" class="form-control" id="vendaElasticaElasticidad" >
             @foreach($options as $option)
@@ -456,7 +456,7 @@
         </select>
         {!! $errors->first('vendaElasticaElasticidad', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('vendaElasticaCapacidadDistensión') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('vendaElasticaCapacidadDistensión') ? 'text-danger' : ''}} col">
         <label for="vendaElasticaCapacidadDistensión" class="control-label">Capacidad distensi&oacuten</label>
         <select name="vendaElasticaCapacidadDistensión" class="form-control" id="vendaElasticaCapacidadDistensión" >
             @foreach($options as $option)
@@ -469,7 +469,7 @@
         </select>
         {!! $errors->first('vendaElasticaCapacidadDistensión', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('vendaElasticaMemoria') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('vendaElasticaMemoria') ? 'text-danger' : ''}} col">
         <label for="vendaElasticaMemoria" class="control-label">Memoria</label>
         <select name="vendaElasticaMemoria" class="form-control" id="vendaElasticaMemoria" >
             @foreach($options as $option)
@@ -482,7 +482,7 @@
         </select>
         {!! $errors->first('vendaElasticaMemoria', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('vendaElasticaCalidadTejido') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('vendaElasticaCalidadTejido') ? 'text-danger' : ''}} col">
         <label for="vendaElasticaCalidadTejido" class="control-label">Calidad tejido</label>
         <select name="vendaElasticaCalidadTejido" class="form-control" id="vendaElasticaCalidadTejido" >
             @foreach($options as $option)
@@ -497,7 +497,7 @@
     </div>
 </div>    
 <div class="row border border-default" style="margin: 5px; padding: 5px">
-    <div class="form-group {{ $errors->has('cumplimiento') ? 'has-error' : ''}} col-md-4">
+    <div class="form-group {{ $errors->has('cumplimiento') ? 'text-danger' : ''}} col-md-4">
         <label for="cumplimiento" class="control-label" title="Cumplimiento en tiempos de entrega acordados con el institucion">{{ 'Cumplimiento' }}</label>
         <select name="cumplimiento" class="form-control" id="cumplimiento" >
             @foreach($options as $option)
@@ -510,7 +510,7 @@
         </select>
         {!! $errors->first('cumplimiento', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('calidadProducto') ? 'has-error' : ''}} col-md-4">
+    <div class="form-group {{ $errors->has('calidadProducto') ? 'text-danger' : ''}} col-md-4">
         <label for="calidadProducto" class="control-label" title="La calidad de nuestros productos en comparacion con otros productos semejantes de la competencia.">Calidad del producto</label>
         <select name="calidadProducto" class="form-control" id="calidadProducto" >
             @foreach($options as $option)
@@ -523,7 +523,7 @@
         </select>
         {!! $errors->first('calidadProducto', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('precio') ? 'has-error' : ''}} col-md-4">
+    <div class="form-group {{ $errors->has('precio') ? 'text-danger' : ''}} col-md-4">
         <label for="precio" class="control-label">{{ 'Precio' }}</label>
         <select name="precio" class="form-control" id="precio" >
             @foreach($options as $option)
@@ -536,7 +536,7 @@
         </select>
         {!! $errors->first('precio', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('atencionGestionReclamos') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('atencionGestionReclamos') ? 'text-danger' : ''}} col">
         <label for="atencionGestionReclamos" class="control-label">Atenci&oacuten gesti&oacuten reclamos</label>
         <select name="atencionGestionReclamos" class="form-control" id="atencionGestionReclamos" >
             @foreach($options as $option)
@@ -549,7 +549,7 @@
         </select>
         {!! $errors->first('atencionGestionReclamos', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('atencionAmabilidad') ? 'has-error' : ''}} col">
+    <div class="form-group {{ $errors->has('atencionAmabilidad') ? 'text-danger' : ''}} col">
         <label for="atencionAmabilidad" class="control-label">Atenci&oacuten amabilidad</label>
         <select name="atencionAmabilidad" class="form-control" id="atencionAmabilidad" >
             @foreach($options as $option)
@@ -563,21 +563,21 @@
         {!! $errors->first('atencionAmabilidad', '<p class="help-block">:message</p>') !!}
     </div>
 </div>    
-<div class="form-group {{ $errors->has('sugerencias') ? 'has-error' : ''}}">
+<div class="form-group {{ $errors->has('sugerencias') ? 'text-danger' : ''}}">
     <label for="sugerencias" class="control-label">{{ 'Sugerencias' }}</label>
     <textarea placeholder="Sugerencias o mejoras ..." rows="4" class="form-control" name="sugerencias" id="sugerencias"> {{ isset($institucione->sugerencias) ? $institucione->sugerencias : old('sugerencias')}}
     </textarea>
     {!! $errors->first('sugerencias', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+<div class="d-none form-group {{ $errors->has('user_id') ? 'text-danger' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
     <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($institucione->user_id) ? $institucione->user_id : ''}}" >
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('celular') ? 'has-error' : ''}}">
+<div class="form-group {{ $errors->has('celular') ? 'text-danger' : ''}}">
     <label for="celular" class="control-label">{{ 'Celular' }}</label>
     <input class="form-control" name="celular" type="text" id="celular" value="{{ isset($institucione->celular) ? $institucione->celular : old('celular')}}" >
-    {!! $errors->first('celular', '<p class="help-block">:message</p>') !!}
+    {!! $errors->first('celular', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 <br/>
 <div class="form-group">
