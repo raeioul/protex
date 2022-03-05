@@ -8,6 +8,10 @@ use App\Http\Requests;
 use App\Models\Institucione;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Exports\InstitucionesExport;
+use App\Exports\OneInstitucionExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class InstitucionesController extends Controller
 {
@@ -19,7 +23,7 @@ class InstitucionesController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 10;
 
         if (!empty($keyword)) {
             $instituciones = Institucione::where('fecha', 'LIKE', "%$keyword%")
@@ -194,4 +198,28 @@ class InstitucionesController extends Controller
 
         return redirect('encuestas/instituciones')->with('flash_message', 'Institucione deleted!');
     }
+
+    public function export() 
+    {
+        return Excel::download(new InstitucionesExport, 'instituciones.xlsx');
+    }
+
+    public function oneExport($id) 
+    {
+        $data = Institucione::findOrFail($id);
+        
+        return Excel::download(new OneInstitucionExport("encuestas.instituciones.onetable", $data),'institucion'.$id.'.xlsx');
+    }
+
+    public function exportPdf($id) 
+    {
+        $instituciones = Institucione::findOrFail($id);
+        //view()->share('encuestas.instituciones.table', $instituciones);
+        $pdf = PDF::loadView('encuestas.instituciones.onetable', [
+            'institucione' => $instituciones,
+        ]);
+        
+        return $pdf->stream();
+    }
 }
+        

@@ -7,12 +7,16 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Instituciones</div>
+                    <div class="card-header"><strong>Instituciones<strong></div>
                     <div class="card-body">
-                        <a href="{{ url('/encuestas/instituciones/create') }}" class="btn btn-success btn-sm" title="Add New Institucione">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
-
+                        <div style="margin-bottom: 5px">
+                            <a href="{{ url('/encuestas/instituciones/create') }}" class="btn btn-success btn-sm" title="Add New Institucione">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            </a>
+                            <a href="{{ url('instituciones/export/') }}" class="btn btn-success btn-sm" title="exportar excel">
+                                <i class="fa fa-file-excel" aria-hidden="true" ></i>
+                            </a>
+                        </div>
                         <form method="GET" action="{{ url('/encuestas/instituciones') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
@@ -85,7 +89,7 @@
 
                                 @foreach($instituciones as $institucione)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $institucione->id }}</td>
                                         <td>{{ $institucione->fecha }}</td>
                                         <td>{{ $institucione->institucion }}</td>
                                         <td>{{ $institucione->version }}</td>
@@ -142,15 +146,22 @@
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Institucione" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
+                                            <a href="{{ url('instituciones/export/'.$institucione->id) }}" class="btn btn-success btn-sm" title="Exportar excel">
+                                                <i class="fa fa-file-excel" aria-hidden="true" ></i>
+                                            </a>
+                                            <a href="{{ url('exportpdf/'.$institucione->id) }}" class="btn btn-danger btn-sm" title="Exportar PDF">
+                                                <i class="fa fa-file-pdf" aria-hidden="true" ></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $instituciones->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
-
                     </div>
+                    <div class="d-flex flex-column">
+                        <div class="pagination-wrapper align-self-center"> {!! $instituciones->appends(['search' => Request::get('search')])->render() !!} </div>
+                    </div>    
                 </div>
             </div>
         </div>

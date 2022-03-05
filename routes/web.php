@@ -38,3 +38,10 @@ Route::get('/encuesta-satisfaccion-de-clientes-instituciones/{version?}/{codigo?
 });
 
 Route::resource('encuestas/instituciones', 'App\Http\Controllers\Instituciones\InstitucionesController');
+
+Route::get('instituciones/export/', 'App\Http\Controllers\Instituciones\InstitucionesController@export');
+
+Route::get('instituciones/export/{id}', 'App\Http\Controllers\Instituciones\InstitucionesController@oneExport');
+
+Route::get('/exportpdf/{id}', 'App\Http\Controllers\Instituciones\InstitucionesController@exportPdf');
+
