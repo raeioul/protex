@@ -28,7 +28,7 @@
                                         <th>ID</th><td>{{ $institucione->id }}</td>
                                     </tr>
                                     <tr><th> Fecha </th><td> {{ $institucione->fecha }} </td></tr>
-                                    <tr><th> Distribuidor </th><td> {{ $institucione->distribuidor }} </td></tr>
+                                    <tr><th> Institución </th><td> {{ $institucione->institucion }} </td></tr>
                                     <tr><th> Versión </th><td> {{ $institucione->version }} </td></tr>
                                     <tr><th> Código </th><td> {{ $institucione->codigo }} </td></tr>
                                     <tr><th> Formulario respondido por </th><td> {{ $institucione->respondidoPor }} </td></tr>
@@ -73,7 +73,7 @@
                                     <tr><th> Atención Amabilidad </th><td> {{ $institucione->atencionAmabilidad }} </td></tr>
                                     <tr><th> Sugerencias </th><td> {{ $institucione->sugerencias }} </td></tr>
                                     <tr><th> ID del Usuario </th><td> {{ $institucione->user_id }} </td></tr>
-                                    <tr><th> Email </th><td> {{ $institucione->email }} </td></tr>
+                                    <tr><th> Celular </th><td> {{ $institucione->celular }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

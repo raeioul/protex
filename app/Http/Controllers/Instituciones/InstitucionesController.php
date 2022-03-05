@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Institucione;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class InstitucionesController extends Controller
 {
@@ -22,7 +23,7 @@ class InstitucionesController extends Controller
 
         if (!empty($keyword)) {
             $instituciones = Institucione::where('fecha', 'LIKE', "%$keyword%")
-                ->orWhere('distribuidor', 'LIKE', "%$keyword%")
+                ->orWhere('institucion', 'LIKE', "%$keyword%")
                 ->orWhere('version', 'LIKE', "%$keyword%")
                 ->orWhere('codigo', 'LIKE', "%$keyword%")
                 ->orWhere('respondidoPor', 'LIKE', "%$keyword%")
@@ -67,7 +68,7 @@ class InstitucionesController extends Controller
                 ->orWhere('atencionAmabilidad', 'LIKE', "%$keyword%")
                 ->orWhere('sugerencias', 'LIKE', "%$keyword%")
                 ->orWhere('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%")
+                ->orWhere('celular', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $instituciones = Institucione::latest()->paginate($perPage);
@@ -81,9 +82,17 @@ class InstitucionesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('encuestas.instituciones.create');
+        $codigo = $request->get('codigo')?$request->get('codigo'):null;
+        $version = $request->get('version')?$request->get('version'):null;
+        $options = ['--','Malo(1)', 'Regular(2)','Bueno(3)','N/A'];
+
+        return view('encuestas.instituciones.create')
+        ->with('options', $options)
+        ->with('codigo', $codigo)
+        ->with('version', $version)
+        ;
     }
 
     /**
@@ -95,6 +104,21 @@ class InstitucionesController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'institucion' => 'required',
+            'respondidoPor' => 'required',
+            'cargo' => 'required',
+            'celular' => 'required',
+        ];
+
+        $messages = [
+            'institucion.required' => 'Ese campo no puede dejarse vacío.',
+            'respondidoPor.required' => 'Ese campo no puede dejarse vacío.',
+            'cargo.required' => 'Ese campo no puede dejarse vacío.',
+            'celular.required' => 'Ese campo no puede dejarse vacío.',
+        ];
+       
+        $this->validate($request, $rules, $messages);
         
         $requestData = $request->all();
         
@@ -127,8 +151,15 @@ class InstitucionesController extends Controller
     public function edit($id)
     {
         $institucione = Institucione::findOrFail($id);
+        $codigo=$institucione->codigo;
+        $version=$institucione->version;
+        $options = ['--','Malo(1)', 'Regular(2)','Bueno(3)','N/A'];
 
-        return view('encuestas.instituciones.edit', compact('institucione'));
+        return view('encuestas.instituciones.edit', compact('institucione'))
+        ->with('codigo', $codigo)
+        ->with('version', $version)
+        ->with('options', $options)
+        ;
     }
 
     /**

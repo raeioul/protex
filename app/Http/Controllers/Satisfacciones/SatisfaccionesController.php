@@ -55,9 +55,15 @@ class SatisfaccionesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('encuestas.satisfacciones.create');
+        $codigo = $request->get('codigo')?$request->get('codigo'):null;
+        $version = $request->get('version')?$request->get('version'):null;
+
+        return view('encuestas.satisfacciones.create')
+        ->with('codigo', $codigo)
+        ->with('version', $version)
+        ;
     }
 
     /**

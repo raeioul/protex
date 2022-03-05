@@ -32,7 +32,7 @@
                                     <tr>
                                         <th> # </th>
                                         <th> Fecha </th>
-                                        <th> Distribuidor </th>
+                                        <th> Institucion </th>
                                         <th> Version </th>
                                         <th> Codigo </th>
                                         <th> Formulario respondido por </th>
@@ -77,7 +77,7 @@
                                         <th> Atencion Amabilidad </th>
                                         <th> Sugerencias </th>
                                         <th> User ID </th>
-                                        <th> email </th>
+                                        <th> Celular </th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -87,7 +87,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $institucione->fecha }}</td>
-                                        <td>{{ $institucione->distribuidor }}</td>
+                                        <td>{{ $institucione->institucion }}</td>
                                         <td>{{ $institucione->version }}</td>
                                         <td> {{ $institucione->codigo }} </td>
                                         <td> {{ $institucione->respondidoPor }} </td>
@@ -132,7 +132,7 @@
                                         <td> {{ $institucione->atencionAmabilidad }} </td>
                                         <td> {{ $institucione->sugerencias }} </td>
                                         <td> {{ $institucione->user_id }} </td>
-                                        <td> {{ $institucione->email }} </td>
+                                        <td> {{ $institucione->celular }} </td>
                                         <td>
                                             <a href="{{ url('/encuestas/instituciones/' . $institucione->id) }}" title="View Institucione"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/encuestas/instituciones/' . $institucione->id . '/edit') }}" title="Edit Institucione"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

@@ -10,12 +10,12 @@
 </div>
 <div class="form-group {{ $errors->has('version') ? 'has-error' : ''}}">
     <label for="version" class="control-label">{{ 'Version' }}</label>
-    <input class="form-control" name="version" type="text" id="version" value="{{ isset($satisfaccione->version) ? $satisfaccione->version : ''}}" >
+    <input class="form-control" name="version" type="text" id="version" value="{{ isset($satisfaccione->version) ? $satisfaccione->version : $version}}" >
     {!! $errors->first('version', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('codigo') ? 'has-error' : ''}}">
     <label for="codigo" class="control-label">{{ 'Codigo' }}</label>
-    <input class="form-control" name="codigo" type="text" id="codigo" value="{{ isset($satisfaccione->codigo) ? $satisfaccione->codigo : ''}}" >
+    <input class="form-control" name="codigo" type="text" id="codigo" value="{{ isset($satisfaccione->codigo) ? $satisfaccione->codigo : $codigo}}" >
     {!! $errors->first('codigo', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('respondidoPor') ? 'has-error' : ''}}">
