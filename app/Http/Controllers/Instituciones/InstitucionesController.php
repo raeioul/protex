@@ -112,10 +112,10 @@ class InstitucionesController extends Controller
         ];
 
         $messages = [
-            'institucion.required' => 'Ese campo no puede dejarse vacío.',
-            'respondidoPor.required' => 'Ese campo no puede dejarse vacío.',
-            'cargo.required' => 'Ese campo no puede dejarse vacío.',
-            'celular.required' => 'Ese campo no puede dejarse vacío.',
+            'institucion.required' => 'Se necesita el nombre de la institución.',
+            'respondidoPor.required' => 'Ingrese su nombre, por favor.',
+            'cargo.required' => 'Por favor, ingrese su cargo.',
+            'celular.required' => 'Se requiere su número de teléfono celular.',
         ];
        
         $this->validate($request, $rules, $messages);
