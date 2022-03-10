@@ -12,6 +12,7 @@ use App\Exports\InstitucionesExport;
 use App\Exports\OneInstitucionExport;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+use Auth;
 
 class InstitucionesController extends Controller
 {
@@ -24,58 +25,67 @@ class InstitucionesController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 10;
+        
+        if (Auth::guest()) {
+            abort(404);
+        }
 
-        if (!empty($keyword)) {
-            $instituciones = Institucione::where('fecha', 'LIKE', "%$keyword%")
-                ->orWhere('institucion', 'LIKE', "%$keyword%")
-                ->orWhere('version', 'LIKE', "%$keyword%")
-                ->orWhere('codigo', 'LIKE', "%$keyword%")
-                ->orWhere('respondidoPor', 'LIKE', "%$keyword%")
-                ->orWhere('cargo', 'LIKE', "%$keyword%")
-                ->orWhere('algodonSuavidad', 'LIKE', "%$keyword%")
-                ->orWhere('algodonAbsorcion', 'LIKE', "%$keyword%")
-                ->orWhere('algodonLaminado', 'LIKE', "%$keyword%")
-                ->orWhere('algodonLibreImpurezas', 'LIKE', "%$keyword%")
-                ->orWhere('gasaSuavidad', 'LIKE', "%$keyword%")
-                ->orWhere('gasaAbsorcion', 'LIKE', "%$keyword%")
-                ->orWhere('gasaLibreImpurezas', 'LIKE', "%$keyword%")
-                ->orWhere('gasaLibreServicioCortadoDoblado', 'LIKE', "%$keyword%")
-                ->orWhere('barbijoComodidadRostro', 'LIKE', "%$keyword%")
-                ->orWhere('barbijoFacilRespiracion', 'LIKE', "%$keyword%")
-                ->orWhere('barbijoHipoalergenico', 'LIKE', "%$keyword%")
-                ->orWhere('barbijoBarraFijacionNariz', 'LIKE', "%$keyword%")
-                ->orWhere('guanteElasticidad', 'LIKE', "%$keyword%")
-                ->orWhere('guantePresenciaTalco', 'LIKE', "%$keyword%")
-                ->orWhere('guanteSuperficieRugosa', 'LIKE', "%$keyword%")
-                ->orWhere('guanteResistenciaUso', 'LIKE', "%$keyword%")
-                ->orWhere('guanteExaminacionElasticidad', 'LIKE', "%$keyword%")
-                ->orWhere('guanteExaminacionPresenciaTalco', 'LIKE', "%$keyword%")
-                ->orWhere('guanteExaminacionResistenciaUso', 'LIKE', "%$keyword%")
-                ->orWhere('jeringaEmpaquePrimario', 'LIKE', "%$keyword%")
-                ->orWhere('jeringaFiltracionAguja', 'LIKE', "%$keyword%")
-                ->orWhere('jeringaFiltracionEmbolo', 'LIKE', "%$keyword%")
-                ->orWhere('jeringaCalidadAguja', 'LIKE', "%$keyword%")
-                ->orWhere('jeringaImpresionEscala', 'LIKE', "%$keyword%")
-                ->orWhere('equipoSueroEmpaque', 'LIKE', "%$keyword%")
-                ->orWhere('equipoSueroCamaraGoteo', 'LIKE', "%$keyword%")
-                ->orWhere('vendaGasaCalidadTejido', 'LIKE', "%$keyword%")
-                ->orWhere('vendaGasaMemoria', 'LIKE', "%$keyword%")
-                ->orWhere('vendaGasaBordes', 'LIKE', "%$keyword%")
-                ->orWhere('vendaElasticaElasticidad', 'LIKE', "%$keyword%")
-                ->orWhere('vendaElasticaCapacidadDistensión', 'LIKE', "%$keyword%")
-                ->orWhere('vendaElasticaMemoria', 'LIKE', "%$keyword%")
-                ->orWhere('vendaElasticaCalidadTejido', 'LIKE', "%$keyword%")
-                ->orWhere('cumplimiento', 'LIKE', "%$keyword%")
-                ->orWhere('calidadProducto', 'LIKE', "%$keyword%")
-                ->orWhere('precio', 'LIKE', "%$keyword%")
-                ->orWhere('atencionGestionReclamos', 'LIKE', "%$keyword%")
-                ->orWhere('atencionAmabilidad', 'LIKE', "%$keyword%")
-                ->orWhere('sugerencias', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('celular', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+        if (Auth::user()->hasRole('admin')) {
+
+            if (!empty($keyword)) {
+                $instituciones = Institucione::where('fecha', 'LIKE', "%$keyword%")
+                    ->orWhere('institucion', 'LIKE', "%$keyword%")
+                    ->orWhere('version', 'LIKE', "%$keyword%")
+                    ->orWhere('codigo', 'LIKE', "%$keyword%")
+                    ->orWhere('respondidoPor', 'LIKE', "%$keyword%")
+                    ->orWhere('cargo', 'LIKE', "%$keyword%")
+                    ->orWhere('algodonSuavidad', 'LIKE', "%$keyword%")
+                    ->orWhere('algodonAbsorcion', 'LIKE', "%$keyword%")
+                    ->orWhere('algodonLaminado', 'LIKE', "%$keyword%")
+                    ->orWhere('algodonLibreImpurezas', 'LIKE', "%$keyword%")
+                    ->orWhere('gasaSuavidad', 'LIKE', "%$keyword%")
+                    ->orWhere('gasaAbsorcion', 'LIKE', "%$keyword%")
+                    ->orWhere('gasaLibreImpurezas', 'LIKE', "%$keyword%")
+                    ->orWhere('gasaLibreServicioCortadoDoblado', 'LIKE', "%$keyword%")
+                    ->orWhere('barbijoComodidadRostro', 'LIKE', "%$keyword%")
+                    ->orWhere('barbijoFacilRespiracion', 'LIKE', "%$keyword%")
+                    ->orWhere('barbijoHipoalergenico', 'LIKE', "%$keyword%")
+                    ->orWhere('barbijoBarraFijacionNariz', 'LIKE', "%$keyword%")
+                    ->orWhere('guanteElasticidad', 'LIKE', "%$keyword%")
+                    ->orWhere('guantePresenciaTalco', 'LIKE', "%$keyword%")
+                    ->orWhere('guanteSuperficieRugosa', 'LIKE', "%$keyword%")
+                    ->orWhere('guanteResistenciaUso', 'LIKE', "%$keyword%")
+                    ->orWhere('guanteExaminacionElasticidad', 'LIKE', "%$keyword%")
+                    ->orWhere('guanteExaminacionPresenciaTalco', 'LIKE', "%$keyword%")
+                    ->orWhere('guanteExaminacionResistenciaUso', 'LIKE', "%$keyword%")
+                    ->orWhere('jeringaEmpaquePrimario', 'LIKE', "%$keyword%")
+                    ->orWhere('jeringaFiltracionAguja', 'LIKE', "%$keyword%")
+                    ->orWhere('jeringaFiltracionEmbolo', 'LIKE', "%$keyword%")
+                    ->orWhere('jeringaCalidadAguja', 'LIKE', "%$keyword%")
+                    ->orWhere('jeringaImpresionEscala', 'LIKE', "%$keyword%")
+                    ->orWhere('equipoSueroEmpaque', 'LIKE', "%$keyword%")
+                    ->orWhere('equipoSueroCamaraGoteo', 'LIKE', "%$keyword%")
+                    ->orWhere('vendaGasaCalidadTejido', 'LIKE', "%$keyword%")
+                    ->orWhere('vendaGasaMemoria', 'LIKE', "%$keyword%")
+                    ->orWhere('vendaGasaBordes', 'LIKE', "%$keyword%")
+                    ->orWhere('vendaElasticaElasticidad', 'LIKE', "%$keyword%")
+                    ->orWhere('vendaElasticaCapacidadDistensión', 'LIKE', "%$keyword%")
+                    ->orWhere('vendaElasticaMemoria', 'LIKE', "%$keyword%")
+                    ->orWhere('vendaElasticaCalidadTejido', 'LIKE', "%$keyword%")
+                    ->orWhere('cumplimiento', 'LIKE', "%$keyword%")
+                    ->orWhere('calidadProducto', 'LIKE', "%$keyword%")
+                    ->orWhere('precio', 'LIKE', "%$keyword%")
+                    ->orWhere('atencionGestionReclamos', 'LIKE', "%$keyword%")
+                    ->orWhere('atencionAmabilidad', 'LIKE', "%$keyword%")
+                    ->orWhere('sugerencias', 'LIKE', "%$keyword%")
+                    ->orWhere('user_id', 'LIKE', "%$keyword%")
+                    ->orWhere('celular', 'LIKE', "%$keyword%")
+                    ->latest()->paginate($perPage);
+            } else {
+                $instituciones = Institucione::latest()->paginate($perPage);
+            }
         } else {
-            $instituciones = Institucione::latest()->paginate($perPage);
+            abort(404);
         }
 
         return view('encuestas.instituciones.index', compact('instituciones'));
@@ -140,6 +150,10 @@ class InstitucionesController extends Controller
      */
     public function show($id)
     {
+        if (Auth::guest()) {
+            abort(404);
+        }
+
         $institucione = Institucione::findOrFail($id);
 
         return view('encuestas.instituciones.show', compact('institucione'));
@@ -154,6 +168,10 @@ class InstitucionesController extends Controller
      */
     public function edit($id)
     {
+        if (Auth::guest()) {
+            abort(404);
+        }
+
         $institucione = Institucione::findOrFail($id);
         $codigo=$institucione->codigo;
         $version=$institucione->version;
@@ -194,6 +212,10 @@ class InstitucionesController extends Controller
      */
     public function destroy($id)
     {
+        if (Auth::guest()) {
+            abort(404);
+        }
+
         Institucione::destroy($id);
 
         return redirect('encuestas/instituciones')->with('flash_message', 'Institucione deleted!');
@@ -201,11 +223,18 @@ class InstitucionesController extends Controller
 
     public function export() 
     {
+        if (Auth::guest()) {
+            abort(404);
+        }
         return Excel::download(new InstitucionesExport, 'instituciones.xlsx');
     }
 
     public function oneExport($id) 
     {
+        if (Auth::guest()) {
+            abort(404);
+        }
+
         $data = Institucione::findOrFail($id);
         
         return Excel::download(new OneInstitucionExport("encuestas.instituciones.onetable", $data),'institucion'.$id.'.xlsx');
@@ -213,6 +242,10 @@ class InstitucionesController extends Controller
 
     public function exportPdf($id) 
     {
+        if (Auth::guest()) {
+            abort(404);
+        }
+
         $instituciones = Institucione::findOrFail($id);
         //view()->share('encuestas.instituciones.table', $instituciones);
         $pdf = PDF::loadView('encuestas.instituciones.onetable', [

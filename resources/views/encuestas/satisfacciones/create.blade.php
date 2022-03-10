@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.encuestas')
 
 @section('content')
     <div class="container">
@@ -7,11 +7,11 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Satisfacciones</div>
+                    <div class="card-header">
+                        <h3>Encuesta de Satisfacción del cliente <strong>distribuidores</strong></h3>
+                    </div>
                     <div class="card-body">
-                        <a href="{{ url('/encuestas/satisfacciones') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+                        
                         @if ($errors->any())
                             <ul class="alert alert-danger">
                                 @foreach ($errors->all() as $error)

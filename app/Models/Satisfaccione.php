@@ -25,7 +25,7 @@ class Satisfaccione extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha', 'distribuidor', 'version', 'codigo', 'respondidoPor', 'cargo', 'algodon', 'gasa', 'barbijo', 'guanteExaminacion', 'jeringa', 'vendaGasa', 'vendaElastica', 'cumplimiento', 'calidadEmpaque', 'calidadEntrega', 'atencionAmabilidad', 'precio', 'atencionQuejas', 'sugerencias', 'user_id', 'email'];
+    protected $fillable = ['fecha', 'distribuidor', 'version', 'codigo', 'respondidoPor', 'cargo', 'algodon', 'gasa', 'barbijo', 'guanteExaminacion', 'jeringa', 'vendaGasa', 'vendaElastica', 'cumplimiento', 'calidadEmpaque', 'calidadEntrega', 'atencionAmabilidad', 'precio', 'atencionQuejas', 'sugerencias', 'user_id', 'celular'];
 
     public function user()
     {

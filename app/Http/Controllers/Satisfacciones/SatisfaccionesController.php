@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Satisfaccione;
 use Illuminate\Http\Request;
+use Auth;
 
 class SatisfaccionesController extends Controller
 {
@@ -20,31 +21,41 @@ class SatisfaccionesController extends Controller
         $keyword = $request->get('search');
         $perPage = 20;
 
-        if (!empty($keyword)) {
-            $satisfacciones = Satisfaccione::where('fecha', 'LIKE', "%$keyword%")
-                ->orWhere('distribuidor', 'LIKE', "%$keyword%")
-                ->orWhere('version', 'LIKE', "%$keyword%")
-                ->orWhere('codigo', 'LIKE', "%$keyword%")
-                ->orWhere('respondidoPor', 'LIKE', "%$keyword%")
-                ->orWhere('cargo', 'LIKE', "%$keyword%")
-                ->orWhere('algodon', 'LIKE', "%$keyword%")
-                ->orWhere('gasa', 'LIKE', "%$keyword%")
-                ->orWhere('barbijo', 'LIKE', "%$keyword%")
-                ->orWhere('guanteExaminacion', 'LIKE', "%$keyword%")
-                ->orWhere('jeringa', 'LIKE', "%$keyword%")
-                ->orWhere('vendaGasa', 'LIKE', "%$keyword%")
-                ->orWhere('vendaElastica', 'LIKE', "%$keyword%")
-                ->orWhere('cumplimiento', 'LIKE', "%$keyword%")
-                ->orWhere('calidadEmpaque', 'LIKE', "%$keyword%")
-                ->orWhere('calidadEntrega', 'LIKE', "%$keyword%")
-                ->orWhere('atencionAmabilidad', 'LIKE', "%$keyword%")
-                ->orWhere('precio', 'LIKE', "%$keyword%")
-                ->orWhere('atencionQuejas', 'LIKE', "%$keyword%")
-                ->orWhere('sugerencias', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+        if (Auth::guest()) {
+            abort(404);
+        }
+
+        if (Auth::user()->hasRole('admin')) {
+
+            if (!empty($keyword)) {
+                $satisfacciones = Satisfaccione::where('fecha', 'LIKE', "%$keyword%")
+                    ->orWhere('distribuidor', 'LIKE', "%$keyword%")
+                    ->orWhere('version', 'LIKE', "%$keyword%")
+                    ->orWhere('codigo', 'LIKE', "%$keyword%")
+                    ->orWhere('respondidoPor', 'LIKE', "%$keyword%")
+                    ->orWhere('cargo', 'LIKE', "%$keyword%")
+                    ->orWhere('algodon', 'LIKE', "%$keyword%")
+                    ->orWhere('gasa', 'LIKE', "%$keyword%")
+                    ->orWhere('barbijo', 'LIKE', "%$keyword%")
+                    ->orWhere('guanteExaminacion', 'LIKE', "%$keyword%")
+                    ->orWhere('jeringa', 'LIKE', "%$keyword%")
+                    ->orWhere('vendaGasa', 'LIKE', "%$keyword%")
+                    ->orWhere('vendaElastica', 'LIKE', "%$keyword%")
+                    ->orWhere('cumplimiento', 'LIKE', "%$keyword%")
+                    ->orWhere('calidadEmpaque', 'LIKE', "%$keyword%")
+                    ->orWhere('calidadEntrega', 'LIKE', "%$keyword%")
+                    ->orWhere('atencionAmabilidad', 'LIKE', "%$keyword%")
+                    ->orWhere('precio', 'LIKE', "%$keyword%")
+                    ->orWhere('atencionQuejas', 'LIKE', "%$keyword%")
+                    ->orWhere('sugerencias', 'LIKE', "%$keyword%")
+                    ->orWhere('user_id', 'LIKE', "%$keyword%")
+                    ->orWhere('celular', 'LIKE', "%$keyword%")
+                    ->latest()->paginate($perPage);
+            } else {
+                $satisfacciones = Satisfaccione::latest()->paginate($perPage);
+            }
         } else {
-            $satisfacciones = Satisfaccione::latest()->paginate($perPage);
+            abort(404);
         }
 
         return view('encuestas.satisfacciones.index', compact('satisfacciones'));
@@ -60,9 +71,11 @@ class SatisfaccionesController extends Controller
         $codigo = $request->get('codigo')?$request->get('codigo'):null;
         $version = $request->get('version')?$request->get('version'):null;
 
+        $options = ['--','Malo(1)', 'Regular(2)','Bueno(3)','N/A'];
         return view('encuestas.satisfacciones.create')
         ->with('codigo', $codigo)
         ->with('version', $version)
+        ->with('options', $options)
         ;
     }
 
@@ -92,6 +105,10 @@ class SatisfaccionesController extends Controller
      */
     public function show($id)
     {
+        if (Auth::guest()) {
+            abort(404);
+        }
+
         $satisfaccione = Satisfaccione::findOrFail($id);
 
         return view('encuestas.satisfacciones.show', compact('satisfaccione'));
@@ -106,6 +123,10 @@ class SatisfaccionesController extends Controller
      */
     public function edit($id)
     {
+        if (Auth::guest()) {
+            abort(404);
+        }
+
         $satisfaccione = Satisfaccione::findOrFail($id);
 
         return view('encuestas.satisfacciones.edit', compact('satisfaccione'));
@@ -139,6 +160,10 @@ class SatisfaccionesController extends Controller
      */
     public function destroy($id)
     {
+        if (Auth::guest()) {
+            abort(404);
+        }
+
         Satisfaccione::destroy($id);
 
         return redirect('encuestas/satisfacciones')->with('flash_message', 'Satisfaccione deleted!');
