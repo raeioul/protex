@@ -139,7 +139,7 @@ class InstitucionesController extends Controller
         
         Institucione::create($requestData);
 
-        return redirect('encuestas/instituciones')->with('flash_message', 'Institucione added!');
+        return redirect('encuestas/gracias')->with('flash_message', 'Institucione added!');
     }
 
     /**

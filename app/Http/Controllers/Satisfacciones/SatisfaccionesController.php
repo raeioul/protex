@@ -112,7 +112,7 @@ class SatisfaccionesController extends Controller
         
         Satisfaccione::create($requestData);
 
-        return redirect('encuestas/satisfacciones')->with('flash_message', 'Satisfaccione added!');
+        return redirect('encuestas/gracias')->with('flash_message', 'Satisfaccione added!');
     }
 
     /**
