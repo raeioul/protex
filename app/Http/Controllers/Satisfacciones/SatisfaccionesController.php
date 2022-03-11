@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Satisfacciones;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
+use App\Exports\SatisfaccionesExport;
+use App\Exports\OneSatisfaccionExport;
 use App\Models\Satisfaccione;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 use Auth;
 
 class SatisfaccionesController extends Controller
@@ -88,7 +91,23 @@ class SatisfaccionesController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $rules = [
+            'distribuidor' => 'required',
+            'respondidoPor' => 'required',
+            'cargo' => 'required',
+            'celular' => 'required|unique:satisfacciones',
+        ];
+
+        $messages = [
+            'distribuidor.required' => 'Se necesita el nombre del distribuidor.',
+            'respondidoPor.required' => 'Ingrese su nombre, por favor.',
+            'cargo.required' => 'Por favor, ingrese su cargo.',
+            'celular.required' => 'Se requiere su número de teléfono celular.',
+            'celular.unique' => 'Este celular ya está registrado.',
+        ];
+       
+        $this->validate($request, $rules, $messages);
+
         $requestData = $request->all();
         
         Satisfaccione::create($requestData);
@@ -128,8 +147,15 @@ class SatisfaccionesController extends Controller
         }
 
         $satisfaccione = Satisfaccione::findOrFail($id);
+        $codigo=$satisfaccione->codigo;
+        $version=$satisfaccione->version;
+        $options = ['--','Malo(1)', 'Regular(2)','Bueno(3)','N/A'];
 
-        return view('encuestas.satisfacciones.edit', compact('satisfaccione'));
+        return view('encuestas.satisfacciones.edit', compact('satisfaccione'))
+        ->with('codigo', $codigo)
+        ->with('version', $version)
+        ->with('options', $options)
+        ;
     }
 
     /**
@@ -167,5 +193,39 @@ class SatisfaccionesController extends Controller
         Satisfaccione::destroy($id);
 
         return redirect('encuestas/satisfacciones')->with('flash_message', 'Satisfaccione deleted!');
+    }
+
+    public function export() 
+    {
+        if (Auth::guest()) {
+            abort(404);
+        }
+        return Excel::download(new SatisfaccionesExport, 'satisfacciones.xlsx');
+    }
+
+    public function oneExport($id) 
+    {
+        if (Auth::guest()) {
+            abort(404);
+        }
+
+        $data = Satisfaccione::findOrFail($id);
+        
+        return Excel::download(new OneSatisfaccionExport("encuestas.satisfacciones.onetable", $data),'satisfaccion'.$id.'.xlsx');
+    }
+
+    public function exportPdf($id) 
+    {
+        if (Auth::guest()) {
+            abort(404);
+        }
+
+        $satisfacciones = Satisfaccione::findOrFail($id);
+        //view()->share('encuestas.instituciones.table', $instituciones);
+        $pdf = PDF::loadView('encuestas.satisfacciones.onetable', [
+            'satisfaccione' => $satisfacciones,
+        ]);
+        
+        return $pdf->stream();
     }
 }

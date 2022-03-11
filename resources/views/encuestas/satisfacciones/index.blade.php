@@ -7,11 +7,14 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Satisfacciones</div>
+                    <div class="card-header"><strong>Distribuidores</strong></div>
                     <div class="card-body">
                         <div style="margin-bottom: 5px">
                             <a href="{{ url('/encuestas/satisfacciones/create') }}" class="btn btn-success btn-sm" title="Add New Satisfaccione">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            </a>
+                            <a href="{{ url('satisfacciones/export/') }}" class="btn btn-success btn-sm" title="exportar excel">
+                                <i class="fa fa-file-excel" aria-hidden="true" ></i>
                             </a>
                         </div>
                         <form method="GET" action="{{ url('/encuestas/satisfacciones') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -92,6 +95,12 @@
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Satisfaccione" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
+                                            <a href="{{ url('satisfacciones/export/'.$item->id) }}" class="btn btn-success btn-sm" title="Exportar excel">
+                                                <i class="fa fa-file-excel" aria-hidden="true" ></i>
+                                            </a>
+                                            <a href="{{ url('satisfacciones/exportpdf/'.$item->id) }}" class="btn btn-danger btn-sm" title="Exportar PDF">
+                                                <i class="fa fa-file-pdf" aria-hidden="true" ></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

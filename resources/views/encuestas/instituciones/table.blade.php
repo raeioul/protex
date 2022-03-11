@@ -107,8 +107,3 @@
       @endforeach
    </tbody>
 </table>
-<style type="text/css">
-   @page {
-      size: a4 landscape;
-   }
-</style>

@@ -40,6 +40,7 @@
                                     <tr><th> Cumplimiento </th><td> {{ $satisfaccione->cumplimiento }} </td></tr>
                                     <tr><th> Calidad del Empaque </th><td> {{ $satisfaccione->calidadEmpaque }} </td></tr>
                                     <tr><th> Calidad de Entrega </th><td> {{ $satisfaccione->calidadEntrega }} </td></tr>
+                                    <tr><th> Atención y Amabilidad </th><td> {{ $satisfaccione->atencionAmabilidad }} </td></tr>
                                     <tr><th> Precio </th><td> {{ $satisfaccione->precio }} </td></tr>
                                     <tr><th> Atención y Quejas </th><td> {{ $satisfaccione->atencionQuejas }} </td></tr>
                                     <tr><th> Sugerencias </th><td> {{ $satisfaccione->sugerencias }} </td></tr>

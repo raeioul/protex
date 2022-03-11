@@ -41,7 +41,13 @@ Route::resource('encuestas/instituciones', 'App\Http\Controllers\Instituciones\I
 
 Route::get('instituciones/export/', 'App\Http\Controllers\Instituciones\InstitucionesController@export');
 
+Route::get('satisfacciones/export/', 'App\Http\Controllers\Satisfacciones\SatisfaccionesController@export');
+
 Route::get('instituciones/export/{id}', 'App\Http\Controllers\Instituciones\InstitucionesController@oneExport');
 
+Route::get('satisfacciones/export/{id}', 'App\Http\Controllers\Satisfacciones\SatisfaccionesController@oneExport');
+
 Route::get('/exportpdf/{id}', 'App\Http\Controllers\Instituciones\InstitucionesController@exportPdf');
+
+Route::get('satisfacciones/exportpdf/{id}', 'App\Http\Controllers\Satisfacciones\SatisfaccionesController@exportPdf');
 

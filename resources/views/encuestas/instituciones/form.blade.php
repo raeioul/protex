@@ -39,6 +39,12 @@
         </div>
     </div>
 </div>
+<div style="margin: 5px; padding: 5px" class="row">
+    <h4>Califique los siguientes aspectos de acuerdo a los siguientes criterios de valoración:</h4>
+    <div class="col d-flex flex-column align-items-center">Malo<strong>(1)</strong></div>
+    <div class="col d-flex flex-column align-items-center">Regular<strong>(2)</strong></div>
+    <div class="col d-flex flex-column align-items-center">Bueno<strong>(3)</strong></div>
+</div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Algod&oacuten</h3>
     <div class="form-group {{ $errors->has('algodonSuavidad') ? 'text-danger' : ''}} col-md-3">
