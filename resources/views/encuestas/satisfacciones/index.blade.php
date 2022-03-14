@@ -7,7 +7,7 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header"><strong>Distribuidores</strong></div>test
+                    <div class="card-header"><strong>Distribuidores</strong></div>
                     <div class="card-body">
                         <div style="margin-bottom: 5px">
                             <a href="{{ url('/encuestas/satisfacciones/create') }}" class="btn btn-success btn-sm" title="Add New Satisfaccione">
