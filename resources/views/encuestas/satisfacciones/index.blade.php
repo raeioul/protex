@@ -106,10 +106,11 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $satisfacciones->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
-
                     </div>
+                    <div class="d-flex flex-column">
+                        <div class="pagination-wrapper align-self-center"> {!! $satisfacciones->appends(['search' => Request::get('search')])->render() !!} </div>
+                    </div> 
                 </div>
             </div>
         </div>

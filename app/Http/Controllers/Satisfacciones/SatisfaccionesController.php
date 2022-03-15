@@ -22,7 +22,7 @@ class SatisfaccionesController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 20;
+        $perPage = 10;
 
         if (Auth::guest()) {
             abort(404);
