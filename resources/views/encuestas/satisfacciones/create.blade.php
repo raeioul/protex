@@ -19,7 +19,6 @@
                                 @endforeach
                             </ul>
                         @endif
-
                         <form method="POST" action="{{ url('/encuestas/satisfacciones') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 

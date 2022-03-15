@@ -45,6 +45,10 @@
     <div class="col d-flex flex-column align-items-center">Regular<strong>(2)</strong></div>
     <div class="col d-flex flex-column align-items-center">Bueno<strong>(3)</strong></div>
 </div>
+<div style="margin: 5px; padding: 5px" class="row text-center">
+    <h4>Valoración de calidad de producto(s):</h4>
+    <p class="d-flex flex-column align-items-end">Nota.- Colocar N/A si no utiliza este producto.</p>
+</div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Algod&oacuten</h3>
     <div class="form-group {{ $errors->has('algodonSuavidad') ? 'text-danger' : ''}} col-md-3">
@@ -104,7 +108,7 @@
 </div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Gasa</h3>
-    <div class="form-group {{ $errors->has('gasaSuavidad') ? 'text-danger' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('gasaSuavidad') ? 'text-danger' : ''}} col-md-4">
         <label for="gasaSuavidad" class="control-label">Suavidad</label>
         <select name="gasaSuavidad" class="form-control" id="gasaSuavidad" >
             @foreach($options as $option)
@@ -117,7 +121,7 @@
         </select>
         {!! $errors->first('gasaSuavidad', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('gasaAbsorcion') ? 'text-danger' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('gasaAbsorcion') ? 'text-danger' : ''}} col-md-4">
         <label for="gasaAbsorcion" class="control-label">Absorci&oacuten</label>
         <select name="gasaAbsorcion" class="form-control" id="gasaAbsorcion" >
             @foreach($options as $option)
@@ -130,7 +134,7 @@
         </select>
         {!! $errors->first('gasaAbsorcion', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('gasaLibreImpurezas') ? 'text-danger' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('gasaLibreImpurezas') ? 'text-danger' : ''}} col-md-4">
         <label for="gasaLibreImpurezas" class="control-label">Libre de impurezas</label>
         <select name="gasaLibreImpurezas" class="form-control" id="gasaLibreImpurezas" >
             @foreach($options as $option)
@@ -143,8 +147,9 @@
         </select>
         {!! $errors->first('gasaLibreImpurezas', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('gasaLibreServicioCortadoDoblado') ? 'text-danger' : ''}} col-md-3">
-        <label for="gasaLibreServicioCortadoDoblado" class="control-label">Servicio cortado doblado</label>
+    <div class="col-md-4"></div>
+    <div class="form-group {{ $errors->has('gasaLibreServicioCortadoDoblado') ? 'text-danger' : ''}} col-md-4">
+        <label for="gasaLibreServicioCortadoDoblado" class="control-label">Servicio de cortado y doblado</label>
         <select name="gasaLibreServicioCortadoDoblado" class="form-control" id="gasaLibreServicioCortadoDoblado" >
             @foreach($options as $option)
                 @if(!isset($institucione->gasaLibreServicioCortadoDoblado))
@@ -156,6 +161,7 @@
         </select>
         {!! $errors->first('gasaLibreServicioCortadoDoblado', '<p class="help-block">:message</p>') !!}
     </div>
+    <div class="col-md-4"></div>
 </div>
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Barbijo</h3>   
@@ -312,7 +318,7 @@
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Jeringas</h3>    
     <div class="form-group {{ $errors->has('jeringaEmpaquePrimario') ? 'text-danger' : ''}} col">
-        <label for="jeringaEmpaquePrimario" class="control-label">Empaque primario</label>
+        <label for="jeringaEmpaquePrimario" class="control-label">Empaque primario hermético</label>
         <select name="jeringaEmpaquePrimario" class="form-control" id="jeringaEmpaquePrimario" >
             @foreach($options as $option)
                 @if(!isset($institucione->jeringaEmpaquePrimario))
@@ -351,7 +357,7 @@
         {!! $errors->first('jeringaFiltracionEmbolo', '<p class="help-block">:message</p>') !!}
     </div>
     <div class="form-group {{ $errors->has('jeringaCalidadAguja') ? 'text-danger' : ''}} col">
-        <label for="jeringaCalidadAguja" class="control-label">Calidad aguja</label>
+        <label for="jeringaCalidadAguja" class="control-label">Calidad de aguja</label>
         <select name="jeringaCalidadAguja" class="form-control" id="jeringaCalidadAguja" >
             @foreach($options as $option)
                 @if(!isset($institucione->jeringaCalidadAguja))
@@ -380,7 +386,7 @@
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Equipo suero</h3>    
     <div class="form-group {{ $errors->has('equipoSueroEmpaque') ? 'text-danger' : ''}} col">
-        <label for="equipoSueroEmpaque" class="control-label">Empaque</label>
+        <label for="equipoSueroEmpaque" class="control-label">Empaque primario hermético</label>
         <select name="equipoSueroEmpaque" class="form-control" id="equipoSueroEmpaque" >
             @foreach($options as $option)
                 @if(!isset($institucione->equipoSueroEmpaque))
@@ -409,7 +415,7 @@
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <h3>Venda gasa</h3>    
     <div class="form-group {{ $errors->has('vendaGasaCalidadTejido') ? 'text-danger' : ''}} col">
-        <label for="vendaGasaCalidadTejido" class="control-label">Calidad tejido</label>
+        <label for="vendaGasaCalidadTejido" class="control-label">Calidad del tejido homogéneo</label>
         <select name="vendaGasaCalidadTejido" class="form-control" id="vendaGasaCalidadTejido" >
             @foreach($options as $option)
                 @if(!isset($institucione->vendaGasaCalidadTejido))
@@ -435,7 +441,7 @@
         {!! $errors->first('vendaGasaMemoria', '<p class="help-block">:message</p>') !!}
     </div>
     <div class="form-group {{ $errors->has('vendaGasaBordes') ? 'text-danger' : ''}} col">
-        <label for="vendaGasaBordes" class="control-label">Bordes</label>
+        <label for="vendaGasaBordes" class="control-label">Bordes reforzados</label>
         <select name="vendaGasaBordes" class="form-control" id="vendaGasaBordes" >
             @foreach($options as $option)
                 @if(!isset($institucione->vendaGasaBordes))
@@ -464,7 +470,7 @@
         {!! $errors->first('vendaElasticaElasticidad', '<p class="help-block">:message</p>') !!}
     </div>
     <div class="form-group {{ $errors->has('vendaElasticaCapacidadDistensión') ? 'text-danger' : ''}} col">
-        <label for="vendaElasticaCapacidadDistensión" class="control-label">Capacidad distensi&oacuten</label>
+        <label for="vendaElasticaCapacidadDistensión" class="control-label">Capacidad de distensi&oacuten sin deformarse</label>
         <select name="vendaElasticaCapacidadDistensión" class="form-control" id="vendaElasticaCapacidadDistensión" >
             @foreach($options as $option)
                 @if(!isset($institucione->vendaElasticaCapacidadDistensión))

@@ -45,6 +45,10 @@
     <div class="col d-flex flex-column align-items-center">Regular<strong>(2)</strong></div>
     <div class="col d-flex flex-column align-items-center">Bueno<strong>(3)</strong></div>
 </div>
+<div style="margin: 5px; padding: 5px" class="row text-center">
+    <h4>Percepción de la calidad de los productos, con los clientes que usted trabaja:</h4>
+    <p class="d-flex flex-column align-items-end">Nota.- Colocar N/A si no utiliza este producto.</p>
+</div>    
 <div class="row border border-default" style="margin: 5px; padding: 5px">
     <div class="form-group {{ $errors->has('algodon') ? 'has-error' : ''}} col-md-3">
         <label for="algodon" class="control-label">Algodón</label>
@@ -209,7 +213,7 @@
         {!! $errors->first('precio', '<p class="help-block">:message</p>') !!}
     </div>
     <div class="form-group {{ $errors->has('atencionQuejas') ? 'has-error' : ''}} col">
-        <label for="atencionQuejas" class="control-label"><strong>Atencion</strong> y gestion de sus quejas (si las ha tenido)</label>
+        <label for="atencionQuejas" class="control-label"><strong>Atención</strong> y gestion de sus quejas (si las ha tenido)</label>
         <select name="atencionQuejas" class="form-control" id="atencionQuejas" >
             @foreach($options as $option)
                 @if(!isset($satisfaccione->atencionQuejas))
