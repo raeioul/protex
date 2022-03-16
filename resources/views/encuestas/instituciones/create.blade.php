@@ -7,8 +7,8 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">
-                        <h3>Encuesta de Satisfacción del cliente <strong>instituciones de salud</strong></h3>
+                    <div class="card-header p-3 mb-2 bg-primary text-white">
+                        <h2 class="text-center">Encuesta de Satisfacción del cliente <strong>instituciones de salud</strong></h3>
                     </div>
                     <div class="card-body">
                         @if ($errors->any())
