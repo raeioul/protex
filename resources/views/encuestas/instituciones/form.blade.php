@@ -633,3 +633,6 @@
         <input class="btn btn-primary align-self-center" type="submit" value="{{ $formMode === 'edit' ? 'Actualizar' : 'Enviar' }}">
     </div>
 </div>
+<style type="text/css">
+    
+</style>
