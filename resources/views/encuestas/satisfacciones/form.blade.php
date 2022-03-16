@@ -49,7 +49,7 @@
 <div style="margin: 5px; padding: 5px" class="row text-center">
     <p class="d-flex flex-column align-items-end">Nota.- Colocar N/A si no utiliza este producto.</p>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">1.-</span> Percepción de la calidad de los productos, con los clientes que usted trabaja:</h4>
     </div>
@@ -160,7 +160,7 @@
     <div class="col-md-2"></div>
 </div>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">2.-</span> Cumplimiento del plazo de entrega de producto(s):</h4>
     </div>
@@ -179,7 +179,7 @@
     </div>
     </div>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">3.-</span> <strong>Calidad</strong> de empaque (Diseño de empaque, presentación, consistencia de empaque, sellado de la bolsa):</h4>
     </div>
@@ -198,7 +198,7 @@
     </div>
 </div>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">4.-</span> <strong>Calidad</strong> en el servicio de entrega (cordialidad, atención, proactividad del personal  que entrega producto):</h4>
     </div>
@@ -217,7 +217,7 @@
     </div>
 </div>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">5.-</span> <strong>Atención y amabilidad</strong> del personal de Protex (vendedor,cobrador):</h4>
     </div>
@@ -236,7 +236,7 @@
     </div>
 </div>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">6.-</span> <strong>Precio</strong> respecto al precio de la competencia:</h4>
     </div>
@@ -255,7 +255,7 @@
     </div>
 </div>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">7.-</span> <strong>Atención</strong> y gestion de sus quejas (si las ha tenido):</h4>
     </div>

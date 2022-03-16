@@ -47,7 +47,7 @@
     <div class="col d-flex flex-column align-items-center">N/A</div>
 </div>
     <p class="d-flex flex-column align-items-end">Nota.- Colocar N/A si no utiliza este producto.</p>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">1.-</span> Valoración de calidad de producto(s):</h4>
     </div>
@@ -514,7 +514,7 @@
         </div>   
     </div>
 </div> 
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">2.-</span> Cumplimiento de tiempos de entrega acordados con el vendedor</h4>
     </div>
@@ -533,7 +533,7 @@
         </div>
     </div>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">3.-</span> La <strong>calidad</strong> de nuestros productos en comparación con otros productos semejantes de la competencia
     </div>
@@ -552,7 +552,7 @@
     </div>
     </div>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">4.-</span> <strong>Precio</strong> respecto al precio de la competencia.
     </div>
@@ -571,7 +571,7 @@
     </div>
     </div>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">5.-</span> <strong>Atención y gestión</strong> ante sus reclamos (si los ha tenido)
     </div>
@@ -590,7 +590,7 @@
         </div>
     </div>
 </div>
-<div class="card">
+<div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">6.- </span><strong>Atención y amabilidad</strong> del personal de Protex
  (vendedor, personal  de almacen, cobrador)
