@@ -40,17 +40,22 @@
     </div>
 </div>
 <div style="margin: 5px; padding: 5px" class="row">
-    <h4>Califique los siguientes aspectos de acuerdo a los siguientes criterios de valoración:</h4>
-    <div class="col d-flex flex-column align-items-center">Malo<strong>(1)</strong></div>
-    <div class="col d-flex flex-column align-items-center">Regular<strong>(2)</strong></div>
+    <h4>Seleccione entre siguientes valores, de acuerdo al producto que usted utiliza:</h4>
     <div class="col d-flex flex-column align-items-center">Bueno<strong>(3)</strong></div>
+    <div class="col d-flex flex-column align-items-center">Regular<strong>(2)</strong></div>
+    <div class="col d-flex flex-column align-items-center">Malo<strong>(1)</strong></div>
+    <div class="col d-flex flex-column align-items-center">N/A</div>
 </div>
 <div style="margin: 5px; padding: 5px" class="row text-center">
-    <h4>Percepción de la calidad de los productos, con los clientes que usted trabaja:</h4>
     <p class="d-flex flex-column align-items-end">Nota.- Colocar N/A si no utiliza este producto.</p>
-</div>    
-<div class="row border border-default" style="margin: 5px; padding: 5px">
-    <div class="form-group {{ $errors->has('algodon') ? 'has-error' : ''}} col-md-3">
+</div>
+<div class="card">
+    <div class="card-header p-3 mb-2 bg-info text-white">
+        <h4><span class="text-primary">1.-</span> Percepción de la calidad de los productos, con los clientes que usted trabaja:</h4>
+    </div>
+    <div class="card-body">
+    <div class="row" style="margin: 5px; padding: 5px">    
+    <div class="form-group {{ $errors->has('algodon') ? 'has-error' : ''}} col-md-4">
         <label for="algodon" class="control-label">Algodón</label>
             <select name="algodon" class="form-control" id="algodon">
                 @foreach($options as $option)
@@ -63,7 +68,8 @@
             </select>
             {!! $errors->first('algodon', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('gasa') ? 'has-error' : ''}} col-md-3">
+    
+    <div class="form-group {{ $errors->has('gasa') ? 'has-error' : ''}} col-md-4">
         <label for="gasa" class="control-label">{{ 'Gasa' }}</label>
         <select name="gasa" class="form-control" id="gasa" >
             @foreach($options as $option)
@@ -76,7 +82,7 @@
         </select>
         {!! $errors->first('gasa', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('barbijo') ? 'has-error' : ''}} col-md-3">
+    <div class="form-group {{ $errors->has('barbijo') ? 'has-error' : ''}} col-md-4">
         <label for="barbijo" class="control-label">{{ 'Barbijo' }}</label>
         <select name="barbijo" class="form-control" id="barbijo" >
             @foreach($options as $option)
@@ -89,7 +95,11 @@
         </select>
         {!! $errors->first('barbijo', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('guanteExaminacion') ? 'has-error' : ''}} col-md-3">
+    </div>
+</div>
+    <div class="row" style="margin: 5px; padding: 5px">    
+    <div class="col-md-2"></div>
+    <div class="form-group {{ $errors->has('guanteExaminacion') ? 'has-error' : ''}} col-md-4">
         <label for="guanteExaminacion" class="control-label">{{ 'Guantes de Examinación' }}</label>
             <select name="guanteExaminacion" class="form-control" id="guanteExaminacion" >
                 @foreach($options as $option)
@@ -102,8 +112,8 @@
             </select>
         {!! $errors->first('guanteExaminacion', '<p class="help-block">:message</p>') !!}
     </div>
-</div>
-<div class="row border border-default" style="margin: 5px; padding: 5px">
+
+
     <div class="form-group {{ $errors->has('jeringa') ? 'has-error' : ''}} col-md-4">
         <label for="jeringa" class="control-label">{{ 'Jeringa' }}</label>
         <select name="jeringa" class="form-control" id="jeringa" >
@@ -117,6 +127,10 @@
     </select>
         {!! $errors->first('jeringa', '<p class="help-block">:message</p>') !!}
     </div>
+    <div class="col-md-2"></div>
+    </div>  
+    <div class="row" style="margin: 5px; padding: 5px">
+    <div class="col-md-2"></div>
     <div class="form-group {{ $errors->has('vendaGasa') ? 'has-error' : ''}} col-md-4">
         <label for="vendaGasa" class="control-label">{{ 'Vendas de Gasa' }}</label>
         <select name="vendaGasa" class="form-control" id="vendaGasa" >
@@ -143,10 +157,15 @@
         </select>
         {!! $errors->first('vendaElastica', '<p class="help-block">:message</p>') !!}
     </div>
+    <div class="col-md-2"></div>
 </div>
-<div class="row border border-default" style="margin: 5px; padding: 5px">
-    <div class="form-group {{ $errors->has('cumplimiento') ? 'has-error' : ''}} col">
-        <label for="cumplimiento" class="control-label"> <strong>Cumplimiento</strong> del plazo de entrega de producto </label>
+</div>
+<div class="card">
+    <div class="card-header p-3 mb-2 bg-info text-white">
+        <h4><span class="text-primary">2.-</span> Cumplimiento del plazo de entrega de producto(s):</h4>
+    </div>
+    <div class="card-body d-flex flex-column">
+    <div class="form-group {{ $errors->has('cumplimiento') ? 'has-error' : ''}} col-md-3 align-self-center">
         <select name="cumplimiento" class="form-control" id="cumplimiento" >
             @foreach($options as $option)
                 @if(!isset($satisfaccione->cumplimiento))
@@ -158,8 +177,14 @@
     </select>
         {!! $errors->first('cumplimiento', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('calidadEmpaque') ? 'has-error' : ''}} col">
-        <label for="calidadEmpaque" class="control-label"><strong>Calidad</strong> de empaque (Diseño de empaque, presentación, consistencia de empaque, sellado de la bolsa)</label>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header p-3 mb-2 bg-info text-white">
+        <h4><span class="text-primary">3.-</span> <strong>Calidad</strong> de empaque (Diseño de empaque, presentación, consistencia de empaque, sellado de la bolsa):</h4>
+    </div>
+    <div class="card-body d-flex flex-column">    
+    <div class="form-group {{ $errors->has('calidadEmpaque') ? 'has-error' : ''}} col-md-3 align-self-center">
         <select name="calidadEmpaque" class="form-control" id="calidadEmpaque" >
             @foreach($options as $option)
                 @if(!isset($satisfaccione->calidadEmpaque))
@@ -171,8 +196,14 @@
         </select>
         {!! $errors->first('calidadEmpaque', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('calidadEntrega') ? 'has-error' : ''}} col">
-        <label for="calidadEntrega" class="control-label"><strong>Calidad</strong> en el servicio de entrega (cordialidad, atención, proactividad del personal  que entrega producto)</label>
+</div>
+</div>
+<div class="card">
+    <div class="card-header p-3 mb-2 bg-info text-white">
+        <h4><span class="text-primary">4.-</span> <strong>Calidad</strong> en el servicio de entrega (cordialidad, atención, proactividad del personal  que entrega producto):</h4>
+    </div>
+    <div class="card-body d-flex flex-column">
+    <div class="form-group {{ $errors->has('calidadEntrega') ? 'has-error' : ''}} col-md-3 align-self-center">
         <select name="calidadEntrega" class="form-control" id="calidadEntrega" >
             @foreach($options as $option)
                 @if(!isset($satisfaccione->calidadEntrega))
@@ -185,9 +216,13 @@
         {!! $errors->first('calidadEntrega', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-<div class="row border border-default" style="margin: 5px; padding: 5px">
-    <div class="form-group {{ $errors->has('atencionAmabilidad') ? 'has-error' : ''}} col">
-        <label for="atencionAmabilidad" class="control-label"><strong>Atención y amabilidad</strong> del personal de Protex (vendedor,cobrador)</label>
+</div>
+<div class="card">
+    <div class="card-header p-3 mb-2 bg-info text-white">
+        <h4><span class="text-primary">5.-</span> <strong>Atención y amabilidad</strong> del personal de Protex (vendedor,cobrador):</h4>
+    </div>
+    <div class="card-body d-flex flex-column">
+    <div class="form-group {{ $errors->has('atencionAmabilidad') ? 'has-error' : ''}} col-md-3 align-self-center">
         <select name="atencionAmabilidad" class="form-control" id="atencionAmabilidad" >
             @foreach($options as $option)
                 @if(!isset($satisfaccione->atencionAmabilidad))
@@ -199,8 +234,14 @@
         </select>
         {!! $errors->first('atencionAmabilidad', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('precio') ? 'has-error' : ''}} col">
-    <label for="precio" class="control-label"><strong>Precio</strong> respecto al precio de la competencia</label>
+</div>
+</div>
+<div class="card">
+    <div class="card-header p-3 mb-2 bg-info text-white">
+        <h4><span class="text-primary">6.-</span> <strong>Precio</strong> respecto al precio de la competencia:</h4>
+    </div>
+    <div class="card-body d-flex flex-column">
+    <div class="form-group {{ $errors->has('precio') ? 'has-error' : ''}} col-md-3 align-self-center">
         <select name="precio" class="form-control" id="precio" >
             @foreach($options as $option)
                 @if(!isset($satisfaccione->precio))
@@ -212,8 +253,14 @@
         </select>
         {!! $errors->first('precio', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('atencionQuejas') ? 'has-error' : ''}} col">
-        <label for="atencionQuejas" class="control-label"><strong>Atención</strong> y gestion de sus quejas (si las ha tenido)</label>
+</div>
+</div>
+<div class="card">
+    <div class="card-header p-3 mb-2 bg-info text-white">
+        <h4><span class="text-primary">7.-</span> <strong>Atención</strong> y gestion de sus quejas (si las ha tenido):</h4>
+    </div>
+    <div class="card-body d-flex flex-column">
+    <div class="form-group {{ $errors->has('atencionQuejas') ? 'has-error' : ''}} col-md-3 align-self-center">
         <select name="atencionQuejas" class="form-control" id="atencionQuejas" >
             @foreach($options as $option)
                 @if(!isset($satisfaccione->atencionQuejas))
@@ -226,24 +273,25 @@
         {!! $errors->first('atencionQuejas', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-<div class="form-group {{ $errors->has('sugerencias') ? 'text-danger' : ''}}">
+</div>
+<div class="form-group {{ $errors->has('sugerencias') ? 'text-danger' : ''}}" style="margin: 15px; padding: 5px>
     <label for="sugerencias" class="control-label">{{ 'Sugerencias' }}</label>
-    <textarea placeholder="Sugerencias o mejoras ..." rows="4" class="form-control" name="sugerencias" id="sugerencias"> {{ isset($satisfaccione->sugerencias) ? $satisfaccione->sugerencias : old('sugerencias')}}
+    <textarea placeholder="Sugerencias o mejoras ..." rows="4" class="form-control" name="sugerencias" id="sugerencias"> {{ isset($institucione->sugerencias) ? $institucione->sugerencias : old('sugerencias')}}
     </textarea>
     {!! $errors->first('sugerencias', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="d-none form-group {{ $errors->has('user_id') ? 'text-danger' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
-    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($satisfaccione->user_id) ? $satisfaccione->user_id : ''}}" >
+    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($institucione->user_id) ? $institucione->user_id : ''}}" >
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('celular') ? 'alert alert-danger' : ''}}">
-    <label for="celular" class="control-label"># Celular</label>
-    <input class="form-control" name="celular" type="text" id="celular" value="{{ isset($satisfaccione->celular) ? $satisfaccione->celular : old('celular')}}" >
+<div class="form-group {{ $errors->has('celular') ? 'alert alert-danger' : ''}}" style="margin: 15px; padding: 5px>
+    <label for="celular" class="control-label">Favor de suministrarnos su # de Celular para podernos comunicar con usted</label>
+    <input class="form-control" name="celular" type="text" id="celular" value="{{ isset($institucione->celular) ? $institucione->celular : old('celular')}}" >
     {!! $errors->first('celular', '<p class="help-block">:message</p>') !!}
 </div>
 <br/>
-<div class="form-group">
+<div class="form-group" style="margin: 15px; padding: 5px">
     <div class="d-flex flex-column">
         <input class="btn btn-primary align-self-center" type="submit" value="{{ $formMode === 'edit' ? 'Actualizar' : 'Enviar' }}">
     </div>

@@ -7,8 +7,8 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">
-                        <h3>Encuesta de Satisfacción del cliente <strong>distribuidores</strong></h3>
+                    <div class="card-header p-3 mb-2 text-white text-center" style="background-color: #00204A ">
+                        <h3>Encuesta de Satisfacción del cliente <strong>distribuidor</strong></h3>
                     </div>
                     <div class="card-body">
                         
