@@ -122,7 +122,7 @@ class InstitucionesController extends Controller
             'institucion' => 'required',
             'respondidoPor' => 'required',
             'cargo' => 'required',
-            'celular' => 'required|unique:instituciones',
+            'celular' => 'required|unique:instituciones|numeric',
         ];
 
         $messages = [
@@ -131,6 +131,7 @@ class InstitucionesController extends Controller
             'cargo.required' => 'Por favor, ingrese su cargo.',
             'celular.required' => 'Se requiere su número de teléfono celular.',
             'celular.unique' => 'Este celular ya está registrado.',
+            'celular.numeric' => 'Por favor, ingrese solo números.',
         ];
        
         $this->validate($request, $rules, $messages);

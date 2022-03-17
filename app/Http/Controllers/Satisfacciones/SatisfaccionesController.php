@@ -95,7 +95,7 @@ class SatisfaccionesController extends Controller
             'distribuidor' => 'required',
             'respondidoPor' => 'required',
             'cargo' => 'required',
-            'celular' => 'required|unique:satisfacciones',
+            'celular' => 'required|unique:satisfacciones|numeric',
         ];
 
         $messages = [
@@ -104,6 +104,7 @@ class SatisfaccionesController extends Controller
             'cargo.required' => 'Por favor, ingrese su cargo.',
             'celular.required' => 'Se requiere su número de teléfono celular.',
             'celular.unique' => 'Este celular ya está registrado.',
+            'celular.numeric' => 'Por favor, ingrese solo números.',
         ];
        
         $this->validate($request, $rules, $messages);
