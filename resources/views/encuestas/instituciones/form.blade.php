@@ -40,13 +40,12 @@
     </div>
 </div>
 <div style="margin: 5px; padding: 5px" class="row">
-    <h4>Seleccione entre siguientes valores, de acuerdo al producto que usted utiliza:</h4>
-    <div class="col d-flex flex-column align-items-center">Bueno<strong>(3)</strong></div>
-    <div class="col d-flex flex-column align-items-center">Regular<strong>(2)</strong></div>
-    <div class="col d-flex flex-column align-items-center">Malo<strong>(1)</strong></div>
-    <div class="col d-flex flex-column align-items-center">N/A</div>
+    <h4>Seleccione entre los siguientes valores, de acuerdo al producto que usted utiliza:</h4>
+    <div class="col d-flex flex-column align-items-center">Bueno</div>
+    <div class="col d-flex flex-column align-items-center">Regular</div>
+    <div class="col d-flex flex-column align-items-center">Malo</div>
+    <div class="col d-flex flex-column align-items-center">No aplica (N/A)</div>
 </div>
-    <p class="d-flex flex-column align-items-end">Nota.- Colocar N/A si no utiliza este producto.</p>
 <div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
         <h4><span class="text-primary">1.-</span> Valoración de calidad de producto(s):</h4>
