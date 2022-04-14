@@ -10,12 +10,15 @@
 	        @if (Auth::user()->hasRole('user'))            
 	        	<i class="fa fa-superpowers" aria-hidden="true"></i> User
 	        @endif
+	        @if (Auth::user()->hasRole('pollster'))            
+	        	<i class="fa fa-user-secret" aria-hidden="true"></i> Encuestas
+	        @endif
 	    @else
 	    @endif       
     </div>
     <div class="card-body">
     	@if (!Auth::guest())
-			@if (Auth::user()->hasRole('admin'))
+			@if (Auth::user()->hasRole('pollster'))
 			
 			  <ul class="navbar-nav">
 			    <li class="nav-item">

@@ -30,7 +30,7 @@ class InstitucionesController extends Controller
             abort(404);
         }
 
-        if (Auth::user()->hasRole('admin')) {
+        if (Auth::user()->hasRole('pollster')) {
 
             if (!empty($keyword)) {
                 $instituciones = Institucione::where('fecha', 'LIKE', "%$keyword%")
@@ -249,7 +249,6 @@ class InstitucionesController extends Controller
         }
 
         $instituciones = Institucione::findOrFail($id);
-        //view()->share('encuestas.instituciones.table', $instituciones);
         $pdf = PDF::loadView('encuestas.instituciones.onetable', [
             'institucione' => $instituciones,
         ]);

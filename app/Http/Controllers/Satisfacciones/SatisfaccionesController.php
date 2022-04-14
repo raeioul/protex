@@ -28,7 +28,7 @@ class SatisfaccionesController extends Controller
             abort(404);
         }
 
-        if (Auth::user()->hasRole('admin')) {
+        if (Auth::user()->hasRole('pollster')) {
 
             if (!empty($keyword)) {
                 $satisfacciones = Satisfaccione::where('fecha', 'LIKE', "%$keyword%")
