@@ -56,3 +56,11 @@ Route::get('/exportpdf/{id}', 'App\Http\Controllers\Instituciones\InstitucionesC
 
 Route::get('satisfacciones/exportpdf/{id}', 'App\Http\Controllers\Satisfacciones\SatisfaccionesController@exportPdf');
 
+
+Route::resource('admin/operations', 'App\Http\Controllers\Admin\OperationsController');
+Route::resource('admin/providers', 'App\Http\Controllers\Admin\ProvidersController');
+Route::resource('admin/operation-providers', 'App\Http\Controllers\Admin\OperationProvidersController');
+Route::resource('admin/productos', 'App\Http\Controllers\Admin\ProductosController');
+Route::resource('admin/precios', 'App\Http\Controllers\Admin\PreciosController');
+Route::resource('admin/operacion-productos', 'App\Http\Controllers\Admin\OperacionProductosController');
+Route::resource('admin/pagos', 'App\Http\Controllers\Admin\PagosController');

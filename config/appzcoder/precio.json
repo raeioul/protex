@@ -1,0 +1,24 @@
+{
+   "fields": [
+        {
+            "name": "precio",
+            "type": "integer"
+        },
+        {
+            "name": "cantidad",
+            "type": "integer"
+        },  
+        {
+            "name": "etd",
+            "type": "date"
+        }, 
+        {
+            "name": "user_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "producto_id",
+            "type": "integer#unsigned"
+        }
+    ]
+}

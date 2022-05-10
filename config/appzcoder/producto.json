@@ -1,0 +1,16 @@
+{
+   "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        }, 
+        {
+            "name": "user_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "provider_id",
+            "type": "integer#unsigned"
+        }
+    ]
+}
