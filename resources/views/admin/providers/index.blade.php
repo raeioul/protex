@@ -7,7 +7,7 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Providers</div>
+                    <div class="card-header">Proveedores</div>
                     <div class="card-body">
                         <a href="{{ url('/admin/providers/create') }}" class="btn btn-success btn-sm" title="Add New Provider">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New

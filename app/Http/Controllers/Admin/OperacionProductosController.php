@@ -53,6 +53,15 @@ class OperacionProductosController extends Controller
         
         $requestData = $request->all();
         
+         $rules = [
+            'product_id' => 'required|unique:operacion_productos,product_id,NULL,id,operation_id,'.$request->operation_id
+        ];
+
+        $messages = [
+            'product_id.unique' => 'Ya seleccionaste este proveedor',
+        ];
+
+        $this->validate($request, $rules, $messages);
         OperacionProducto::create($requestData);
     
         return redirect('admin/operations')->with('flash_message', 'Operation added!');

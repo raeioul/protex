@@ -25,7 +25,7 @@ class Operation extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'proveedor', 'productos', 'precio', 'etd', 'user_id'];
 
     public function hasOperationProviders()
     {
@@ -35,6 +35,11 @@ class Operation extends Model
     public function hasPagos()
     {
         return $this->hasMany('App\Models\Pago', 'operation_id');
+    }
+
+    public function hasProducts()
+    {
+        return $this->hasMany('App\Models\Producto', 'operation_id');
     }
 
     public function hasOperationProductos()

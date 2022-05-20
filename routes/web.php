@@ -64,3 +64,4 @@ Route::resource('admin/productos', 'App\Http\Controllers\Admin\ProductosControll
 Route::resource('admin/precios', 'App\Http\Controllers\Admin\PreciosController');
 Route::resource('admin/operacion-productos', 'App\Http\Controllers\Admin\OperacionProductosController');
 Route::resource('admin/pagos', 'App\Http\Controllers\Admin\PagosController');
+Route::get('admin/token', 'App\Http\Controllers\ProductAjaxController@token');

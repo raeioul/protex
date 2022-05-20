@@ -33,8 +33,18 @@
                                         <th>#</th>
                                         <th>Name</th>
                                         <th>Actions</th>
-                                        <th>Proveedores</th>
-                                        <th>Producto</th>
+                                        <th  style="white-space: nowrap;">
+                                            Proveedor
+                                            <a href="{{ url('/admin/providers') }}" title="Agregar Proveedor">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </a>
+                                        </th>
+                                        <th  style="white-space: nowrap;">
+                                            Producto
+                                            <a href="{{ url('/admin/productos') }}" title="Agregar Producto">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </a>
+                                        </th>
                                         <th>Status</th>
                                         <th>Pagos</th>
                                     </tr>
@@ -55,55 +65,25 @@
                                             </form>
                                         </td>
                                         <td>
-                                            @if(isset($item->hasOperationProviders))
-                                                @foreach($item->hasOperationProviders as $proveedores)
-                                                    <p>
-                                                    {{
-                                                        App\Models\Provider::findOrFail(
-
-                                                        App\Models\OperationProvider::findOrFail($proveedores->id)->provider_id
-                                                        )
-                                                        ->name
-                                                    }}
-                                                    </p>
-                                                @endforeach
-                                            @endif
-                                            <form method="POST" action="{{ url('/admin/operation-providers') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                            {{ csrf_field() }}
-                                                @include ('admin.operation-providers.form', ['formMode' => 'create'])
-                                            </form>
+                                            {{ $item->proveedor }}
                                         </td>
                                         <td>
-                                            @if(isset($item->hasOperationProductos))
+                                           @if(isset($item->hasOperationProductos))
                                                 @foreach($item->hasOperationProductos as $product)
                                                     <p>
                                                     {{
-                                                        App\Models\Producto::find(
+                                                        App\Models\Producto::findOrFail(
 
-                                                        App\Models\OperacionProducto::find($product->id)->product_id
+                                                        App\Models\OperacionProducto::findOrFail($product->id)->product_id
                                                         )
                                                         ->name
                                                     }} 
-                                                    @if(App\Models\Producto::find( App\Models\OperacionProducto::find($product->id)->product_id
-                                                        )->hasPrecio)
-                                                        <strong> Precio </strong>{{ App\Models\Producto::find( App\Models\OperacionProducto::find($product->id)->product_id
-                                                        )->hasPrecio->precio }} 
-                                                        <strong> Cantidad </strong> {{ App\Models\Producto::find( App\Models\OperacionProducto::find($product->id)->product_id
-                                                        )->hasPrecio->cantidad }} 
-                                                        <strong> Etd </strong> {{ App\Models\Producto::find( App\Models\OperacionProducto::find($product->id)->product_id
-                                                        )->hasPrecio->etd }} 
-                                                    @else
-                                                    <form method="POST" action="{{ url('/admin/precios') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                                    {{ csrf_field() }}
-                                                        @include ('admin.precios.form', ['formMode' => 'create'])
-                                                    </form>
-                                                    @endif
                                                     </p>
                                                 @endforeach
                                             @endif
                                             <form method="POST" action="{{ url('/admin/operacion-productos') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                                {{ csrf_field() }}
-                                            @include ('admin.operacion-productos.form', ['formMode' => 'create'])
+                                                        {{ csrf_field() }}
+                                            @include ('admin.operacion-productos.form', ['formMode' => 'create', 'productos' => App\Models\Producto::whereIn('provider_id', [1])->pluck('name','id')])
                                             </form>
                                         </td>
                                         <td>

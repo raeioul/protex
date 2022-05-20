@@ -35,4 +35,8 @@ class Producto extends Model
     {
         return $this->hasMany('App\Models\OperacionProducto', 'product_id');
     }
+    public function operation()
+    {
+        return $this->belongsTo('App\Models\Operation');
+    }
 }

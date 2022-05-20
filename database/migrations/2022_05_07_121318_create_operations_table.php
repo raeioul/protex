@@ -16,6 +16,7 @@ class CreateOperationsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name')->nullable();
+            $table->string('proveedor')->nullable();
             });
     }
 

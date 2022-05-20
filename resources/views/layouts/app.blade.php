@@ -11,7 +11,14 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src={{url('js/jquery.js')}}></script>
+    <link rel="stylesheet" href="{{url('css/bootstrap-datepicker.css')}}" rel="stylesheet"/>
+    <script src={{url('js/bootstrap-datepicker.js')}}></script>
+    <link rel="stylesheet" href="{{url('css/select2.min.css')}}" rel="stylesheet"/>
+    <script src={{url('js/select2.min.js')}}></script>
+    <!-- Full Calendar -->
+    <script src={{url('js/moment.min.js')}}></script>
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

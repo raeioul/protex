@@ -10,6 +10,7 @@ use App\Models\Provider;
 use App\Models\Producto;
 use App\Models\OperationProvider;
 use Illuminate\Http\Request;
+use Image;
 
 class OperationsController extends Controller
 {
@@ -31,10 +32,10 @@ class OperationsController extends Controller
         }
 
         $providers =  Provider::pluck('name','id');
-        $productos =  Producto::pluck('name','id');
+        //$productos =  Producto::select('name', 'id', 'provider_id')->get();
         
         return view('admin.operations.index', compact('operations'))
-        ->with('productos', $productos)
+        
         ->with('providers', $providers);
     }
 
@@ -45,7 +46,11 @@ class OperationsController extends Controller
      */
     public function create()
     {
-        return view('admin.operations.create');
+        $providers =  Provider::pluck('name','id');
+        //$providers = array_combine($providers, $providers);
+
+        return view('admin.operations.create')
+        ->with('providers', $providers);
     }
 
     /**
@@ -59,8 +64,25 @@ class OperationsController extends Controller
     {
         
         $requestData = $request->all();
+
+        $productos = $request->input('productos');//Necesario para guardar arreglo MULTIPLE
+        $sizeImage=2048;
+
+        $productos=array_combine($productos, $productos);
+        $productos = implode(',', $productos);
+        $input = $request->except('productos');
+        $input['productos'] = $productos;//Assign the "mutated" news value to $input
+        
+        $operation = Operation::create($input);
                 
-        Operation::create($requestData);
+        //Operation::create($requestData);
+        $image = $request->file('image');
+        $input['imagename'] = $request['user_id'].'.'.strtotime($operation->created_at);
+        $destinationPath = public_path('facturas');
+        $img = Image::make($image->getRealPath());
+        $img->resize($sizeImage, $sizeImage, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
 
         return redirect('admin/operations')->with('flash_message', 'Operation added!');
     }
@@ -89,8 +111,14 @@ class OperationsController extends Controller
     public function edit($id)
     {
         $operation = Operation::findOrFail($id);
-
-        return view('admin.operations.edit', compact('operation'));
+        $providers =  Provider::pluck('name','id');
+        $proveedor = $operation->proveedor;
+        $productos = explode(',',$operation->productos);
+        
+        return view('admin.operations.edit', compact('operation'))
+        ->with('providers', $providers)
+        ->with('proveedor', $proveedor)
+        ->with('productos', $productos);
     }
 
     /**
@@ -105,9 +133,26 @@ class OperationsController extends Controller
     {
         
         $requestData = $request->all();
-        
+        $productos = $request->input('productos');//Necesario para guardar arreglo MULTIPLE
+        $sizeImage=2048;
+
+        $productos=array_combine($productos, $productos);
+        $productos = implode(',', $productos);
+        $input = $request->except('productos');
+        $input['productos'] = $productos;//Assign the "mutated" news value to $input
         $operation = Operation::findOrFail($id);
-        $operation->update($requestData);
+        $operation->update($input);
+        
+        if ($request->file('image')!=null) {
+            $image = $request->file('image');
+            $input['imagename'] = $request['user_id'].'.'.strtotime($operation->created_at);
+            $destinationPath = public_path('facturas');
+            $img = Image::make($image->getRealPath());
+            $img->resize($sizeImage, $sizeImage, function ($constraint) {
+            $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
+        }                    
+        
 
         return redirect('admin/operations')->with('flash_message', 'Operation updated!');
     }
