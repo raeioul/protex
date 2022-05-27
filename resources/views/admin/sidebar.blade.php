@@ -13,6 +13,12 @@
 	        @if (Auth::user()->hasRole('pollster'))            
 	        	<i class="fa fa-user-secret" aria-hidden="true"></i> Encuestas
 	        @endif
+	        @if (Auth::user()->hasRole('accountant'))            
+	        	<i class="fa fa-user-secret" aria-hidden="true"></i> Contador
+	        @endif
+	        @if (Auth::user()->hasRole('importer'))            
+	        	<i class="fa fa-user-secret" aria-hidden="true"></i> Importador
+	        @endif
 	    @else
 	    @endif       
     </div>

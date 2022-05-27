@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Operation;
-use App\Models\Provider;
-use App\Models\Producto;
+
+use App\Models\Status;
 use App\Models\OperationProvider;
 use Illuminate\Http\Request;
 use Image;
@@ -31,12 +31,14 @@ class OperationsController extends Controller
             $operations = Operation::latest()->paginate($perPage);
         }
 
-        $providers =  Provider::pluck('name','id');
+        $status =  Status::pluck('name','id')->toArray();
+        $status = array_combine($status, $status);
+
         //$productos =  Producto::select('name', 'id', 'provider_id')->get();
         
         return view('admin.operations.index', compact('operations'))
         
-        ->with('providers', $providers);
+        ->with('status', $status);
     }
 
     /**
@@ -142,7 +144,7 @@ class OperationsController extends Controller
         $input['productos'] = $productos;//Assign the "mutated" news value to $input
         $operation = Operation::findOrFail($id);
         $operation->update($input);
-        
+
         if ($request->file('image')!=null) {
             $image = $request->file('image');
             $input['imagename'] = $request['user_id'].'.'.strtotime($operation->created_at);

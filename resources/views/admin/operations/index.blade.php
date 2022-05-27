@@ -32,7 +32,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Actions</th>
                                         <th  style="white-space: nowrap;">
                                             Proveedor
                                             <a href="{{ url('/admin/providers') }}" title="Agregar Proveedor">
@@ -45,15 +44,94 @@
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </a>
                                         </th>
-                                        <th>Status</th>
+                                        <th>Precio</th>
+                                        <th  style="white-space: nowrap;">
+                                            Status (fecha)
+                                            <a href="{{ url('/admin/status') }}" title="Agregar Producto">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </a>
+                                        </th>
                                         <th>Pagos</th>
+                                        @if(Auth::user()->hasRole('admin'))
+                                            <th>Actions</th>
+                                        @endif    
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($operations as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
+                                        <td>
+                                            {{  App\Models\Provider::findOrFail($item->proveedor)->name }}
+                                        </td>
+                                        <td>
+                                           {{$item->productos}}
+                                        </td>
+                                        <td>
+                                           {{$item->precio}} / {{$item->currency}}
+                                        </td>
+                                        <td>
+                                            @if(isset($item->hasOperationStatus))
+                                                @foreach($item->hasOperationStatus as $operationStatus)
+                                                    <p>
+                                                        <strong>{{$operationStatus->name}}</strong>
+                                                    
+                                                        (
+                                                            {{$operationStatus->updated_at->format('d-m-Y,  H:i:s')}}
+                                                        )
+                                                    </p>
+                                                    @if(Auth::user()->hasRole('importer'))
+                                                    <a href="{{ url('/admin/operation-status/' . $operationStatus->id . '/edit') }}" title="Edit OperationStatus"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                                    <form method="POST" action="{{ url('/admin/operation-status' . '/' . $operationStatus->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete OperationStatus" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                    </form>
+                                                    @endif
+                                                    @if(!$loop->last)
+                                                    <hr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                            @if(Auth::user()->hasRole('importer'))
+                                            <form method="POST" action="{{ url('/admin/operation-status') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                @include ('admin.operation-status.form', ['formMode' => 'create'])
+                                            </form>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(isset($item->hasPagos))
+                                                @foreach($item->hasPagos as $pago)
+                                                    <p>
+                                                        <strong>{{$pago->pago}}</strong>
+                                                    </p>
+                                                    <p>
+                                                        (
+                                                            {{$pago->updated_at->format('d-m-Y,  H:i:s')}}
+                                                        )
+                                                    </p>
+                                                    @if(Auth::user()->hasRole('accountant'))
+                                                    <a href="{{ url('/admin/pagos/' . $pago->id . '/edit') }}" title="Edit Pago"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                                    <form method="POST" action="{{ url('/admin/pagos' . '/' . $pago->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete Pago" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                    </form>
+                                                    @endif
+                                                @endforeach
+                                                @if(Auth::user()->hasRole('accountant'))
+                                                    <form method="POST" action="{{ url('/admin/pagos') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        @include ('admin.pagos.form', ['formMode' => 'create'])
+                                                    </form>
+                                                @endif
+                                        </td>
+                                        @endif
+                                        @if(Auth::user()->hasRole('admin'))
                                         <td>
                                             <a href="{{ url('/admin/operations/' . $item->id) }}" title="View Operation"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/operations/' . $item->id . '/edit') }}" title="Edit Operation"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
@@ -64,44 +142,7 @@
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Operation" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
                                         </td>
-                                        <td>
-                                            {{ $item->proveedor }}
-                                        </td>
-                                        <td>
-                                           @if(isset($item->hasOperationProductos))
-                                                @foreach($item->hasOperationProductos as $product)
-                                                    <p>
-                                                    {{
-                                                        App\Models\Producto::findOrFail(
-
-                                                        App\Models\OperacionProducto::findOrFail($product->id)->product_id
-                                                        )
-                                                        ->name
-                                                    }} 
-                                                    </p>
-                                                @endforeach
-                                            @endif
-                                            <form method="POST" action="{{ url('/admin/operacion-productos') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                                        {{ csrf_field() }}
-                                            @include ('admin.operacion-productos.form', ['formMode' => 'create', 'productos' => App\Models\Producto::whereIn('provider_id', [1])->pluck('name','id')])
-                                            </form>
-                                        </td>
-                                        <td>
-                                            {{  Form::select('status',['Transito', 'terrestre', 'Arica', 'Aduana Bolivia'],null,['class' => 'required form-control select2','id'=>'provider_id']) }}
-                                        </td>
-                                        <td>
-                                            @if(isset($item->hasPagos))
-                                                @foreach($item->hasPagos as $pagos)
-                                                    <p>
-                                                        {{$pagos->pago}}
-                                                    </p>
-                                                @endforeach
-                                            @endif
-                                            <form method="POST" action="{{ url('/admin/pagos') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                                {{ csrf_field() }}
-                                                @include ('admin.pagos.form', ['formMode' => 'create'])
-                                            </form>
-                                        </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>

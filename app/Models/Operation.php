@@ -25,25 +25,15 @@ class Operation extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'proveedor', 'productos', 'precio', 'etd', 'user_id'];
+    protected $fillable = ['name', 'proveedor', 'productos', 'precio', 'currency','etd', 'user_id'];
 
-    public function hasOperationProviders()
-    {
-        return $this->hasMany('App\Models\OperationProvider', 'operation_id');
-    }
-    
     public function hasPagos()
     {
         return $this->hasMany('App\Models\Pago', 'operation_id');
     }
 
-    public function hasProducts()
+    public function hasOperationStatus()
     {
-        return $this->hasMany('App\Models\Producto', 'operation_id');
-    }
-
-    public function hasOperationProductos()
-    {
-        return $this->hasMany('App\Models\OperacionProducto', 'operation_id');
+        return $this->hasMany('App\Models\OperationStatus', 'operation_id');
     }
 }

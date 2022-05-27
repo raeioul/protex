@@ -9,17 +9,23 @@
   <div class="col-md-offset-4" >
     {!! Form::file('image', array('class' => 'image')) !!}
   </div>
+  @if(isset($operation))
   @if(\File::exists(public_path('facturas/'.$operation->user_id.'.'.strtotime($operation->created_at).'.jpg'))) 
   	<a href="{{url('facturas/'.$operation->user_id.'.'.strtotime($operation->created_at).'.jpg')}}">
-  		<img src="{{url('facturas/'.$operation->user_id.'.'.strtotime($operation->created_at).'.jpg')}}" class="img-fluid" alt="Responsive image"/>
+  		<img src="{{url('facturas/'.$operation->user_id.'.'.strtotime($operation->created_at).'.jpg')}}" class="img-thumbnail" alt="Responsive image"/>
   	</a>
+  @endif
   @endif
 </div>
 <br/>
 <div class="row">
 		<div class="form-group {{ $errors->has('productos') ? 'has-error' : ''}} col-md-6">
 		 	<label for="proveedor" class="control-label">{{ 'Proveedor' }}</label>
-			{{  Form::select('proveedor', $providers, isset($proveedor)?$proveedor:NULL, ['class' => 'required form-control select2', 'id' => 'proveedor']) }}
+			<select class="form-control" name="proveedor" id="proveedor">
+		  		@foreach($providers as $key => $provider)
+	        		<option value="{{ $key }}"> {{ $provider }} </option>
+	    		@endforeach 
+    		</select>
 			<a href="#" onclick='window.open("{{url('admin/providers')}}");return false;' title="Agregar">
 	      		<button class="btn btn-basic btn-xs">
 			        <i class="fa fa-plus" aria-hidden="true">
@@ -27,7 +33,7 @@
 	      		</button>
 	    	</a>
 		</div>
-		<div class="form-group {{ $errors->has('proveedor') ? 'has-error' : ''}} col-md-6">
+		<div class="form-group {{ $errors->has('producto') ? 'has-error' : ''}} col-md-6">
 			{!! Form::label('productos', 'Productos:', ['class' => 'control-label']) !!}
 		  	<select class="productos form-control" name="productos[]" multiple="multiple">
 		  		@if(isset($productos))
@@ -50,9 +56,13 @@
     	<input class="form-control" name="precio" type="number" id="precio" value="{{ isset($operation->precio) ? $operation->precio : ''}}" >
     {!! $errors->first('precio', '<p class="help-block">:message</p>') !!}
 	</div>
-	<div class="form-group {{ $errors->has('moneda') ? 'has-error' : ''}} col-md-3">
-		<label for="proveedor" class="control-label">{{ 'Moneda' }}</label>
-		{{  Form::select('moneda', ['$US', 'Bs.'], null, ['class' => 'required form-control select2','name'=>'proveedor',  'id' => 'moneda']) }}
+	<div class="form-group {{ $errors->has('currency') ? 'has-error' : ''}} col-md-3">
+		<label for="currency" class="control-label">{{ 'Moneda' }}</label>
+		{{  Form::select('currency', array('$US'=>'$US', 'Bs.'=>'Bs.'), 
+		isset($operation)?
+			$operation->currency?
+				   $operation->currency:null
+			:null, ['class' => 'required form-control select2','name'=>'currency',  'id' => 'currency']) }}
 	</div>
 	<div class="form-group {{ $errors->has('etd') ? 'has-error' : ''}} col-md-3">
 	    <label for="etd" class="control-label">{{ 'Etd' }}</label>

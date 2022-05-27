@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Pago;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
-class PagosController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,15 +21,15 @@ class PagosController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $pagos = Pago::where('pago', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
+            $status = Status::where('name', 'LIKE', "%$keyword%")
                 ->orWhere('operation_id', 'LIKE', "%$keyword%")
+                ->orWhere('user_id', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $pagos = Pago::latest()->paginate($perPage);
+            $status = Status::latest()->paginate($perPage);
         }
 
-        return view('admin.pagos.index', compact('pagos'));
+        return view('admin.status.index', compact('status'));
     }
 
     /**
@@ -39,7 +39,7 @@ class PagosController extends Controller
      */
     public function create()
     {
-        return view('admin.pagos.create');
+        return view('admin.status.create');
     }
 
     /**
@@ -54,10 +54,9 @@ class PagosController extends Controller
         
         $requestData = $request->all();
         
-        Pago::create($requestData);
+        Status::create($requestData);
 
-        return redirect('admin/operations')->with('flash_message', 'Operation added!');
-        //return redirect('admin/pagos')->with('flash_message', 'Pago added!');
+        return redirect('admin/status')->with('flash_message', 'Status added!');
     }
 
     /**
@@ -69,9 +68,9 @@ class PagosController extends Controller
      */
     public function show($id)
     {
-        $pago = Pago::findOrFail($id);
+        $status = Status::findOrFail($id);
 
-        return view('admin.pagos.show', compact('pago'));
+        return view('admin.status.show', compact('status'));
     }
 
     /**
@@ -83,9 +82,9 @@ class PagosController extends Controller
      */
     public function edit($id)
     {
-        $item = Pago::findOrFail($id);
+        $status = Status::findOrFail($id);
 
-        return view('admin.pagos.edit', compact('item'));
+        return view('admin.status.edit', compact('status'));
     }
 
     /**
@@ -100,10 +99,11 @@ class PagosController extends Controller
     {
         
         $requestData = $request->all();
-        $pago = Pago::findOrFail($id);
-        $pago->update($requestData);
+        
+        $status = Status::findOrFail($id);
+        $status->update($requestData);
 
-        return redirect('admin/operations')->with('flash_message', 'Pago updated!');
+        return redirect('admin/status')->with('flash_message', 'Status updated!');
     }
 
     /**
@@ -115,8 +115,8 @@ class PagosController extends Controller
      */
     public function destroy($id)
     {
-        Pago::destroy($id);
+        Status::destroy($id);
 
-        return redirect('admin/pagos')->with('flash_message', 'Pago deleted!');
+        return redirect('admin/status')->with('flash_message', 'Status deleted!');
     }
 }
