@@ -74,7 +74,7 @@
                                         <td>
                                             @if(isset($item->hasOperationStatus))
                                                 @foreach($item->hasOperationStatus as $operationStatus)
-                                                    <p>
+                                                    <p style="white-space: nowrap;">
                                                         <strong>{{$operationStatus->name}}</strong>
                                                     
                                                         (
@@ -105,10 +105,11 @@
                                         <td>
                                             @if(isset($item->hasPagos))
                                                 @foreach($item->hasPagos as $pago)
-                                                    <p>
-                                                        <strong>{{$pago->pago}}</strong>
+                                                    <p style="white-space: nowrap;">
+                                                        <strong>{{$pago->pago}}</strong> {{$item->currency}}
                                                     </p>
-                                                    <p>
+
+                                                    <p style="white-space: nowrap;">
                                                         (
                                                             {{$pago->updated_at->format('d-m-Y,  H:i:s')}}
                                                         )
@@ -133,7 +134,13 @@
                                         @endif
                                         @if(Auth::user()->hasRole('admin'))
                                         <td>
-                                            <a href="{{ url('/admin/operations/' . $item->id) }}" title="View Operation"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            @if(isset($item))
+                                                @if(\File::exists(public_path('facturas/'.$item->user_id.'.'.strtotime($item->created_at).'.jpg'))) 
+                                                <a href="{{url('facturas/'.$item->user_id.'.'.strtotime($item->created_at).'.jpg')}}">
+                                                <button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button>
+                                                </a>
+                                                @endif
+                                            @endif
                                             <a href="{{ url('/admin/operations/' . $item->id . '/edit') }}" title="Edit Operation"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
                                             <form method="POST" action="{{ url('/admin/operations' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">

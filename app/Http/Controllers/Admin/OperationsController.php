@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Operation;
-
+use App\Models\Provider;
 use App\Models\Status;
 use App\Models\OperationProvider;
 use Illuminate\Http\Request;
