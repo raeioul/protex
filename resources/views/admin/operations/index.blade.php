@@ -31,9 +31,9 @@
                         <br/>
                         <div class="text-end">
                             <h3>
-                                TOTAL <span class="badge bg-dark">{{$suma}}</span>
-                                En Transito <span class="badge bg-primary">{{$suma-$almacen}}</span>
-                                Almacen <span class="badge bg-secondary">{{$almacen}}</span>
+                                TOTAL = <span class="badge bg-dark">{{$suma}}</span>
+                                En Transito = <span class="badge bg-primary">{{$suma-$almacen}}</span>
+                                Almacen = <span class="badge bg-secondary">{{$almacen}}</span>
                             </h3>
                         </div>
                         <div class="table-responsive">
