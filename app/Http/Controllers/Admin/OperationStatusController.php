@@ -102,6 +102,7 @@ class OperationStatusController extends Controller
     {
         
         $requestData = $request->all();
+        
         $operationstatus = OperationStatus::findOrFail($id);
         $operationstatus->update($requestData);
 
