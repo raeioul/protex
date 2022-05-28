@@ -26,6 +26,10 @@ class OperationsController extends Controller
 
         if (!empty($keyword)) {
             $operations = Operation::where('name', 'LIKE', "%$keyword%")
+                ->orWhere('proveedor', 'LIKE', "%$keyword%")
+                ->orWhere('productos', 'LIKE', "%$keyword%")
+                ->orWhere('precio', 'LIKE', "%$keyword%")
+                ->orWhere('currency', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $operations = Operation::latest()->paginate($perPage);
@@ -78,14 +82,15 @@ class OperationsController extends Controller
         $operation = Operation::create($input);
                 
         //Operation::create($requestData);
-        $image = $request->file('image');
-        $input['imagename'] = $request['user_id'].'.'.strtotime($operation->created_at);
-        $destinationPath = public_path('facturas');
-        $img = Image::make($image->getRealPath());
-        $img->resize($sizeImage, $sizeImage, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
-
+        if ($request->file('image')!=null) {
+            $image = $request->file('image');
+            $input['imagename'] = $request['user_id'].'.'.strtotime($operation->created_at);
+            $destinationPath = public_path('facturas');
+            $img = Image::make($image->getRealPath());
+            $img->resize($sizeImage, $sizeImage, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
+        }
         return redirect('admin/operations')->with('flash_message', 'Operation added!');
     }
 
