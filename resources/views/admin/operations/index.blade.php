@@ -11,8 +11,10 @@
                     <div class="card-body">
                         @if(Auth::user()->hasRole('admin'))
                         <a href="{{ url('/admin/operations/create') }}" class="btn btn-success btn-sm" title="Add New Operation">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            <i class="fa fa-plus" aria-hidden="true"></i> Nueva Operación
                         </a>
+                        <br/>
+                        <br/>
                         @endif
                         <form method="GET" action="{{ url('/admin/operations') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
@@ -27,6 +29,13 @@
 
                         <br/>
                         <br/>
+                        <div class="text-end">
+                            <h3>
+                                TOTAL <span class="badge bg-dark">{{$suma}}</span>
+                                En Transito <span class="badge bg-primary">{{$suma-$almacen}}</span>
+                                Almacen <span class="badge bg-secondary">{{$almacen}}</span>
+                            </h3>
+                        </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>

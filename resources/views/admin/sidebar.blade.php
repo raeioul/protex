@@ -24,24 +24,30 @@
     </div>
     <div class="card-body">
     	@if (!Auth::guest())
+			<ul class="navbar-nav">
 			@if (Auth::user()->hasRole('pollster'))
-			
-			  <ul class="navbar-nav">
 			    <li class="nav-item">
 			      <a class="dropdown-item" href="{{ url('encuestas/instituciones') }}" title="Instituciones">
 			      	<i class="fa fa-hospital" aria-hidden="true"></i>
-Instituciones
+						Instituciones
 			  	  </a>
 			    </li>
 			    <li class="nav-item">
 			       <a class="dropdown-item" href="{{ url('encuestas/satisfacciones') }}" title="Distribuidores">
 			       	<i class="fa fa-truck" aria-hidden="true"></i>
-Distribuidores
+						Distribuidores
 			       </a>
 			    </li>
-			  </ul>
-			
 			@endif
+			@if (Auth::user()->hasRole('admin')||Auth::user()->hasRole('importer')||Auth::user()->hasRole('accountant'))
+				<li class="nav-item">
+			       <a class="dropdown-item" href="{{ url('admin/operations') }}" title="Distribuidores">
+			       	<i class="fas fa-glasses" aria-hidden="true"></i>
+						Operaciones
+			       </a>
+			    </li>
+			@endif
+			</ul>
 		@else
 		@endif
     </div>

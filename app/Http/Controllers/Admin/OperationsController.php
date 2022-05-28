@@ -38,11 +38,35 @@ class OperationsController extends Controller
         $status =  Status::pluck('name','id')->toArray();
         $status = array_combine($status, $status);
 
-        //$productos =  Producto::select('name', 'id', 'provider_id')->get();
+        $l = Operation::with('hasPagos')->get();
+
+        $suma = $l->map(function ($item) {
+            $item->total = $item->hasPagos->sum('pago');
+            return $item;
+        })->sum('total');
         
+        $x = Operation::with('hasPagos')->with('hasOperationStatus')->get();
+        $operationAlmacen = array();
+        foreach ($x as $value) {
+            if($value->hasOperationStatus) {
+                foreach ($value->hasOperationStatus as $op) {
+                    if($op->name == 'Almacen') {
+                        $operationAlmacen[] = $value;
+                    }
+                }
+            }
+        }
+
+        $almacen = collect($operationAlmacen)->map(function ($item) {
+            $item->total = $item->hasPagos->sum('pago');
+            return $item;
+        })->sum('total');
+
         return view('admin.operations.index', compact('operations'))
-        
-        ->with('status', $status);
+        ->with('status', $status)
+        ->with('suma', $suma)
+        ->with('almacen', $almacen)
+        ;
     }
 
     /**
