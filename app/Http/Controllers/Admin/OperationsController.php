@@ -11,6 +11,7 @@ use App\Models\Status;
 use App\Models\OperationProvider;
 use Illuminate\Http\Request;
 use Image;
+use Mail;
 
 class OperationsController extends Controller
 {
@@ -62,10 +63,26 @@ class OperationsController extends Controller
             return $item;
         })->sum('total');
 
+        $y = Operation::with('hasPagos')->with('hasOperationStatus')->get();
+        $operationCancel = array();
+        foreach ($y as $value) {
+            if(isset($value->hasCancel)) {
+                if($value->hasCancel->cancelar == 1) {
+                    $operationCancel[] = $value;
+                }
+            }
+        }
+        
+        $cancel = collect($operationCancel)->map(function ($item) {
+            $item->total = $item->hasPagos->sum('pago');
+            return $item;
+        })->sum('total');
+
         return view('admin.operations.index', compact('operations'))
         ->with('status', $status)
         ->with('suma', $suma)
         ->with('almacen', $almacen)
+        ->with('cancel', $cancel)
         ;
     }
 
@@ -95,14 +112,18 @@ class OperationsController extends Controller
         
         $requestData = $request->all();
 
-        $productos = $request->input('productos');//Necesario para guardar arreglo MULTIPLE
+        $productos = $request->input('productos');
+        $cantidades = $request->input('cantidades');//Necesario para guardar arreglo MULTIPLE
         $sizeImage=2048;
 
         $productos=array_combine($productos, $productos);
+        $cantidades=array_combine($cantidades, $cantidades);
         $productos = implode(',', $productos);
+        $cantidades = implode(',', $cantidades);
         $input = $request->except('productos');
+        $input = $request->except('cantidades');
         $input['productos'] = $productos;//Assign the "mutated" news value to $input
-        
+        $input['cantidades'] = $cantidades;
         $operation = Operation::create($input);
                 
         //Operation::create($requestData);
@@ -115,6 +136,15 @@ class OperationsController extends Controller
                 $constraint->aspectRatio();
             })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
         }
+        $emails = ['raeioul@gmail.com', 'protex.sys@gmail.com'];
+        Mail::send(
+            'mail.publico',
+            $requestData,
+            function ($message) use ($requestData, $emails) {
+            $message->to($emails, 'protex')->subject('Se ha creado una nueva operación');
+            $message->from('info@protex.com', 'Protex');
+        });
+
         return redirect('admin/operations')->with('flash_message', 'Operation added!');
     }
 
@@ -145,11 +175,14 @@ class OperationsController extends Controller
         $providers =  Provider::pluck('name','id');
         $proveedor = $operation->proveedor;
         $productos = explode(',',$operation->productos);
+        $cantidades = explode(',',$operation->cantidades);
         
         return view('admin.operations.edit', compact('operation'))
         ->with('providers', $providers)
         ->with('proveedor', $proveedor)
-        ->with('productos', $productos);
+        ->with('productos', $productos)
+        ->with('cantidades', $cantidades)
+        ;
     }
 
     /**
@@ -164,13 +197,18 @@ class OperationsController extends Controller
     {
         
         $requestData = $request->all();
-        $productos = $request->input('productos');//Necesario para guardar arreglo MULTIPLE
+        $productos = $request->input('productos');
+        $cantidades = $request->input('cantidades');//Necesario para guardar arreglo MULTIPLE
         $sizeImage=2048;
 
         $productos=array_combine($productos, $productos);
+        $cantidades=array_combine($cantidades, $cantidades);
         $productos = implode(',', $productos);
+        $cantidades = implode(',', $cantidades);
         $input = $request->except('productos');
+        $input = $request->except('cantidades');
         $input['productos'] = $productos;//Assign the "mutated" news value to $input
+        $input['cantidades'] = $cantidades;
         $operation = Operation::findOrFail($id);
         $operation->update($input);
 
@@ -183,8 +221,6 @@ class OperationsController extends Controller
             $constraint->aspectRatio();
             })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
         }                    
-        
-
         return redirect('admin/operations')->with('flash_message', 'Operation updated!');
     }
 

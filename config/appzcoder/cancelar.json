@@ -1,0 +1,16 @@
+{
+   "fields": [
+        {
+            "name": "cancelar",
+            "type": "boolean"
+        },
+        {
+            "name": "operation_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "user_id",
+            "type": "integer#unsigned"
+        }
+    ]
+}

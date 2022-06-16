@@ -1,4 +1,15 @@
 <label for="pago" class="control-label">{{ 'Pago' }}</label>
+<div class="col-md-offset-4" >
+    {!! Form::file('image', array('class' => 'image')) !!}
+    @if(isset($item))
+    @if(\File::exists(public_path('pagos/'.$item->user_id.'.'.strtotime($item->created_at).'.jpg'))) 
+        <a href="{{url('pagos/'.$item->user_id.'.'.strtotime($item->created_at).'.jpg')}}">
+          <img src="{{url('pagos/'.$item->user_id.'.'.strtotime($item->created_at).'.jpg')}}" class="img-thumbnail" alt="Responsive image"/>
+        </a>
+    @endif
+    @endif
+</div>
+<br/>
 <div class="btn-group"> 
     <input class="form-control" name="pago" type="number" id="pago" value="{{ isset($item->pago) ? $item->pago : ''}}" >
     {!! $errors->first('pago', '<p class="help-block">:message</p>') !!}
@@ -12,7 +23,7 @@
     <input class="form-control" name="operation_id" type="number" id="operation_id" value="{{isset($item->operation_id)?$item->operation_id:$item->id}}" >
     {!! $errors->first('operation_id', '<p class="help-block">:message</p>') !!}
 </div>
-    <button>
-        <i class="fa fa-plus" aria-hidden="true"></i>
+    <button class="btn bt-sm btn-secondary">
+        Pagar
     </button>
 </div>

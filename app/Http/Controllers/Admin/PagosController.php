@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Pago;
 use Illuminate\Http\Request;
+use Image;
 
 class PagosController extends Controller
 {
@@ -53,8 +54,19 @@ class PagosController extends Controller
     {
         
         $requestData = $request->all();
+        $sizeImage=2048;
+
+        $pago=Pago::create($requestData);
         
-        Pago::create($requestData);
+        if ($request->file('image')!=null) {
+            $image = $request->file('image');
+            $requestData['imagename'] = $request['user_id'].'.'.strtotime($pago->created_at);
+            $destinationPath = public_path('pagos');
+            $img = Image::make($image->getRealPath());
+            $img->resize($sizeImage, $sizeImage, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$requestData['imagename'].'.'.'jpg');
+        }
 
         return redirect('admin/operations')->with('flash_message', 'Operation added!');
         //return redirect('admin/pagos')->with('flash_message', 'Pago added!');
@@ -101,6 +113,17 @@ class PagosController extends Controller
         
         $requestData = $request->all();
         $pago = Pago::findOrFail($id);
+        $sizeImage=2048;
+        
+        if ($request->file('image')!=null) {
+            $image = $request->file('image');
+            $requestData['imagename'] = $request['user_id'].'.'.strtotime($pago->created_at);
+            $destinationPath = public_path('pagos');
+            $img = Image::make($image->getRealPath());
+            $img->resize($sizeImage, $sizeImage, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$requestData['imagename'].'.'.'jpg');
+        }
         $pago->update($requestData);
 
         return redirect('admin/operations')->with('flash_message', 'Pago updated!');
