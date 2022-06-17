@@ -69,3 +69,5 @@ Route::get('admin/token', 'App\Http\Controllers\ProductAjaxController@token');
 Route::resource('admin/status', 'App\Http\Controllers\Admin\StatusController');
 Route::resource('admin/operation-status', 'App\Http\Controllers\Admin\OperationStatusController');
 Route::resource('admin/cancelaciones', 'App\Http\Controllers\Admin\CancelacionesController');
+Route::get('admin/export/operations/{search}', 'App\Http\Controllers\Admin\OperationsController@operationsExcel');
+Route::get('admin/export/operations', 'App\Http\Controllers\Admin\OperationsController@operationsExcel');

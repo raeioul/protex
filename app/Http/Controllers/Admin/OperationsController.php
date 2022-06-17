@@ -10,8 +10,11 @@ use App\Models\Provider;
 use App\Models\Status;
 use App\Models\OperationProvider;
 use Illuminate\Http\Request;
+use App\Exports\OperationsExport;
 use Image;
 use Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class OperationsController extends Controller
 {
@@ -24,13 +27,15 @@ class OperationsController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 25;
-
         if (!empty($keyword)) {
             $operations = Operation::where('name', 'LIKE', "%$keyword%")
+                ->orWhere('numeroOperacion', 'LIKE', "%$keyword%")
+                ->orWhere('numeroFactura', 'LIKE', "%$keyword%")
+                ->orWhere('numeroOperacion', 'LIKE', "%$keyword%")
                 ->orWhere('proveedor', 'LIKE', "%$keyword%")
                 ->orWhere('productos', 'LIKE', "%$keyword%")
                 ->orWhere('precio', 'LIKE', "%$keyword%")
-                ->orWhere('currency', 'LIKE', "%$keyword%")
+                ->orWhere('etd', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $operations = Operation::latest()->paginate($perPage);
@@ -224,6 +229,69 @@ class OperationsController extends Controller
         return redirect('admin/operations')->with('flash_message', 'Operation updated!');
     }
 
+    public function operationsExcel($search=null) 
+    {
+        if (Auth::guest()) {
+            abort(404);
+        }
+        $perPage = 20;
+        if (!empty($search)) {
+            $operations = Operation::where('name', 'LIKE', "%$search%")
+                ->orWhere('numeroOperacion', 'LIKE', "%$search%")
+                ->orWhere('numeroFactura', 'LIKE', "%$search%")
+                ->orWhere('numeroOperacion', 'LIKE', "%$search%")
+                ->orWhere('proveedor', 'LIKE', "%$search%")
+                ->orWhere('productos', 'LIKE', "%$search%")
+                ->orWhere('precio', 'LIKE', "%$search%")
+                ->orWhere('etd', 'LIKE', "%$search%")
+                ->latest()->get();
+        } else {
+            $operations = Operation::all();
+        }
+        
+        $l = Operation::with('hasPagos')->get();
+
+        $suma = $l->map(function ($item) {
+            $item->total = $item->hasPagos->sum('pago');
+            return $item;
+        })->sum('total');
+        
+        $x = Operation::with('hasPagos')->with('hasOperationStatus')->get();
+        $operationAlmacen = array();
+
+        foreach ($x as $value) {
+            if($value->hasOperationStatus) {
+                foreach ($value->hasOperationStatus as $op) {
+                    if($op->name == 'Almacen') {
+                        $operationAlmacen[] = $value;
+                    }
+                }
+            }
+        }
+
+        $almacen = collect($operationAlmacen)->map(function ($item) {
+            $item->total = $item->hasPagos->sum('pago');
+            return $item;
+        })->sum('total');
+
+        $y = Operation::with('hasPagos')->with('hasOperationStatus')->get();
+        $operationCancel = array();
+        foreach ($y as $value) {
+            if(isset($value->hasCancel)) {
+                if($value->hasCancel->cancelar == 1) {
+                    $operationCancel[] = $value;
+                }
+            }
+        }
+        
+        $cancel = collect($operationCancel)->map(function ($item) {
+            $item->total = $item->hasPagos->sum('pago');
+            return $item;
+        })->sum('total');
+        
+
+        return Excel::download(new OperationsExport("admin.operations.table", $operations, $suma, $almacen, $cancel),'operations'.$search.'.xlsx');
+    }
     /**
      * Remove the specified resource from storage.
      *

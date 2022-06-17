@@ -26,6 +26,9 @@
                                 </span>
                             </div>
                         </form>
+                        <a href="{{ url('admin/export/operations/').'/'.app('request')->input('search')}}" class="btn btn-success btn-sm" title="Exportar excel">
+                            <i class="fa fa-file-excel" aria-hidden="true" ></i>
+                        </a>
                         <br/>
                         <br/>
                         <h3>RESUMEN</h3>
@@ -74,7 +77,7 @@
                                 @foreach($operations as $item)
                                     <tr class="{{isset($item->hasCancel)?
                                                     $item->hasCancel->cancelar===1?
-                                                        'bg-warning':''
+                                                        'table-dark':''
                                                     :''}}
 
                                                 {{$item->isFinished()?'bg-success':''}}    ">
@@ -144,6 +147,7 @@
                                                             </form>    
                                                     @endif        
                                                 @endif
+                                            @endif    
                                         </td>
                                         <td>
                                             {{$item->getPagos()}}    
@@ -201,7 +205,6 @@
                                                 @endif         
                                             @endif
                                         </td>
-                                        @endif
                                         @if(Auth::user()->hasRole('admin'))
                                         <td>
                                             @if(isset($item))
@@ -240,4 +243,12 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("input[name=name]").on('change',function(){
+            var fieldValue = $(this).val();
+            $("input[name=company]").val(fieldValue);
+        });
+    });
+    </script>
 @endsection
