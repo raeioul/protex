@@ -75,7 +75,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($operations as $item)
-                                    <tr class="{{$item->isCancel()?'table-dark':''}}
+                                    <tr class="{{$item->isCancel()?'':'table-dark'}}
 
                                                 {{$item->isFinished()?'bg-success':''}}    ">
                                         <td>{{ $item->numeroOperacion }}</td>
