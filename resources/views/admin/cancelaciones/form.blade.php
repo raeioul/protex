@@ -17,14 +17,6 @@
 
 
 <div class="form-group">
-    <input class="btn {{isset($item->hasCancel)?
-        $item->hasCancel->cancelar===1?
-            'btn-success':'btn-danger'
-        :'btn-danger'
-        }}
-        btn-sm" type="submit" value="{{isset($item->hasCancel)?
-        $item->hasCancel->cancelar===1?
-            '¿Reestablecer?':'¿Cancelar?'
-        :'¿Cancelar?'
-        }}" onclick="return confirm(&quot;¿Está seguro?&quot;)">
+    <input class="btn {{$item->isCancel()?'btn-success':'btn-danger'}}
+        btn-sm" type="submit" value="{{$item->isCancel()?'¿Reestablecer?':'¿Cancelar?'}}" onclick="return confirm(&quot;¿Está seguro?&quot;)">
 </div>
