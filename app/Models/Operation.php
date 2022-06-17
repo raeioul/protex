@@ -64,7 +64,7 @@ class Operation extends Model
     {
         return 
             $this->hasCancel!==null?
-                $this->hasCancel->cancelar===1?
+                $this->hasCancel->cancelar==1?
                     true:false
             :false;
     }

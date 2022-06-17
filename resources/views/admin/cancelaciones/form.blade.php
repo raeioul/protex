@@ -1,10 +1,9 @@
 <input name="cancelar" 
     value="{{isset($item->hasCancel)?
-                $item->hasCancel->cancelar===0?
+                $item->hasCancel->cancelar==0?
                 1:0
             :1    
             }}" class="d-none">
-            {{dd($item->hasCancel->cancelar)}}
 <div class="form-group {{ $errors->has('operation_id') ? 'has-error' : ''}} d-none">
     <label for="operation_id" class="control-label">{{ 'Operation Id' }}</label>
     <input class="form-control" name="operation_id" type="number" id="operation_id" value="{{ isset($cancelacione->operation_id) ? $cancelacione->operation_id : $item->id}}" >
