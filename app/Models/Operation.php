@@ -34,7 +34,7 @@ class Operation extends Model
 
     public function hasCancel()
     {
-        return $this->hasOne('App\Models\Cancelacione', 'operation_id');
+        return $this->hasOne('App\Models\Cancelacione');
     }
 
     public function hasOperationStatus()
