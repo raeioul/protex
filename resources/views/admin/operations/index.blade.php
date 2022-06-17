@@ -75,10 +75,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($operations as $item)
-                                    <tr class="{{isset($item->hasCancel)?
-                                                    $item->hasCancel->cancelar===1?
-                                                        'table-dark':''
-                                                    :''}}
+                                    <tr class="{{$item->isCancel()?'table-dark':''}}
 
                                                 {{$item->isFinished()?'bg-success':''}}    ">
                                         <td>{{ $item->numeroOperacion }}</td>
@@ -243,12 +240,4 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-    $(document).ready(function(){
-        $("input[name=name]").on('change',function(){
-            var fieldValue = $(this).val();
-            $("input[name=company]").val(fieldValue);
-        });
-    });
-    </script>
 @endsection

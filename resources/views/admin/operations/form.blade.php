@@ -106,6 +106,7 @@
     
       var cantidades = '{{isset($operation->cantidades)?$operation->cantidades:null}}';
       var productos = '{{isset($operation->productos)?$operation->productos:null}}';
+      var proveedor= document.getElementById('proveedor').value;
       if(cantidades.length>0) {
         cantidades = cantidades.split(',');
         productos = productos.split(',');
@@ -143,6 +144,8 @@
    
     var x = 1; //initlal text box count
     $(add_button).click(function(e){ //on add input button click
+        var proveedor= document.getElementById('proveedor').value;
+        console.log(proveedor, 'proveedor');
         e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment

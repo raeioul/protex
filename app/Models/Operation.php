@@ -60,4 +60,11 @@ class Operation extends Model
         }
         return count($operationAlmacen)>0 && $saldo==0?true:false;
     }
+    public function isCancel()
+    {
+        return 
+            $this->hasCancel!==null?
+                $this->hasCancel->cancelar===1?true:false
+            :false;
+    }
 }
