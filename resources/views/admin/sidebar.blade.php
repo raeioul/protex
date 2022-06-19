@@ -46,6 +46,26 @@
 						Operaciones
 			       </a>
 			    </li>
+			    <li class="nav-item">
+			       <a class="dropdown-item" href="{{ url('admin/providers') }}" title="Distribuidores">
+			       	<i class="fas fa-cog" aria-hidden="true"></i>
+						Proveedores
+			       </a>
+			    </li>
+			    <li class="nav-item">
+			       <a class="dropdown-item" href="{{ url('admin/productos') }}" title="Distribuidores">
+			       	<i class="fas fa-tags" aria-hidden="true"></i>
+						Productos
+			       </a>
+			    </li>
+			@endif
+			@if (Auth::user()->hasRole('importer'))
+				<li class="nav-item">
+			       <a class="dropdown-item" href="{{ url('admin/status') }}" title="Distribuidores">
+			       	<i class="fas fa-rss" aria-hidden="true"></i>
+						Status
+			       </a>
+			    </li>
 			@endif
 			</ul>
 		@else

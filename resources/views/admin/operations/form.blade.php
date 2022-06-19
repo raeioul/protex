@@ -77,9 +77,9 @@
     var add_button      = $(".add_field_button"); //Add button ID
     var proveedor= document.getElementById('proveedor').value;
     $('#proveedor').change(function(){
-      console.log('cambié de proveedor')
       $('.productos').val(null).trigger('change');
       $('.productos').empty().trigger('change')
+      proveedor= document.getElementById('proveedor').value;
     });
     $('.productos').select2({
       placeholder: 'Seleccione un producto...',
@@ -103,10 +103,8 @@
       }
     });
     $(document).ready(function() {
-    
       var cantidades = '{{isset($operation->cantidades)?$operation->cantidades:null}}';
       var productos = '{{isset($operation->productos)?$operation->productos:null}}';
-      var proveedor= document.getElementById('proveedor').value;
       if(cantidades.length>0) {
         cantidades = cantidades.split(',');
         productos = productos.split(',');
@@ -144,8 +142,6 @@
    
     var x = 1; //initlal text box count
     $(add_button).click(function(e){ //on add input button click
-        var proveedor= document.getElementById('proveedor').value;
-        console.log(proveedor, 'proveedor');
         e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
@@ -178,11 +174,8 @@
             });
         }
     });
-   
-
 
     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parents('.productos-parent').remove(); x--;
     })
-
 </script>

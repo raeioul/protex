@@ -1,15 +1,6 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
-        <!-- NAME: 1 COLUMN -->
-        <!--[if gte mso 15]>
-        <xml>
-            <o:OfficeDocumentSettings>
-            <o:AllowPNG/>
-            <o:PixelsPerInch>96</o:PixelsPerInch>
-            </o:OfficeDocumentSettings>
-        </xml>
-        <![endif]-->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,7 +32,7 @@
                             <td class="mcnImageContent" valign="top" style="padding-right: 9px;padding-left: 9px;padding-top: 0;padding-bottom: 0;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                 
                                     
-                                        <img align="center" alt="" src="https://mcusercontent.com/51a5279aa7377372cfcb249ed/images/b7d67ecd-d925-406b-a610-ea2a99c6072a.png" width="153" style="max-width: 450px;padding-bottom: 0;display: inline !important;vertical-align: bottom;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" class="mcnImage">
+                                        <img align="center" alt="" src="https://w3.protex.com.bo/images/protex2.png" width="153" style="max-width: 450px;padding-bottom: 0;display: inline !important;vertical-align: bottom;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" class="mcnImage">
                                     
                                 
                             </td>
@@ -70,21 +61,13 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top: 0;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;">
                         
-                            <h1 style="display: block;margin: 0;padding: 0;color: #202020;font-family: Helvetica;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;text-align: left;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¡¡¡Ahora ya puedes difundir tu publicación de prensa por tus redes sociales!!!</font></font></h1>
 
-<p style="margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">La siguiente publicación ha sido republicada en el sitio web de Reclutante:</font></font></p>
+<p style="margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">La siguiente operación acaba de ser creada:</font></font></p>
 
 </p>
+<p style="text-align: center;margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;"><img data-file-id="1991265" height="100" src="http://sys.protex.com.bo/protex/public/facturas/{{$user_id.'.'.strtotime($created_at).'.jpg'}}" style="border: 0px;width: 80px;height: 100px;margin: 0px;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="80"></p>
 
-<p style="margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Este es un servicio gratuito, para verificar que tu publicación fue correctamente publicada en el medio de prensa que elegiste.</font></font></p>
 
-<p style="text-align: justify;margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Puedes crear la publicación en nuestro sitio web de manera <strong>gratuita</strong>, promocionar tu búsqueda por redes sociales y realizar la evaluación curricular de manera simple y rápida. Te invitamos a conocer más sobre nuestros&nbsp;servicios, pulsando&nbsp;
-	<span style="color:#0000FF">
-		<a href="https://www.reclutante.com/empresa/ofertas" style="text-decoration:none">aquí</a>.
-	</span>
-</font></font></p>
-
-<p style="margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: left;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">El equipo de Reclutante.</font></font></p>
 
                         </td>
                     </tr>

@@ -106,40 +106,25 @@
                                                     </p>
                                                   
                                                     @if(Auth::user()->hasRole('accountant')&&!$item->isFinished())
-                                                        @if(isset($item->hasCancel))
-                                                            @if($item->hasCancel->cancelar!==1)    
-                                                                <a href="{{ url('/admin/pagos/' . $pago->id . '/edit') }}" title="Edit Pago"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
-                                                                <form method="POST" action="{{ url('/admin/pagos' . '/' . $pago->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                                    {{ method_field('DELETE') }}
-                                                                    {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete Pago" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                                                </form>
-                                                            @endif
-                                                        @else
-                                                                <a href="{{ url('/admin/pagos/' . $pago->id . '/edit') }}" title="Edit Pago"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
-                                                                <form method="POST" action="{{ url('/admin/pagos' . '/' . $pago->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                                    {{ method_field('DELETE') }}
-                                                                    {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete Pago" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                                                </form>    
+                                                        @if(!$item->isCancel())
+                                                            <a href="{{ url('/admin/pagos/' . $pago->id . '/edit') }}" title="Edit Pago">
+                                                                <button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                                                            </a>
+                                                            <form method="POST" action="{{ url('/admin/pagos' . '/' . $pago->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                                {{ method_field('DELETE') }}
+                                                                {{ csrf_field() }}
+                                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Pago" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                                                </button>
+                                                            </form>
                                                         @endif    
                                                     @endif
                                                 @endforeach
                                                 @if(Auth::user()->hasRole('accountant')&&!$item->isFinished())
-                                                    @if(isset($item->hasCancel))
-                                                        @if($item->hasCancel->cancelar!==1)
-                                                            <form method="POST" action="{{ url('/admin/pagos') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                    @if(!$item->isCancel())
+                                                        <form method="POST" action="{{ url('/admin/pagos') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                                                                 {{ csrf_field() }}
                                                                 @include ('admin.pagos.form', ['formMode' => 'create'])
-                                                            </form>
-                                                        @endif
-                                                    @else
-                                                            <form method="POST" action="{{ url('/admin/pagos') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                                                {{ csrf_field() }}
-                                                                @include ('admin.pagos.form', ['formMode' => 'create'])
-                                                            </form>    
+                                                        </form>
                                                     @endif        
                                                 @endif
                                             @endif    
@@ -159,24 +144,15 @@
                                                         )
                                                     </p>
                                                     @if(Auth::user()->hasRole('importer')&&!$item->isFinished())
-                                                        @if(isset($item->hasCancel))
-                                                            @if($item->hasCancel->cancelar!==1)
-                                                                <a href="{{ url('/admin/operation-status/' . $operationStatus->id . '/edit') }}" title="Edit OperationStatus"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                                        @if(!$item->isCancel())
+                                                            <a href="{{ url('/admin/operation-status/' . $operationStatus->id . '/edit') }}" title="Edit OperationStatus"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button></a>
 
-                                                                <form method="POST" action="{{ url('/admin/operation-status' . '/' . $operationStatus->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                                    {{ method_field('DELETE') }}
-                                                                    {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete OperationStatus" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                                                </form>
-                                                            @endif
-                                                        @else
-                                                                <a href="{{ url('/admin/operation-status/' . $operationStatus->id . '/edit') }}" title="Edit OperationStatus"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
-                                                                <form method="POST" action="{{ url('/admin/operation-status' . '/' . $operationStatus->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                                    {{ method_field('DELETE') }}
-                                                                    {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete OperationStatus" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                                                </form>        
+                                                            <form method="POST" action="{{ url('/admin/operation-status' . '/' . $operationStatus->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                                {{ method_field('DELETE') }}
+                                                                {{ csrf_field() }}
+                                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete OperationStatus" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                                                </button>
+                                                            </form>
                                                         @endif       
                                                     @endif
                                                     @if(!$loop->last)
@@ -185,22 +161,15 @@
                                                 @endforeach
                                             @endif
                                             @if(Auth::user()->hasRole('importer')&&!$item->isFinished())
-                                                @if(isset($item->hasCancel))
-                                                    @if($item->hasCancel->cancelar!==1||!isset($item->hasCancel)) 
-                                                        <form method="POST" action="{{ url('/admin/operation-status') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                                            {{ csrf_field() }}
-                                                            @include ('admin.operation-status.form', ['formMode' => 'create'])
-                                                        </form>
-                                                    @endif
-                                                @else
-                                                        <form method="POST" action="{{ url('/admin/operation-status') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                                            {{ csrf_field() }}
-                                                            @include ('admin.operation-status.form', ['formMode' => 'create'])
-                                                        </form>
+                                                @if(!$item->isCancel())
+                                                    <form method="POST" action="{{ url('/admin/operation-status') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        @include ('admin.operation-status.form', ['formMode' => 'create'])
+                                                    </form>
                                                 @endif         
                                             @endif
                                         </td>
-                                        @if(Auth::user()->hasRole('admin'))
+                                        
                                         <td>
                                             @if(isset($item))
                                                 @if(\File::exists(public_path('facturas/'.$item->user_id.'.'.strtotime($item->created_at).'.jpg'))) 
@@ -209,23 +178,24 @@
                                                 </a>
                                                 @endif
                                             @endif
-                                            @if(!$item->isFinished())
-                                                <a href="{{ url('/admin/operations/' . $item->id . '/edit') }}" title="Edit Operation"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-                                                @if(isset($item->hasCancel))
-                                                <form method="POST" action="{{ url('/admin/cancelaciones/' . $item->hasCancel->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                                    {{ method_field('PATCH') }}
-                                                    {{ csrf_field() }}
-                                                    @include ('admin.cancelaciones.form', ['formMode' => 'edit'])
-                                                </form>
-                                                @else    
-                                                <form method="POST" action="{{ url('/admin/cancelaciones') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                                    {{ csrf_field() }}
-                                                    @include ('admin.cancelaciones.form', ['formMode' => 'create'])
-                                                </form>
+                                            @if(Auth::user()->hasRole('admin'))
+                                                @if(!$item->isFinished())
+                                                    <a href="{{ url('/admin/operations/' . $item->id . '/edit') }}" title="Edit Operation"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                                    @if(isset($item->hasCancel))
+                                                    <form method="POST" action="{{ url('/admin/cancelaciones/' . $item->hasCancel->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                        {{ method_field('PATCH') }}
+                                                        {{ csrf_field() }}
+                                                        @include ('admin.cancelaciones.form', ['formMode' => 'edit'])
+                                                    </form>
+                                                    @else    
+                                                    <form method="POST" action="{{ url('/admin/cancelaciones') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        @include ('admin.cancelaciones.form', ['formMode' => 'create'])
+                                                    </form>
+                                                    @endif
                                                 @endif
                                             @endif
                                         </td>
-                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>
