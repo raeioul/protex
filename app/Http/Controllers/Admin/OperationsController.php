@@ -141,7 +141,7 @@ class OperationsController extends Controller
                 $constraint->aspectRatio();
             })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
         }
-        $emails = ['raeioul@gmail.com', 'protex.sys@gmail.com'];
+        $emails = ['importaciones@protex.com.bo', 'contabilidad.cbba@protex.com.bo'];
         $requestData['created_at'] = $operation->created_at;
         Mail::send(
             'mail.publico',

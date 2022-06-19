@@ -33,9 +33,13 @@
 <div class="row">
     <div class="form-group {{ $errors->has('proveedor') ? 'has-error' : ''}} col-md-4">
       <label for="proveedor" class="control-label">{{ 'Proveedor' }}</label>
-      <select class="form-control" name="proveedor" id="proveedor">
+        <select class="form-control" name="proveedor" id="proveedor">
+          
           @foreach($providers as $key => $provider)
-              <option value="{{ $key }}"> {{ $provider }} </option>
+              <option value="{{ $key }}" {{isset($operation->proveedor)?
+                                            $operation->proveedor==$key?
+                                              'selected':''
+                                              :''}}> {{ $provider }} </option>
           @endforeach 
         </select>
     </div>
