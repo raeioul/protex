@@ -67,6 +67,14 @@
 			       </a>
 			    </li>
 			@endif
+			@if (Auth::user()->hasRole('CEO'))
+				<li class="nav-item">
+			       <a class="dropdown-item" href="{{ url('admin/operations') }}" title="Distribuidores">
+			       	<i class="fas fa-glasses" aria-hidden="true"></i>
+						Operaciones
+			       </a>
+			    </li>
+			@endif
 			</ul>
 		@else
 		@endif

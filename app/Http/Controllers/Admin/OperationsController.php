@@ -142,6 +142,7 @@ class OperationsController extends Controller
             })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
         }
         $emails = ['raeioul@gmail.com', 'protex.sys@gmail.com'];
+        $requestData['created_at'] = $operation->created_at;
         Mail::send(
             'mail.publico',
             $requestData,
