@@ -116,6 +116,32 @@ class OperationsController extends Controller
     {
         
         $requestData = $request->all();
+        
+        $rules = [
+            'name' => 'required|min:2',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'numeroOperacion' => 'required',
+            'numeroFactura'=>'required',
+            'proveedor' =>'required',
+            'productos' => 'required',
+            'cantidades' => 'required',
+            'precio' => 'required',
+            'etd' => 'required',
+        ];
+
+        $messages = [
+            'name.required' => 'Se requiere un nombre de operación.',
+            'image.required' => 'Tiene que subir una imagen de la factura.',
+            'numeroOperacion.required' => 'Se requiere un número de operación.',
+            'numeroFactura.required'=>'Se requiere un número de factura.',
+            'proveedor.required' =>'Falta proveedor',
+            'productos.required' => 'Se requieren productos',
+            'cantidades.required' => 'Se requieren cantidades',
+            'precio.required' => 'Necesita señalar un costo.',
+            'etd.required' => 'Se necesita especificar una fecha',
+        ];
+
+        $this->validate($request, $rules, $messages);
 
         $productos = $request->input('productos');
         $cantidades = $request->input('cantidades');//Necesario para guardar arreglo MULTIPLE

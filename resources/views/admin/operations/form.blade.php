@@ -55,7 +55,7 @@
 </div>
 <div class="row">
   <div class="form-group {{ $errors->has('precio') ? 'has-error' : ''}} col-md-6">
-      <label for="precio" class="control-label">{{ 'Precio' }}</label>
+      <label for="precio" class="control-label">{{ 'Costo' }}</label>
       <input class="form-control" name="precio" type="number" id="precio" value="{{ isset($operation->precio) ? $operation->precio : ''}}" >
     {!! $errors->first('precio', '<p class="help-block">:message</p>') !!}
   </div>
