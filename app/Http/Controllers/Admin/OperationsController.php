@@ -119,7 +119,7 @@ class OperationsController extends Controller
         
         $rules = [
             'name' => 'required|min:2',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'numeroOperacion' => 'required',
             'numeroFactura'=>'required',
             'proveedor' =>'required',
@@ -131,7 +131,7 @@ class OperationsController extends Controller
 
         $messages = [
             'name.required' => 'Se requiere un nombre de operación.',
-            'image.required' => 'Tiene que subir una imagen de la factura.',
+            //'image.required' => 'Tiene que subir una imagen de la factura.',
             'numeroOperacion.required' => 'Se requiere un número de operación.',
             'numeroFactura.required'=>'Se requiere un número de factura.',
             'proveedor.required' =>'Falta proveedor',
