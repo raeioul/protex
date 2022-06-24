@@ -19,7 +19,7 @@
 <div class="form-group col-md-offset-4">
   {!! Form::label('image', 'Foto Factura:', ['class' => 'col-md-4 control-label']) !!}
   <div class="col-md-offset-4" >
-    {!! Form::file('image', array('class' => 'image')) !!}
+    {!! Form::file('image', array('class' => 'image', 'multiple'=>'multiple')) !!}
   </div>
   @if(isset($operation))
   @if(\File::exists(public_path('facturas/'.$operation->user_id.'.'.strtotime($operation->created_at).'.jpg'))) 

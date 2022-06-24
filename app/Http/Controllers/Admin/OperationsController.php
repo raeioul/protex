@@ -119,7 +119,7 @@ class OperationsController extends Controller
         
         $rules = [
             'name' => 'required|min:2',
-            //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf',
             'numeroOperacion' => 'required',
             'numeroFactura'=>'required',
             'proveedor' =>'required',
@@ -157,17 +157,22 @@ class OperationsController extends Controller
         $input['cantidades'] = $cantidades;
         $operation = Operation::create($input);
                 
-        //Operation::create($requestData);
+        
         if ($request->file('image')!=null) {
             $image = $request->file('image');
             $input['imagename'] = $request['user_id'].'.'.strtotime($operation->created_at);
             $destinationPath = public_path('facturas');
-            $img = Image::make($image->getRealPath());
-            $img->resize($sizeImage, $sizeImage, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
+            if($request->file('image')->getMimeType()!=="application/pdf") {
+                $img = Image::make($image->getRealPath());
+                $img->resize($sizeImage, $sizeImage, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
+            } else {
+                $image->move($destinationPath, $input['imagename'].'.'.'pdf');;
+            }                
         }
-        $emails = ['importaciones@protex.com.bo', 'contabilidad.cbba@protex.com.bo'];
+
+       /* $emails = ['importaciones@protex.com.bo', 'contabilidad.cbba@protex.com.bo'];
         $requestData['created_at'] = $operation->created_at;
         Mail::send(
             'mail.publico',
@@ -175,7 +180,7 @@ class OperationsController extends Controller
             function ($message) use ($requestData, $emails) {
             $message->to($emails, 'protex')->subject('Se ha creado una nueva operación');
             $message->from('info@protex.com', 'Protex');
-        });
+        });*/
 
         return redirect('admin/operations')->with('flash_message', 'Operation added!');
     }

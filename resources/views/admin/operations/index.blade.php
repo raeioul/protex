@@ -177,6 +177,11 @@
                                                 <button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button>
                                                 </a>
                                                 @endif
+                                                @if(\File::exists(public_path('facturas/'.$item->user_id.'.'.strtotime($item->created_at).'.pdf'))) 
+                                                <a href="{{url('facturas/'.$item->user_id.'.'.strtotime($item->created_at).'.pdf')}}">
+                                                <button class="btn btn-light btn-sm"><i class="fa fa-file-pdf" aria-hidden="true"></i> View</button>
+                                                </a>
+                                                @endif
                                             @endif
                                             @if(Auth::user()->hasRole('admin'))
                                                 @if(!$item->isFinished())
