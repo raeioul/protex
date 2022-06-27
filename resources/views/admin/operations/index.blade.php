@@ -46,7 +46,6 @@
                                     <tr>
                                         <th>#Operación</th>
                                         <th>#Factura</th>
-                                        <th>Name</th>
                                         <th  style="white-space: nowrap;">
                                             Proveedor
                                             <a href="{{ url('/admin/providers') }}" title="Agregar Proveedor">
@@ -81,7 +80,6 @@
                                     <tr class="{{$item->isCancel()?'table-dark':''}} {{$item->isFinished()?'bg-success':''}}">
                                         <td>{{ $item->numeroOperacion }}</td>
                                         <td>{{ $item->numeroFactura }}</td>
-                                        <td>{{ $item->name }}</td>
                                         <td>
                                             {{  App\Models\Provider::findOrFail($item->proveedor)->name }}
                                         </td>
@@ -93,13 +91,13 @@
                                         @endforeach    
                                         </td>
                                         <td>
-                                           {{$item->precio}} <strong>$US</strong>
+                                           {{number_format($item->precio, 2, '.', ',')}} <strong>$US</strong>
                                         </td>
                                         <td>
                                             @if(isset($item->hasPagos))
                                                 @foreach($item->hasPagos as $pago)
                                                     <p style="white-space: nowrap;">
-                                                        <strong>{{$pago->pago}}</strong> $US
+                                                        <strong>{{number_format($pago->pago, 2, '.', ',')}}</strong> $US
                                                     </p>
 
                                                     <p style="white-space: nowrap;">
@@ -140,9 +138,9 @@
                                             @endif    
                                         </td>
                                         <td>
-                                            {{$item->getPagos()}} <strong>$US</strong>
+                                            {{number_format($item->getPagos(), 2, '.', ',')}} <strong>$US</strong>
                                         </td>
-                                        <td>{{$item->precio-$item->getPagos()}} <strong>$US</strong></td>
+                                        <td>{{number_format($item->precio-$item->getPagos(), 2, '.', ',')}} <strong>$US</strong></td>
                                         <td>
                                             @if(isset($item->hasOperationStatus))
                                                 @foreach($item->hasOperationStatus as $operationStatus)
