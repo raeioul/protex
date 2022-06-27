@@ -171,8 +171,7 @@ class OperationsController extends Controller
             }                
         }
         
-        //$emails = ['importaciones@protex.com.bo', 'contabilidad.cbba@protex.com.bo'];
-        $emails = ['raeioul@gmail.com'];
+        $emails = ['importaciones@protex.com.bo', 'contabilidad.cbba@protex.com.bo', 'protextex@gmail.com'];
         $input['created_at'] = $operation->created_at;
         $input['proveedor']= Provider::findOrFail($input['proveedor'])->name;
         $input['productosCantidades']= $productosCantidades;
