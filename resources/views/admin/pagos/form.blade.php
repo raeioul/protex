@@ -1,6 +1,6 @@
 <label for="pago" class="control-label">{{ 'Pago' }}</label>
 <div class="col-md-offset-4" >
-    {!! Form::file('image', array('class' => 'image')) !!}
+    {!! Form::file('image', array('class' => 'image', 'multiple'=>'multiple')) !!}
     @if(isset($item))
     @if(\File::exists(public_path('pagos/'.$item->user_id.'.'.strtotime($item->created_at).'.jpg'))) 
         <a href="{{url('pagos/'.$item->user_id.'.'.strtotime($item->created_at).'.jpg')}}">

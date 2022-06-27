@@ -25,11 +25,16 @@ class Operation extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'numeroOperacion', 'numeroFactura','proveedor', 'productos', 'cantidades','precio', 'etd', 'user_id'];
+    protected $fillable = ['numeroOperacion', 'numeroFactura','proveedor', 'productos', 'cantidades','precio', 'etd', 'user_id'];
 
     public function hasPagos()
     {
         return $this->hasMany('App\Models\Pago', 'operation_id');
+    }
+
+    public function hasEtas()
+    {
+        return $this->hasMany('App\Models\Eta', 'operation_id');
     }
 
     public function hasCancel()

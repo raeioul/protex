@@ -71,3 +71,4 @@ Route::resource('admin/operation-status', 'App\Http\Controllers\Admin\OperationS
 Route::resource('admin/cancelaciones', 'App\Http\Controllers\Admin\CancelacionesController');
 Route::get('admin/export/operations/{search}', 'App\Http\Controllers\Admin\OperationsController@operationsExcel');
 Route::get('admin/export/operations', 'App\Http\Controllers\Admin\OperationsController@operationsExcel');
+Route::resource('admin/etas', 'App\Http\Controllers\Admin\EtasController');

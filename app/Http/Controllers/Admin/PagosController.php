@@ -62,10 +62,14 @@ class PagosController extends Controller
             $image = $request->file('image');
             $requestData['imagename'] = $request['user_id'].'.'.strtotime($pago->created_at);
             $destinationPath = public_path('pagos');
-            $img = Image::make($image->getRealPath());
-            $img->resize($sizeImage, $sizeImage, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save($destinationPath.'/'.$requestData['imagename'].'.'.'jpg');
+            if($request->file('image')->getMimeType()!=="application/pdf") {
+                $img = Image::make($image->getRealPath());
+                $img->resize($sizeImage, $sizeImage, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath.'/'.$requestData['imagename'].'.'.'jpg');
+            } else {
+                $image->move($destinationPath, $requestData['imagename'].'.'.'pdf');
+            }
         }
 
         return redirect('admin/operations')->with('flash_message', 'Operation added!');

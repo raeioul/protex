@@ -1,0 +1,16 @@
+{
+   "fields": [
+        {
+            "name": "eta",
+            "type": "string"
+        },
+        {
+            "name": "operation_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "user_id",
+            "type": "integer#unsigned"
+        }
+    ]
+}

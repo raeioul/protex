@@ -1,8 +1,3 @@
-<div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-    <label for="name" class="control-label">{{ 'Nombre Operación' }}</label>
-    <input class="form-control" name="name" type="text" id="name" value="{{ isset($operation->name) ? $operation->name : ''}}" >
-    {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-</div>
 <div class="row">
   <div class="form-group {{ $errors->has('numeroOperacion') ? 'has-error' : ''}} col-md-6">
       <label for="numeroOperacion" class="control-label">{{ 'Número Operación' }}</label>

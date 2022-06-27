@@ -7,9 +7,9 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Edit Operation #{{ $operation->id }}</div>
+                    <div class="card-header">Edit Eta #{{ $eta->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/operations') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/etas') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -21,15 +21,12 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/operations/' . $operation->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/admin/etas/' . $eta->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
-                            @if(Auth::user()->hasRole('admin'))
-                                @include ('admin.operations.form', ['formMode' => 'edit'])
-                            @endif
-                            @if(Auth::user()->hasRole('importer'))
-                                @include ('admin.operations.form2', ['formMode' => 'edit'])
-                            @endif
+
+                            @include ('admin.etas.form', ['formMode' => 'edit'])
+
                         </form>
 
                     </div>

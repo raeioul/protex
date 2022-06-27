@@ -5,7 +5,8 @@
         <div class="row">
             @include('admin.sidebar')
 
-            <div class="col-md-9">
+            <div class="col-md-12">
+            <br/>
                 <div class="card">
                     <div class="card-header">Operations</div>
                     <div class="card-body">
@@ -33,11 +34,11 @@
                         <br/>
                         <h3>RESUMEN</h3>
                         <div class="text-end">
-                            <h3>En Transito = <span class="badge bg-primary">{{$suma-$almacen-$cancel}}</span></h3>
-                            <h3>    Almacen = <span class="badge bg-secondary">{{$almacen}}</span></h3>
+                            <h3>En Transito = <span class="badge bg-primary">{{number_format($suma-$almacen-$cancel, 2, '.', ',')}}</span></h3>
+                            <h3>    Almacen = <span class="badge bg-secondary">{{number_format($almacen, 2, '.', ',')}}</span></h3>
                             </h3>
-                            <h3> Canceladas = <span class="badge bg-info">{{$cancel}}</span></h3>
-                            <h3>TOTAL = <span class="badge bg-dark">{{$suma}}</span></h3>    
+                            <h3> Canceladas = <span class="badge bg-info">{{number_format($cancel, 2, '.', ',')}}</span></h3>
+                            <h3>TOTAL = <span class="badge bg-dark">{{number_format($suma, 2, '.', ',')}}</span></h3>    
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
@@ -61,13 +62,15 @@
                                         <th>Costo</th>
                                         <th>Detalle Pagos</th>
                                         <th>Suma Pagos</th>
-                                        <th>Saldo</th>
+                                        <th>Saldo x Pagar</th>
                                         <th  style="white-space: nowrap;">
                                             Status (fecha)
                                             <a href="{{ url('/admin/status') }}" title="Agregar Producto">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </a>
                                         </th>
+                                        <th>ETD</th>
+                                        <th>ETA</th>
                                         @if(Auth::user()->hasRole('admin'))
                                             <th>Actions</th>
                                         @endif    
@@ -90,7 +93,7 @@
                                         @endforeach    
                                         </td>
                                         <td>
-                                           {{$item->precio}} / $US
+                                           {{$item->precio}} <strong>$US</strong>
                                         </td>
                                         <td>
                                             @if(isset($item->hasPagos))
@@ -104,12 +107,19 @@
                                                             {{$pago->updated_at->format('d-m-Y,  H:i:s')}}
                                                         )
                                                     </p>
-                                                  
+                                                        @if(\File::exists(public_path('pagos/'.$pago->user_id.'.'.strtotime($pago->created_at).'.jpg'))) 
+                                                            <a href="{{url('pagos/'.$pago->user_id.'.'.strtotime($pago->created_at).'.jpg')}}">
+                                                              <button class="btn btn-light btn-sm"><i class="fas fa-money-bill"></i></button></a>
+                                                        @endif
+                                                        @if(\File::exists(public_path('pagos/'.$pago->user_id.'.'.strtotime($pago->created_at).'.pdf'))) 
+                                                            <a href="{{url('pagos/'.$pago->user_id.'.'.strtotime($pago->created_at).'.pdf')}}">
+                                                              <button class="btn btn-light btn-sm"><i class="fas fa-money-bill"></i></button></a>
+                                                        @endif
                                                     @if(Auth::user()->hasRole('accountant')&&!$item->isFinished())
                                                         @if(!$item->isCancel())
-                                                            <a href="{{ url('/admin/pagos/' . $pago->id . '/edit') }}" title="Edit Pago">
-                                                                <button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
-                                                            </a>
+                                                        
+                                                            <a href="{{ url('/admin/pagos/' . $pago->id . '/edit') }}" title="Edit Pago"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
                                                             <form method="POST" action="{{ url('/admin/pagos' . '/' . $pago->id) }}" accept-charset="UTF-8" style="display:inline">
                                                                 {{ method_field('DELETE') }}
                                                                 {{ csrf_field() }}
@@ -130,9 +140,9 @@
                                             @endif    
                                         </td>
                                         <td>
-                                            {{$item->getPagos()}}    
+                                            {{$item->getPagos()}} <strong>$US</strong>
                                         </td>
-                                        <td>{{$item->precio-$item->getPagos()}}</td>
+                                        <td>{{$item->precio-$item->getPagos()}} <strong>$US</strong></td>
                                         <td>
                                             @if(isset($item->hasOperationStatus))
                                                 @foreach($item->hasOperationStatus as $operationStatus)
@@ -169,7 +179,39 @@
                                                 @endif         
                                             @endif
                                         </td>
-                                        
+                                        <td>
+                                            {{Carbon\Carbon::parse($item->etd)->format('d-m-Y')}}
+                                            @if(Auth::user()->hasRole('importer')&&!$item->isFinished())
+                                            @if(!$item->isCancel())
+                                            <p><a href="{{ url('/admin/operations/' . $item->id . '/edit') }}" title="Edit Operation"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a></p>
+                                            @endif
+                                            @endif
+                                        </td>
+                                        <td>@if(isset($item->hasEtas))
+                                                @foreach($item->hasEtas as $eta)
+                                                    <p>{{$eta?Carbon\Carbon::parse($eta->eta)->format('d-m-Y'):''}}</p>
+                                                    @if(Auth::user()->hasRole('importer')&&!$item->isFinished())
+                                                    @if(!$item->isCancel())     
+                                                    <a href="{{ url('/admin/etas/' . $eta->id . '/edit') }}" title="Edit ETA"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button></a>
+                                                    <form method="POST" action="{{ url('/admin/operation-status' . '/' . $eta->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete OperationStatus" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                                        </button>
+                                                    </form>
+                                                    @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                            @if(Auth::user()->hasRole('importer')&&!$item->isFinished())
+                                                @if(!$item->isCancel())        
+                                                    <form method="POST" action="{{ url('/admin/etas') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        @include ('admin.etas.form', ['formMode' => 'create'])
+                                                    </form>
+                                                @endif
+                                            @endif        
+                                        </td>
                                         <td>
                                             @if(isset($item))
                                                 @if(\File::exists(public_path('facturas/'.$item->user_id.'.'.strtotime($item->created_at).'.jpg'))) 

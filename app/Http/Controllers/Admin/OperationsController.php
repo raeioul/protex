@@ -118,7 +118,6 @@ class OperationsController extends Controller
         $requestData = $request->all();
         
         $rules = [
-            'name' => 'required|min:2',
             'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf',
             'numeroOperacion' => 'required',
             'numeroFactura'=>'required',
@@ -130,7 +129,6 @@ class OperationsController extends Controller
         ];
 
         $messages = [
-            'name.required' => 'Se requiere un nombre de operación.',
             //'image.required' => 'Tiene que subir una imagen de la factura.',
             'numeroOperacion.required' => 'Se requiere un número de operación.',
             'numeroFactura.required'=>'Se requiere un número de factura.',
@@ -149,6 +147,7 @@ class OperationsController extends Controller
 
         $productos=array_combine($productos, $productos);
         $cantidades=array_combine($cantidades, $cantidades);
+        $productosCantidades=substr(json_encode(array_combine($productos, $cantidades), JSON_PRETTY_PRINT), 1, -1);
         $productos = implode(',', $productos);
         $cantidades = implode(',', $cantidades);
         $input = $request->except('productos');
@@ -168,19 +167,22 @@ class OperationsController extends Controller
                     $constraint->aspectRatio();
                 })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
             } else {
-                $image->move($destinationPath, $input['imagename'].'.'.'pdf');;
+                $image->move($destinationPath, $input['imagename'].'.'.'pdf');
             }                
         }
-
-       /* $emails = ['importaciones@protex.com.bo', 'contabilidad.cbba@protex.com.bo'];
-        $requestData['created_at'] = $operation->created_at;
+        
+        //$emails = ['importaciones@protex.com.bo', 'contabilidad.cbba@protex.com.bo'];
+        $emails = ['raeioul@gmail.com'];
+        $input['created_at'] = $operation->created_at;
+        $input['proveedor']= Provider::findOrFail($input['proveedor'])->name;
+        $input['productosCantidades']= $productosCantidades;
         Mail::send(
             'mail.publico',
-            $requestData,
+            $input,
             function ($message) use ($requestData, $emails) {
             $message->to($emails, 'protex')->subject('Se ha creado una nueva operación');
             $message->from('info@protex.com', 'Protex');
-        });*/
+        });
 
         return redirect('admin/operations')->with('flash_message', 'Operation added!');
     }
@@ -232,32 +234,39 @@ class OperationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $requestData = $request->all();
-        $productos = $request->input('productos');
-        $cantidades = $request->input('cantidades');//Necesario para guardar arreglo MULTIPLE
-        $sizeImage=2048;
+        if(Auth::user()->hasRole('admin')) {
+            $productos = $request->input('productos');
+            $cantidades = $request->input('cantidades');//Necesario para guardar arreglo MULTIPLE
+            $sizeImage=2048;
 
-        $productos=array_combine($productos, $productos);
-        $cantidades=array_combine($cantidades, $cantidades);
-        $productos = implode(',', $productos);
-        $cantidades = implode(',', $cantidades);
-        $input = $request->except('productos');
-        $input = $request->except('cantidades');
-        $input['productos'] = $productos;//Assign the "mutated" news value to $input
-        $input['cantidades'] = $cantidades;
-        $operation = Operation::findOrFail($id);
-        $operation->update($input);
+            $productos=array_combine($productos, $productos);
+            $cantidades=array_combine($cantidades, $cantidades);
+            $productos = implode(',', $productos);
+            $cantidades = implode(',', $cantidades);
+            $input = $request->except('productos');
+            $input = $request->except('cantidades');
+            $input['productos'] = $productos;//Assign the "mutated" news value to $input
+            $input['cantidades'] = $cantidades;
+            $operation = Operation::findOrFail($id);
+            $operation->update($input);
 
-        if ($request->file('image')!=null) {
+            if ($request->file('image')!=null) {
             $image = $request->file('image');
             $input['imagename'] = $request['user_id'].'.'.strtotime($operation->created_at);
             $destinationPath = public_path('facturas');
-            $img = Image::make($image->getRealPath());
-            $img->resize($sizeImage, $sizeImage, function ($constraint) {
-            $constraint->aspectRatio();
-            })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
-        }                    
+            if($request->file('image')->getMimeType()!=="application/pdf") {
+                $img = Image::make($image->getRealPath());
+                $img->resize($sizeImage, $sizeImage, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
+            } else {
+                $image->move($destinationPath, $input['imagename'].'.'.'pdf');
+            }                
+        }    
+        }
+        Operation::findOrFail($id)->update($requestData);
+            
         return redirect('admin/operations')->with('flash_message', 'Operation updated!');
     }
 
