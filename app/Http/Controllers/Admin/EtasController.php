@@ -56,7 +56,7 @@ class EtasController extends Controller
         
         Eta::create($requestData);
 
-        return redirect('admin/etas')->with('flash_message', 'Eta added!');
+        return redirect('admin/operations')->with('flash_message', 'Eta added!');
     }
 
     /**
