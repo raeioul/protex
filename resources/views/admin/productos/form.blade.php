@@ -10,7 +10,7 @@
 
 <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
     <label for="provider_id" class="control-label">{{ 'Proveedor' }}</label>
-    {{  Form::select('provider_id',$providers,null,['class' => 'required form-control select2','id'=>'provider_id']) }}
+    {{  Form::select('provider_id',$providers,isset($producto)?$producto->provider_id:null,['class' => 'required form-control select2','id'=>'provider_id']) }}
 </div>
 
 <br/>
