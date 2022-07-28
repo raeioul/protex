@@ -11,7 +11,7 @@
 </div>
 <br/>
 <div class="btn-group"> 
-    <input class="form-control" name="pago" type="number" id="pago" value="{{ isset($item->pago) ? $item->pago : ''}}" >
+    <input class="form-control" name="pago" step="any" type="number" id="pago" value="{{ isset($item->pago) ? $item->pago : ''}}" >
     {!! $errors->first('pago', '<p class="help-block">:message</p>') !!}
 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}} d-none">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
