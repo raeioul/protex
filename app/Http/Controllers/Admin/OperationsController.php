@@ -143,7 +143,7 @@ class OperationsController extends Controller
 
         $productos = $request->input('productos');
         $cantidades = $request->input('cantidades');//Necesario para guardar arreglo MULTIPLE
-        $sizeImage=2048;
+        $sizeImage=5000;
 
         $productos=array_combine($productos, $productos);
         $cantidades=array_combine($cantidades, $cantidades);
@@ -179,9 +179,11 @@ class OperationsController extends Controller
                     $message->to($emails, 'protex')->subject('Se ha creado una nueva operación');
                     $message->from('info@protex.com', 'Protex');
                 });
+                return redirect('admin/operations')->with('flash_message', 'Operation added!');
             } else {
                 $image->move($destinationPath, $input['imagename'].'.'.'pdf');
-                Mail::send(
+            }                
+            Mail::send(
                     'mail.pdf',
                     $input,
                     function ($message) use ($requestData, $emails, $request, $destinationPath, $input) {
@@ -192,8 +194,14 @@ class OperationsController extends Controller
                         'mime' => 'application/pdf',
                     ]);
                 });
-            }                
         }
+        Mail::send(
+                    'mail.pdf',
+                    $input,
+                    function ($message) use ($requestData, $emails, $request, $input) {
+                    $message->to($emails, 'protex')->subject('Se ha creado una nueva operación');
+                    $message->from('info@protex.com', 'Protex');
+                });
         return redirect('admin/operations')->with('flash_message', 'Operation added!');
     }
 
