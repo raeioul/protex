@@ -36,9 +36,9 @@ class OperationsController extends Controller
                 ->orWhere('productos', 'LIKE', "%$keyword%")
                 ->orWhere('precio', 'LIKE', "%$keyword%")
                 ->orWhere('etd', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+                ->orderBy('numeroOperacion', 'DESC')->paginate($perPage);
         } else {
-            $operations = Operation::latest()->paginate($perPage);
+            $operations = Operation::orderBy('numeroOperacion', 'DESC')->paginate($perPage);
         }
 
         $status =  Status::pluck('name','id')->toArray();
