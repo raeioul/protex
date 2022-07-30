@@ -65,9 +65,6 @@
                                     </font>
                                   </p>
                                   </p>
-                                  <p style="text-align: center;margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;">
-                                    <img data-file-id="1991265" height="100" src="http://sys.protex.com.bo/protex/public/facturas/{{$user_id.'.'.strtotime($created_at).'.jpg'}}" style="border: 0px;width: 80px;height: 100px;margin: 0px;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="80">
-                                  </p>
                                 </td>
                               </tr>
                             </tbody>

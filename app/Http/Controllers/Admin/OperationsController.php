@@ -157,6 +157,12 @@ class OperationsController extends Controller
         $operation = Operation::create($input);
                 
         
+        //$emails = ['importaciones@protex.com.bo', 'contabilidad.cbba@protex.com.bo', 'protextex@gmail.com'];
+        $emails=['raeioul@gmail.com'];
+        $input['created_at'] = $operation->created_at;
+        $input['proveedor']= Provider::findOrFail($input['proveedor'])->name;
+        $input['productosCantidades']= $productosCantidades;
+
         if ($request->file('image')!=null) {
             $image = $request->file('image');
             $input['imagename'] = $request['user_id'].'.'.strtotime($operation->created_at);
@@ -166,31 +172,28 @@ class OperationsController extends Controller
                 $img->resize($sizeImage, $sizeImage, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($destinationPath.'/'.$input['imagename'].'.'.'jpg');
+                Mail::send(
+                    'mail.publico',
+                    $input,
+                    function ($message) use ($requestData, $emails) {
+                    $message->to($emails, 'protex')->subject('Se ha creado una nueva operación');
+                    $message->from('info@protex.com', 'Protex');
+                });
             } else {
                 $image->move($destinationPath, $input['imagename'].'.'.'pdf');
+                Mail::send(
+                    'mail.pdf',
+                    $input,
+                    function ($message) use ($requestData, $emails, $request, $destinationPath, $input) {
+                    $message->to($emails, 'protex')->subject('Se ha creado una nueva operación');
+                    $message->from('info@protex.com', 'Protex');
+                    $message->attach($destinationPath.'/'.$input['imagename'].'.'.'pdf', [
+                        $input['imagename'].'.'.'pdf',
+                        'mime' => 'application/pdf',
+                    ]);
+                });
             }                
         }
-        
-        $emails = ['importaciones@protex.com.bo', 'contabilidad.cbba@protex.com.bo', 'protextex@gmail.com'];
-        $input['created_at'] = $operation->created_at;
-        $input['proveedor']= Provider::findOrFail($input['proveedor'])->name;
-        $input['productosCantidades']= $productosCantidades;
-        Mail::send(
-            'mail.publico',
-            $input,
-            function ($message) use ($requestData, $emails, $request, $destinationPath, $input) {
-            $message->to($emails, 'protex')->subject('Se ha creado una nueva operación');
-            $message->from('info@protex.com', 'Protex');
-            //dd($request->file('image'));
-            
-                $message->attach($destinationPath.'/'.$input['imagename'].'.'.'pdf', [
-            $input['imagename'].'.'.'pdf',
-                         'mime' => 'application/pdf',
-                    ]);
-            
-            
-        });
-
         return redirect('admin/operations')->with('flash_message', 'Operation added!');
     }
 
