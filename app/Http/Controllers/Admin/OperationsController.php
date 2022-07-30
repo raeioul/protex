@@ -178,9 +178,17 @@ class OperationsController extends Controller
         Mail::send(
             'mail.publico',
             $input,
-            function ($message) use ($requestData, $emails) {
+            function ($message) use ($requestData, $emails, $request, $destinationPath, $input) {
             $message->to($emails, 'protex')->subject('Se ha creado una nueva operación');
             $message->from('info@protex.com', 'Protex');
+            //dd($request->file('image'));
+            
+                $message->attach($destinationPath.'/'.$input['imagename'].'.'.'pdf', [
+            $input['imagename'].'.'.'pdf',
+                         'mime' => 'application/pdf',
+                    ]);
+            
+            
         });
 
         return redirect('admin/operations')->with('flash_message', 'Operation added!');

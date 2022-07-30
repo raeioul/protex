@@ -103,7 +103,7 @@ class EtasController extends Controller
         $eta = Eta::findOrFail($id);
         $eta->update($requestData);
 
-        return redirect('admin/etas')->with('flash_message', 'Eta updated!');
+        return redirect('admin/operations')->with('flash_message', 'Eta updated!');
     }
 
     /**
@@ -117,6 +117,6 @@ class EtasController extends Controller
     {
         Eta::destroy($id);
 
-        return redirect('admin/etas')->with('flash_message', 'Eta deleted!');
+        return redirect('admin/operations')->with('flash_message', 'Eta deleted!');
     }
 }

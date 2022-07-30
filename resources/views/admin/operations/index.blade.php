@@ -191,7 +191,7 @@
                                                     @if(Auth::user()->hasRole('importer')&&!$item->isFinished())
                                                     @if(!$item->isCancel())     
                                                     <a href="{{ url('/admin/etas/' . $eta->id . '/edit') }}" title="Edit ETA"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button></a>
-                                                    <form method="POST" action="{{ url('/admin/operation-status' . '/' . $eta->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                    <form method="POST" action="{{ url('/admin/etas/'.$eta->id) }}" accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Delete OperationStatus" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete
