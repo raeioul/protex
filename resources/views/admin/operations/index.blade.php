@@ -64,9 +64,8 @@
                                         <th>Saldo x Pagar</th>
                                         <th  style="white-space: nowrap;">
                                             Status (fecha)
-                                            <a href="{{ url('/admin/status') }}" title="Agregar Producto">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </a>
+                                            <button class="btn btn-muted" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-eye" aria-hidden="true"></i>¿Ver Status?
+                                            </button>
                                         </th>
                                         <th>ETD</th>
                                         <th>ETA</th>
@@ -141,7 +140,8 @@
                                             {{number_format($item->getPagos(), 2, '.', ',')}} <strong>$US</strong>
                                         </td>
                                         <td>{{number_format($item->precio-$item->getPagos(), 2, '.', ',')}} <strong>$US</strong></td>
-                                        <td>
+                                        <td >
+                                            <div class="collapse" id="collapseExample">
                                             @if(isset($item->hasOperationStatus))
                                                 @foreach($item->hasOperationStatus as $operationStatus)
                                                     <p style="white-space: nowrap;">
@@ -176,6 +176,7 @@
                                                     </form>
                                                 @endif         
                                             @endif
+                                            <div>
                                         </td>
                                         <td>
                                             {{Carbon\Carbon::parse($item->etd)->format('d-m-Y')}}
@@ -253,4 +254,6 @@
             </div>
         </div>
     </div>
+    
+
 @endsection
