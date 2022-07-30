@@ -63,9 +63,9 @@
                                         <th>Suma Pagos</th>
                                         <th>Saldo x Pagar</th>
                                         <th  style="white-space: nowrap;">
-                                            Status (fecha)
-                                            <button class="btn btn-muted" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-eye" aria-hidden="true"></i>¿Ver Status?
+                                            <button class="btn btn-muted" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-eye" aria-hidden="true"></i>Ver/Esconder
                                             </button>
+                                            Status (fecha)
                                         </th>
                                         <th>ETD</th>
                                         <th>ETA</th>
