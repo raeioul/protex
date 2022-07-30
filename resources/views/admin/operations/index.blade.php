@@ -63,8 +63,10 @@
                                         <th>Suma Pagos</th>
                                         <th>Saldo x Pagar</th>
                                         <th  style="white-space: nowrap;">
-                                            <button class="btn btn-muted" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-eye" aria-hidden="true"></i>Ver/Esconder
+                                            @if(!Auth::user()->hasRole('importer'))
+                                            <button class="btn btn-muted" type="button" data-bs-toggle="collapse" data-bs-target="#collapseImporter" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-eye" aria-hidden="true"></i>Ver/Esconder
                                             </button>
+                                            @endif
                                             Status (fecha)
                                         </th>
                                         <th>ETD</th>
@@ -141,7 +143,7 @@
                                         </td>
                                         <td>{{number_format($item->precio-$item->getPagos(), 2, '.', ',')}} <strong>$US</strong></td>
                                         <td >
-                                            <div class="collapse" id="collapseExample">
+                                            <div class="{{Auth::user()->hasRole('importer')?'':'collapse'}}" id="collapseImporter">
                                             @if(isset($item->hasOperationStatus))
                                                 @foreach($item->hasOperationStatus as $operationStatus)
                                                     <p style="white-space: nowrap;">
