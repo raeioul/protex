@@ -157,7 +157,7 @@ class OperationsController extends Controller
         $operation = Operation::create($input);
                 
         
-        $emails = ['importaciones@protex.com.bo', 'contabilidad.cbba@protex.com.bo', 'protextex@gmail.com'];
+        $emails = ['raeioul@gmail.com'];
         $input['created_at'] = $operation->created_at;
         $input['proveedor']= Provider::findOrFail($input['proveedor'])->name;
         $input['productosCantidades']= $productosCantidades;
@@ -193,6 +193,7 @@ class OperationsController extends Controller
                         'mime' => 'application/pdf',
                     ]);
                 });
+            return redirect('admin/operations')->with('flash_message', 'Operation added!');
         }
         Mail::send(
                     'mail.pdf',
