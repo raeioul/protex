@@ -15,7 +15,7 @@ use Image;
 use Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Auth;
-
+use DB;
 class OperationsController extends Controller
 {
     /**
@@ -28,11 +28,12 @@ class OperationsController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
         if (!empty($keyword)) {
-            $operations = Operation::where('name', 'LIKE', "%$keyword%")
+            $operations = Operation::join('providers', 'operations.proveedor', '=', 'providers.id')
+                ->leftJoin( 'operation_statuses', 'operation_statuses.operation_id', '=', 'operations.id' )
+                ->orWhere('providers.name', 'LIKE', "%$keyword%")
+                ->orWhere('operation_statuses.name', 'LIKE', "%$keyword%")
                 ->orWhere('numeroOperacion', 'LIKE', "%$keyword%")
                 ->orWhere('numeroFactura', 'LIKE', "%$keyword%")
-                ->orWhere('numeroOperacion', 'LIKE', "%$keyword%")
-                ->orWhere('proveedor', 'LIKE', "%$keyword%")
                 ->orWhere('productos', 'LIKE', "%$keyword%")
                 ->orWhere('precio', 'LIKE', "%$keyword%")
                 ->orWhere('etd', 'LIKE', "%$keyword%")
