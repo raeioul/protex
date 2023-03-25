@@ -48,8 +48,11 @@
                                         <th>Jeringa</th>
                                         <th>Vendas de Gasa</th>
                                         <th>Venda Elástica</th>
+                                        <th>Compresa de Gasa</th>
+                                        <th>Gorro Descartable</th>
                                         <th>Cumplimiento</th>
                                         <th>Calidad del Empaque</th>
+                                        <th>Embalaje</th>
                                         <th>Calidad de la Entrega</th>
                                         <th>Atención y Amabilidad</th>
                                         <th>Precio</th>
@@ -77,8 +80,11 @@
                                         <td>{{ $item->jeringa }}</td>
                                         <td>{{ $item->vendaGasa }}</td>
                                         <td>{{ $item->vendaElastica }}</td>
+                                        <td>{{ $item->compresaDeGasa }}</td>
+                                        <td>{{ $item->gorroDescartable }}</td>
                                         <td>{{ $item->cumplimiento }}</td>
                                         <td>{{ $item->calidadEmpaque }}</td>
+                                        <td>{{ $item->embalaje }}</td>
                                         <td>{{ $item->calidadEntrega }}</td>
                                         <td>{{ $item->atencionAmabilidad }}</td>
                                         <td>{{ $item->precio }}</td>

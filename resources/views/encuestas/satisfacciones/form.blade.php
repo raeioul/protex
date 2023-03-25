@@ -95,7 +95,7 @@
     </div>
 </div>
     <div class="row" style="margin: 5px; padding: 5px">    
-    <div class="col-md-2"></div>
+    
     <div class="form-group {{ $errors->has('guanteExaminacion') ? 'has-error' : ''}} col-md-4">
         <label for="guanteExaminacion" class="control-label">{{ 'Guantes de Examinación' }}</label>
             <select name="guanteExaminacion" class="form-control" id="guanteExaminacion" >
@@ -124,10 +124,24 @@
     </select>
         {!! $errors->first('jeringa', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="col-md-2"></div>
+
+
+    <div class="form-group {{ $errors->has('compresaDeGasa') ? 'has-error' : ''}} col-md-4">
+        <label for="compresaDeGasa" class="control-label">{{ 'Compresa de Gasa' }}</label>
+        <select name="compresaDeGasa" class="form-control" id="compresaDeGasa" >
+            @foreach($options as $option)
+                @if(!isset($satisfaccione->compresaDeGasa))
+                    <option {{ old('compresaDeGasa') == $option ? 'selected' : '' }}>{{$option}}</option>
+                @else
+                    <option class="text-secondary" {{ $satisfaccione->compresaDeGasa === $option ? 'selected' : ''}}>{{$option}}</option>
+                @endif
+            @endforeach
+    </select>
+        {!! $errors->first('compresaDeGasa', '<p class="help-block">:message</p>') !!}
+    </div>
+
     </div>  
     <div class="row" style="margin: 5px; padding: 5px">
-    <div class="col-md-2"></div>
     <div class="form-group {{ $errors->has('vendaGasa') ? 'has-error' : ''}} col-md-4">
         <label for="vendaGasa" class="control-label">{{ 'Vendas de Gasa' }}</label>
         <select name="vendaGasa" class="form-control" id="vendaGasa" >
@@ -154,7 +168,19 @@
         </select>
         {!! $errors->first('vendaElastica', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="col-md-2"></div>
+     <div class="form-group {{ $errors->has('gorroDescartable') ? 'has-error' : ''}} col-md-4">
+        <label for="gorroDescartable" class="control-label">{{ 'Gorro Descartable' }}</label>
+        <select name="gorroDescartable" class="form-control" id="gorroDescartable" >
+            @foreach($options as $option)
+                @if(!isset($satisfaccione->gorroDescartable))
+                    <option {{ old('gorroDescartable') == $option ? 'selected' : '' }}>{{$option}}</option>
+                @else
+                    <option class="text-secondary" {{ $satisfaccione->gorroDescartable === $option ? 'selected' : ''}}>{{$option}}</option>
+                @endif
+            @endforeach
+        </select>
+        {!! $errors->first('gorroDescartable', '<p class="help-block">:message</p>') !!}
+    </div>
 </div>
 </div>
 <div class="card mb-4">
@@ -194,10 +220,28 @@
         {!! $errors->first('calidadEmpaque', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
+<div class="card mb-4">
+    <div class="card-header p-3 mb-2 bg-info text-white">
+        <h4><span class="text-primary">4.-</span> <strong>Cumple</strong> con las características de EMBALAJE (interna/externa) solictadas:</h4>
+    </div>
+    <div class="card-body d-flex flex-column">    
+    <div class="form-group {{ $errors->has('embalaje') ? 'has-error' : ''}} col-md-3 align-self-center">
+        <select name="embalaje" class="form-control" id="embalaje" >
+            @foreach($options as $option)
+                @if(!isset($satisfaccione->embalaje))
+                    <option {{ old('embalaje') == $option ? 'selected' : '' }}>{{$option}}</option>
+                @else
+                    <option class="text-secondary" {{ $satisfaccione->embalaje === $option ? 'selected' : ''}}>{{$option}}</option>
+                @endif
+            @endforeach
+        </select>
+        {!! $errors->first('embalaje', '<p class="help-block">:message</p>') !!}
+    </div>
+</div>
 </div>
 <div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
-        <h4><span class="text-primary">4.-</span> <strong>Calidad</strong> en el servicio de entrega (cordialidad, atención, proactividad del personal  que entrega producto):</h4>
+        <h4><span class="text-primary">5.-</span> <strong>Calidad</strong> en el servicio de entrega (cordialidad, atención, proactividad del personal  que entrega producto):</h4>
     </div>
     <div class="card-body d-flex flex-column">
     <div class="form-group {{ $errors->has('calidadEntrega') ? 'has-error' : ''}} col-md-3 align-self-center">
@@ -216,7 +260,7 @@
 </div>
 <div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
-        <h4><span class="text-primary">5.-</span> <strong>Atención y amabilidad</strong> del personal de Protex (vendedor,cobrador):</h4>
+        <h4><span class="text-primary">6.-</span> <strong>Atención y amabilidad</strong> del personal de Protex (vendedor,cobrador):</h4>
     </div>
     <div class="card-body d-flex flex-column">
     <div class="form-group {{ $errors->has('atencionAmabilidad') ? 'has-error' : ''}} col-md-3 align-self-center">
@@ -235,7 +279,7 @@
 </div>
 <div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
-        <h4><span class="text-primary">6.-</span> <strong>Precio</strong> respecto al precio de la competencia:</h4>
+        <h4><span class="text-primary">7.-</span> <strong>Precio</strong> respecto al precio de la competencia:</h4>
     </div>
     <div class="card-body d-flex flex-column">
     <div class="form-group {{ $errors->has('precio') ? 'has-error' : ''}} col-md-3 align-self-center">
@@ -254,7 +298,7 @@
 </div>
 <div class="card mb-4">
     <div class="card-header p-3 mb-2 bg-info text-white">
-        <h4><span class="text-primary">7.-</span> <strong>Atención</strong> y gestion de sus quejas (si las ha tenido):</h4>
+        <h4><span class="text-primary">8.-</span> <strong>Atención</strong> y gestion de sus quejas (si las ha tenido):</h4>
     </div>
     <div class="card-body d-flex flex-column">
     <div class="form-group {{ $errors->has('atencionQuejas') ? 'has-error' : ''}} col-md-3 align-self-center">
@@ -273,18 +317,18 @@
 </div>
 <div class="form-group {{ $errors->has('sugerencias') ? 'text-danger' : ''}}" style="margin: 15px; padding: 5px>
     <label for="sugerencias" class="control-label">{{ 'Sugerencias' }}</label>
-    <textarea placeholder="Sugerencias o mejoras ..." rows="4" class="form-control" name="sugerencias" id="sugerencias"> {{ isset($institucione->sugerencias) ? $institucione->sugerencias : old('sugerencias')}}
+    <textarea placeholder="Sugerencias o mejoras ..." rows="4" class="form-control" name="sugerencias" id="sugerencias"> {{ isset($satisfaccione->sugerencias) ? $satisfaccione->sugerencias : old('sugerencias')}}
     </textarea>
     {!! $errors->first('sugerencias', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="d-none form-group {{ $errors->has('user_id') ? 'text-danger' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
-    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($institucione->user_id) ? $institucione->user_id : ''}}" >
+    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($satisfaccione->user_id) ? $satisfaccione->user_id : ''}}" >
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('celular') ? 'alert alert-danger' : ''}}" style="margin: 15px; padding: 5px>
     <label for="celular" class="control-label">Favor de suministrarnos su # de Celular para podernos comunicar con usted</label>
-    <input class="form-control" name="celular" type="text" id="celular" value="{{ isset($institucione->celular) ? $institucione->celular : old('celular')}}" >
+    <input class="form-control" name="celular" type="text" id="celular" value="{{ isset($satisfaccione->celular) ? $satisfaccione->celular : old('celular')}}" >
     {!! $errors->first('celular', '<p class="help-block">:message</p>') !!}
 </div>
 <br/>

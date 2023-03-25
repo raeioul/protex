@@ -36,9 +36,12 @@
                                     <tr><th> Guantes de Examinación </th><td> {{ $satisfaccione->guanteExaminacion }} </td></tr>
                                     <tr><th> Jeringa </th><td> {{ $satisfaccione->jeringa }} </td></tr>
                                     <tr><th> Vendas de Gasa </th><td> {{ $satisfaccione->vendaGasa }} </td></tr>
-                                    <tr><th> Vendas Elástica </th><td> {{ $satisfaccione->vendaElastica }} </td></tr>
+                                    <tr><th> Venda Elástica </th><td> {{ $satisfaccione->vendaElastica }} </td></tr>
+                                    <tr><th> Compresa de Gasa </th><td> {{ $satisfaccione->compresaDeGasa }} </td></tr>
+                                    <tr><th> Gorro Descartable </th><td> {{ $satisfaccione->gorroDescartable }} </td></tr>
                                     <tr><th> Cumplimiento </th><td> {{ $satisfaccione->cumplimiento }} </td></tr>
                                     <tr><th> Calidad del Empaque </th><td> {{ $satisfaccione->calidadEmpaque }} </td></tr>
+                                    <tr><th> Embalaje </th><td> {{ $satisfaccione->embalaje }} </td></tr>
                                     <tr><th> Calidad de Entrega </th><td> {{ $satisfaccione->calidadEntrega }} </td></tr>
                                     <tr><th> Atención y Amabilidad </th><td> {{ $satisfaccione->atencionAmabilidad }} </td></tr>
                                     <tr><th> Precio </th><td> {{ $satisfaccione->precio }} </td></tr>

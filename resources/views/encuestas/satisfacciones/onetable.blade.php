@@ -55,8 +55,16 @@
                  <td> {{ $satisfaccione->vendaGasa }} </td>
               </tr>
               <tr>
-                 <th> Vendas Elástica </th>
+                 <th> Venda Elástica </th>
                  <td> {{ $satisfaccione->vendaElastica }} </td>
+              </tr>
+              <tr>
+                 <th> Compresa de Gasa </th>
+                 <td> {{ $satisfaccione->compresaDeGasa }} </td>
+              </tr>
+              <tr>
+                 <th> Gorro Descartable </th>
+                 <td> {{ $satisfaccione->gorroDescartable }} </td>
               </tr>
               <tr>
                  <th> Cumplimiento </th>
@@ -65,6 +73,10 @@
               <tr>
                  <th> Calidad del Empaque </th>
                  <td> {{ $satisfaccione->calidadEmpaque }} </td>
+              </tr>
+              <tr>
+                 <th> Embalaje</th>
+                 <td> {{ $satisfaccione->embalaje }} </td>
               </tr>
               <tr>
                  <th> Calidad de Entrega </th>
