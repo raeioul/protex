@@ -44,20 +44,12 @@
                <td> {{ $institucione->algodonLaminado }} </td>
             </tr>
             <tr>
-               <th> Algodón Libre Impurezas</th>
-               <td> {{ $institucione->algodonLibreImpurezas }} </td>
-            </tr>
-            <tr>
                <th> Suavidad de la gasa </th>
                <td> {{ $institucione->gasaSuavidad }} </td>
             </tr>
             <tr>
                <th> Absorción de la gasa </th>
                <td> {{ $institucione->gasaAbsorcion }} </td>
-            </tr>
-            <tr>
-               <th> Gasa libre de impurezas </th>
-               <td> {{ $institucione->gasaLibreImpurezas }} </td>
             </tr>
             <tr>
                <th> Servicio de cortado y Doblado de la Gasa </th>
@@ -112,8 +104,8 @@
                <td> {{ $institucione->jeringaEmpaquePrimario }} </td>
             </tr>
             <tr>
-               <th> Jeringa Filtración Aguja </th>
-               <td> {{ $institucione->jeringaFiltracionAguja }} </td>
+               <th> Jeringa Fijación Aguja </th>
+               <td> {{ $institucione->jeringaFijacionAguja }} </td>
             </tr>
             <tr>
                <th> Jeringa Filtración Émbolo </th>
@@ -140,8 +132,8 @@
                <td> {{ $institucione->vendaGasaCalidadTejido }} </td>
             </tr>
             <tr>
-               <th> Venda Gasa Memoria </th>
-               <td> {{ $institucione->vendaGasaMemoria }} </td>
+               <th> Venda Gasa Suavidad </th>
+               <td> {{ $institucione->vendaGasaSuavidad }} </td>
             </tr>
             <tr>
                <th> Venda Gasa Bordes </th>
@@ -156,8 +148,8 @@
                <td> {{ $institucione->vendaElasticaCapacidadDistensión }} </td>
             </tr>
             <tr>
-               <th> Venda Elastica Memoria </th>
-               <td> {{ $institucione->vendaElasticaMemoria }} </td>
+               <th> Venda Elastica Clip </th>
+               <td> {{ $institucione->vendaElasticaClip }} </td>
             </tr>
             <tr>
                <th> Venda Elastica Calidad Tejido </th>
@@ -166,6 +158,10 @@
             <tr>
                <th> Cumplimiento </th>
                <td> {{ $institucione->cumplimiento }} </td>
+            </tr>
+            <tr>
+               <th> Embalaje </th>
+               <td> {{ $institucione->embalaje }} </td>
             </tr>
             <tr>
                <th> Calidad Producto </th>

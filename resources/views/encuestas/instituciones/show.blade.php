@@ -36,10 +36,8 @@
                                     <tr><th> Suavidad del Algodón </th><td> {{ $institucione->algodonSuavidad }} </td></tr>
                                     <tr><th> Absorción del Algodón </th><td> {{ $institucione->algodonAbsorcion }} </td></tr>
                                     <tr><th> Laminado del Algodòn </th><td> {{ $institucione->algodonLaminado }} </td></tr>
-                                    <tr><th> Algodón Libre Impurezas</th><td> {{ $institucione->algodonLibreImpurezas }} </td></tr>
                                     <tr><th> Suavidad de la gasa </th><td> {{ $institucione->gasaSuavidad }} </td></tr>
                                     <tr><th> Absorción de la gasa </th><td> {{ $institucione->gasaAbsorcion }} </td></tr>
-                                    <tr><th> Gasa libre de impurezas </th><td> {{ $institucione->gasaLibreImpurezas }} </td></tr>
                                     <tr><th> Servicio de cortado y Doblado de la Gasa </th><td> {{ $institucione->gasaLibreServicioCortadoDoblado }} </td></tr>
                                     <tr><th> Comodidad del barbijo en el rostro </th><td> {{ $institucione->barbijoComodidadRostro }} </td></tr>
                                     <tr><th> Facil respiración barbijo </th><td> {{ $institucione->barbijoFacilRespiracion }} </td></tr>
@@ -53,20 +51,21 @@
                                     <tr><th> Guante Examinacion Presencia Talco</th><td> {{ $institucione->guanteExaminacionPresenciaTalco }} </td></tr>
                                     <tr><th> Guante Examinacion Resistencia Uso </th><td> {{ $institucione->guanteExaminacionResistenciaUso }} </td></tr>
                                     <tr><th> Jeringa Empaque Primario </th><td> {{ $institucione->jeringaEmpaquePrimario }} </td></tr>
-                                    <tr><th> Jeringa Filtración Aguja </th><td> {{ $institucione->jeringaFiltracionAguja }} </td></tr>
+                                    <tr><th> Jeringa Fijaciòn Aguja </th><td> {{ $institucione->jeringaFijacionAguja }} </td></tr>
                                     <tr><th> Jeringa Filtración Émbolo </th><td> {{ $institucione->jeringaFiltracionEmbolo }} </td></tr>
                                     <tr><th> Jeringa Calidad Aguja </th><td> {{ $institucione->jeringaCalidadAguja }} </td></tr>
                                     <tr><th> Jeringa Impresión Escala </th><td> {{ $institucione->jeringaImpresionEscala }} </td></tr>
                                     <tr><th> Equipo Suero Empaque </th><td> {{ $institucione->equipoSueroEmpaque }} </td></tr>
                                     <tr><th> Equipo Suero Cámara Goteo </th><td> {{ $institucione->equipoSueroCamaraGoteo }} </td></tr>
                                     <tr><th> Venda Gasa Calidad Tejido </th><td> {{ $institucione->vendaGasaCalidadTejido }} </td></tr>
-                                    <tr><th> Venda Gasa Memoria </th><td> {{ $institucione->vendaGasaMemoria }} </td></tr>
+                                    <tr><th> Venda Gasa Suavidad </th><td> {{ $institucione->vendaGasaSuavidad }} </td></tr>
                                     <tr><th> Venda Gasa Bordes </th><td> {{ $institucione->vendaGasaBordes }} </td></tr>
                                     <tr><th> Venda Elástica Elasticidad </th><td> {{ $institucione->vendaElasticaElasticidad }} </td></tr>
                                     <tr><th> Venda Elastica Capacidad Distensión </th><td> {{ $institucione->vendaElasticaCapacidadDistensión }} </td></tr>
-                                    <tr><th> Venda Elastica Memoria </th><td> {{ $institucione->vendaElasticaMemoria }} </td></tr>
+                                    <tr><th> Venda Elastica Clip </th><td> {{ $institucione->vendaElasticaClip }} </td></tr>
                                     <tr><th> Venda Elastica Calidad Tejido </th><td> {{ $institucione->vendaElasticaCalidadTejido }} </td></tr>
                                     <tr><th> Cumplimiento </th><td> {{ $institucione->cumplimiento }} </td></tr>
+                                    <tr><th> Embalaje </th><td> {{ $institucione->embalaje }} </td></tr>
                                     <tr><th> Calidad Producto </th><td> {{ $institucione->calidadProducto }} </td></tr>
                                     <tr><th> Precio </th><td> {{ $institucione->precio }} </td></tr>
                                     <tr><th> Atención Gestión Reclamos </th><td> {{ $institucione->atencionGestionReclamos }} </td></tr>

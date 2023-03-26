@@ -44,10 +44,8 @@
                                         <th> Suavidad del Algodón </th>
                                         <th> Absorción del Algodón </th>
                                         <th> Laminado del Algodòn  </th>
-                                        <th> Algodón Libre Impurezas </th>
                                         <th> Suavidad de la gasa </th>
                                         <th> Abosorción de la gasa </th>
-                                        <th> Gasa libre de impurezas </th>
                                         <th> Servicio de cortado y Doblado de la Gasa </th>
                                         <th> Comodidad del barbijo en el rostro </th>
                                         <th> Facil respiracion barbijo </th>
@@ -61,20 +59,21 @@
                                         <th> Guante Examinacion PresenciaTalco </th>
                                         <th> Guante Examinacion Resistencia Uso </th>
                                         <th> Jeringa Empaque Primario </th>
-                                        <th> Jeringa Filtracion Aguja </th>
+                                        <th> Jeringa Fijación Aguja </th>
                                         <th> Jeringa Filtracion Embolo </th>
                                         <th> Jeringa Calidad Aguja </th>
                                         <th> Jeringa Impresion Escala </th>
                                         <th> Equipo Suero Empaque </th>
                                         <th> Equipo Suero Camara Goteo </th>
                                         <th> Venda Gasa Calidad Tejido </th>
-                                        <th> Venda Gasa Memoria </th>
+                                        <th> Venda Gasa Suavidad </th>
                                         <th> Venda Gasa Bordes </th>
                                         <th> Venda Elastica Elasticidad </th>
                                         <th> Venda Elastica Capacidad Distensión </th>
-                                        <th> Venda Elastica Memoria </th>
+                                        <th> Venda Elastica Clip </th>
                                         <th> Venda Elastica Calidad Tejido </th>
                                         <th> Cumplimiento </th>
+                                        <th> Embalaje</th>
                                         <th> calidadProducto </th>
                                         <th> precio </th>
                                         <th> Atencion Gestion Reclamos </th>
@@ -99,10 +98,8 @@
                                         <td> {{ $institucione->algodonSuavidad }} </td>
                                         <td> {{ $institucione->algodonAbsorcion }} </td>
                                         <td> {{ $institucione->algodonLaminado }} </td>
-                                        <td> {{ $institucione->algodonLibreImpurezas }} </td>
                                         <td> {{ $institucione->gasaSuavidad }} </td>
                                         <td> {{ $institucione->gasaAbsorcion }} </td>
-                                        <td> {{ $institucione->gasaLibreImpurezas }} </td>
                                         <td> {{ $institucione->gasaLibreServicioCortadoDoblado }} </td>
                                         <td> {{ $institucione->barbijoComodidadRostro }} </td>
                                         <td> {{ $institucione->barbijoFacilRespiracion }} </td>
@@ -116,20 +113,21 @@
                                         <td> {{ $institucione->guanteExaminacionPresenciaTalco }} </td>
                                         <td> {{ $institucione->guanteExaminacionResistenciaUso }} </td>
                                         <td> {{ $institucione->jeringaEmpaquePrimario }} </td>
-                                        <td> {{ $institucione->jeringaFiltracionAguja }} </td>
+                                        <td> {{ $institucione->jeringaFijacionAguja }} </td>
                                         <td> {{ $institucione->jeringaFiltracionEmbolo }} </td>
                                         <td> {{ $institucione->jeringaCalidadAguja }} </td>
                                         <td> {{ $institucione->jeringaImpresionEscala }} </td>
                                         <td> {{ $institucione->equipoSueroEmpaque }} </td>
                                         <td> {{ $institucione->equipoSueroCamaraGoteo }} </td>
                                         <td> {{ $institucione->vendaGasaCalidadTejido }} </td>
-                                        <td> {{ $institucione->vendaGasaMemoria }} </td>
+                                        <td> {{ $institucione->vendaGasaSuavidad }} </td>
                                         <td> {{ $institucione->vendaGasaBordes }} </td>
                                         <td> {{ $institucione->vendaElasticaElasticidad }} </td>
                                         <td> {{ $institucione->vendaElasticaCapacidadDistensión }} </td>
-                                        <td> {{ $institucione->vendaElasticaMemoria }} </td>
+                                        <td> {{ $institucione->vendaElasticaClip }} </td>
                                         <td> {{ $institucione->vendaElasticaCalidadTejido }} </td>
                                         <td> {{ $institucione->cumplimiento }} </td>
+                                        <td> {{ $institucione->embalaje }} </td>
                                         <td> {{ $institucione->calidadProducto }} </td>
                                         <td> {{ $institucione->precio }} </td>
                                         <td> {{ $institucione->atencionGestionReclamos }} </td>
