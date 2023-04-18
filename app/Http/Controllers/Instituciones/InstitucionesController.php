@@ -122,7 +122,7 @@ class InstitucionesController extends Controller
             'institucion' => 'required',
             'respondidoPor' => 'required',
             'cargo' => 'required',
-            'celular' => 'required|unique:instituciones|numeric',
+            'celular' => 'required|numeric',
         ];
 
         $messages = [
@@ -130,7 +130,6 @@ class InstitucionesController extends Controller
             'respondidoPor.required' => 'Ingrese su nombre, por favor.',
             'cargo.required' => 'Por favor, ingrese su cargo.',
             'celular.required' => 'Se requiere su número de teléfono celular.',
-            'celular.unique' => 'Este celular ya está registrado.',
             'celular.numeric' => 'Por favor, ingrese solo números.',
         ];
        
